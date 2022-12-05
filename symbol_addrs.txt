@@ -1,17 +1,17 @@
 
 
-func_menu_8010F284 = 0x8010F284; // segment:menu rom:0x12D374
-func_menu_8010F2B4 = 0x8010F2B4; // segment:menu rom:0x12D3A4
-func_menu_8010F2F8 = 0x8010F2F8; // segment:menu rom:0x12D3E8
-func_menu_8010F400 = 0x8010F400; // segment:menu rom:0x12D4F0
-func_menu_8010F488 = 0x8010F488; // segment:menu rom:0x12D578
-func_menu_8010F738 = 0x8010F738; // segment:menu rom:0x12D828
-func_menu_8010F7A8 = 0x8010F7A8; // segment:menu rom:0x12D898
-func_menu_8010F8E0 = 0x8010F8E0; // segment:menu rom:0x12D9D0
-func_menu_8010FCF4 = 0x8010FCF4; // segment:menu rom:0x12DDE4
-func_menu_8010FD74 = 0x8010FD74; // segment:menu rom:0x12DE64
-func_menu_8010FE3C = 0x8010FE3C; // segment:menu rom:0x12DF2C
-func_menu_8010FF04 = 0x8010FF04; // segment:menu rom:0x12DFF4
+func_menu_8010F284 = 0x8010F27C; // segment:menu rom:0x12D36C
+func_menu_8010F2B4 = 0x8010F2AC; // segment:menu rom:0x12D39C
+func_menu_8010F2F8 = 0x8010F2F0; // segment:menu rom:0x12D3E0
+func_menu_8010F400 = 0x8010F3F8; // segment:menu rom:0x12D4E8
+func_menu_8010F488 = 0x8010F480; // segment:menu rom:0x12D570
+func_menu_8010F738 = 0x8010F730; // segment:menu rom:0x12D820
+func_menu_8010F7A8 = 0x8010F7A0; // segment:menu rom:0x12D890
+func_menu_8010F8E0 = 0x8010F8D8; // segment:menu rom:0x12D9C8
+func_menu_8010FCF4 = 0x8010FCEC; // segment:menu rom:0x12DDDC
+func_menu_8010FD74 = 0x8010FD6C; // segment:menu rom:0x12DE5C
+func_menu_8010FE3C = 0x8010FE34; // segment:menu rom:0x12DF24
+func_menu_8010FF04 = 0x8010FEFC; // segment:menu rom:0x12DFEC
 
 
 heap_start = 0x80132F70

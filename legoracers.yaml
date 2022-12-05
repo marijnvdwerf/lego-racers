@@ -1,13 +1,13 @@
 
-name: Legoracers (European (basic spec.))
-sha1: 6e9c4b097628f0147e9e79393dba6d7b4e59986f
+name: Legoracers (North America)
+sha1: 8decc41869926e20da2eb3da526e6395aa33cece
 
 options:
   basename: legoracers
   platform: n64
 
 
-  target_path: ../legoracers.e.z64
+  target_path: ../legoracers.u.z64
 
   base_path: .
   compiler: GCC
@@ -1479,7 +1479,7 @@ segments:
       - [0x12CF90, asm, menu/660]
 
 
-      - [0x12E24C, bin]
+      - [0x12E244, bin]
 
       
       - [0x12E250, asm, menu/670]

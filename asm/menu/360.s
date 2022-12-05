@@ -125,9 +125,9 @@ glabel func_menu_800F48B0
 /* 1129D0 800F48E0 26040950 */  addiu      $a0, $s0, 0x950
 /* 1129D4 800F48E4 02202821 */  addu       $a1, $s1, $zero
 /* 1129D8 800F48E8 24063551 */  addiu      $a2, $zero, 0x3551
-/* 1129DC 800F48EC 3C074E4C */  lui        $a3, (0x4E4C4750 >> 16)
+/* 1129DC 800F48EC 3C074E4C */  lui        $a3, (0x4E4C4745 >> 16)
 /* 1129E0 800F48F0 0C049759 */  jal        func_menu_80125D64
-/* 1129E4 800F48F4 34E74750 */   ori       $a3, $a3, (0x4E4C4750 & 0xFFFF)
+/* 1129E4 800F48F4 34E74745 */   ori       $a3, $a3, (0x4E4C4745 & 0xFFFF)
 /* 1129E8 800F48F8 02002021 */  addu       $a0, $s0, $zero
 /* 1129EC 800F48FC 24050005 */  addiu      $a1, $zero, 0x5
 /* 1129F0 800F4900 24060001 */  addiu      $a2, $zero, 0x1
