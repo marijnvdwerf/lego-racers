@@ -1,0 +1,6 @@
+.include "macro.inc"
+
+.section .data
+
+glabel D_menu_80126C30
+.word 0x800CBF1C, 0x800CBF24, 0x800CBF2C, 0x800CBF34, 0x800CBF3C, 0x800CBF44, 0x800CBF4C, 0x800CBF54, 0x800CBF5C, 0x800CBF64

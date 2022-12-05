@@ -1,0 +1,33 @@
+.include "macro.inc"
+
+.section .rdata
+
+glabel D_8003F4D0
+.word 0x00000000
+
+glabel D_8003F4D4
+.float 65536.0
+
+glabel D_8003F4D8
+.float 65536.0
+
+glabel D_8003F4DC
+.float 1.0
+
+glabel D_8003F4E0
+.float 1.0, 0.0
+
+glabel D_8003F4E8
+.word 0x00000000, 0x00000000, 0x00000000, func_80076DC8, 0x00000000, func_80068700, 0x00000000, func_80076E10, 0x00000000, func_80076E50, 0x00000000, func_80068438, 0x00000000, func_800685B4, 0x00000000, func_80076F00, 0x00000000, func_800774D0, 0x00000000, func_800772E0, 0x00000000, func_800773C8, 0x00000000, func_80077450, 0x00000000, func_800774C8
+
+glabel D_8003F550
+.word 0x00000000
+
+glabel D_8003F554
+.float 0.5
+
+glabel D_8003F558
+.float 1.0
+
+glabel D_8003F55C
+.float 65536.0

@@ -1,0 +1,36 @@
+.include "macro.inc"
+
+.section .rodata
+
+glabel D_race_800CA890
+.float 0.0078125
+
+glabel D_race_800CA894
+.float 255.0
+
+glabel D_race_800CA898
+.float 1.0
+
+glabel D_race_800CA89C
+.float 128.0
+
+glabel D_race_800CA8A0
+.word 0x00000000, 0x00000000, 0x00000000, func_race_800D2710
+
+glabel D_race_800CA8B0
+.word 0x00000000
+
+glabel D_race_800CA8B4
+.ascii "streak\0\0\0\0\0\0"
+
+glabel D_race_800CA8C0
+.word 0x00000000, 0x00000000, 0x00000000, func_race_800D3ABC
+
+glabel D_race_800CA8D0
+.float 1.0
+
+glabel D_race_800CA8D4
+.float -1.0
+
+glabel D_race_800CA8D8
+.word 0x00000000, 0x00000000, 0x00000000, func_80058588, 0x00000000, func_8005656C, 0x00000000, func_80056588, 0x00000000, func_80058684, 0x00000000, func_80059394, 0x00000000, func_80058410, 0x00000000, func_80059560, 0x00000000, func_race_800D4088, 0x00000000, func_80058AB8, 0x00000000, func_800588C8, 0x00000000, func_80058934, 0x00000000, func_8005630C, 0x00000000, func_80056400, 0x00000000, func_80056184, 0x00000000, func_80056248, 0x00000000, func_80055CA4, 0x00000000, func_80056918, 0x00000000, func_800560EC, 0x00000000, func_80056138, 0x00000000, func_800585B4, 0x00000000, func_80058164, 0x00000000, func_race_800D4074, 0x00000000, func_race_800D407C, 0x00000000, func_80058548, 0x00000000, func_race_800D3FDC

@@ -1,0 +1,150 @@
+.include "macro.inc"
+
+.section .rdata
+
+glabel D_menu_800CAB90
+.float 0.00390625
+
+glabel D_menu_800CAB94
+.float 0.0009765625
+
+glabel D_menu_800CAB98
+.word 0x00000000
+
+glabel D_menu_800CAB9C
+.ascii ".leb\0\0\0\0\0\0\0\0"
+
+glabel jtbl_menu_800CABA8
+.word Lmenu_800DFA28, Lmenu_800DFB2C, Lmenu_800DFB9C, Lmenu_800DFC2C, Lmenu_800DFCBC, Lmenu_800DFD30
+
+glabel D_menu_800CABC0
+.word 0x00000000, 0x00000000, 0x00000000, func_8007DD84, 0x00000000, func_8007DD8C, 0x00000000, func_8007DD94, 0x00000000, func_8007DDB4, 0x00000000, func_80007834, 0x00000000, func_8000783C, 0x00000000, func_menu_800E046C, 0x00000000, func_80006624, 0x00000000, func_80009534, 0x00000000, func_80006928, 0x00000000, func_80006CBC, 0x00000000, func_800073F4, 0x00000000, func_800075B0, 0x00000000, func_8000771C, 0x00000000, func_8007DEA0, 0x00000000, func_8007DF68, 0x00000000, func_8000C2E0, 0x00000000, func_8000C2E8, 0x00000000, func_8000C304, 0x00000000, func_8000C2F4, 0x00000000, func_8000C2FC
+
+glabel D_menu_800CAC70
+.float 1.0
+
+glabel D_menu_800CAC74
+.ascii ": unable to find jointed model\0\0"
+
+glabel D_menu_800CAC94
+.word 0x00000000
+
+glabel D_menu_800CAC98
+.ascii ": unable to find model\0\0"
+
+glabel D_menu_800CACB0
+.ascii ": unable to find bsp model\0\0\0\0\0\0"
+
+glabel D_menu_800CACD0
+.word 0x00000000, 0x00000000, 0x00000000, func_menu_800E0E44, 0x00000000, func_menu_800E0E88, 0x00000000, func_menu_800E0E90, 0x00000000, func_menu_800E0EC8, 0x00000000, func_menu_800E0F00, 0x00000000, func_menu_800E0F38, 0x00000000, func_menu_800E0F70
+
+glabel D_menu_800CAD10
+.word 0x00000000
+
+glabel D_menu_800CAD14
+.ascii ".ceb\0\0\0\0\0\0\0\0"
+
+glabel jtbl_menu_800CAD20
+.word Lmenu_800E1B54, Lmenu_800E1B68, Lmenu_800E1B90, Lmenu_800E1BA4, Lmenu_800E1BB8, Lmenu_800E1DD0, Lmenu_800E1DD0, Lmenu_800E1DD0, Lmenu_800E1BCC, Lmenu_800E1DD0, Lmenu_800E1DD0, Lmenu_800E1DD0, Lmenu_800E1DD0, Lmenu_800E1DD0, Lmenu_800E1DD0, Lmenu_800E1BE0, Lmenu_800E1DD0, Lmenu_800E1DD0, Lmenu_800E1DD0, Lmenu_800E1DD0, Lmenu_800E1DD0, Lmenu_800E1BF4, Lmenu_800E1DD0, Lmenu_800E1DD0, Lmenu_800E1C1C, Lmenu_800E1DD0, Lmenu_800E1DD0, Lmenu_800E1DD0, Lmenu_800E1DD0, Lmenu_800E1DD0, Lmenu_800E1DD0, Lmenu_800E1DD0, Lmenu_800E1DD0, Lmenu_800E1DD0, Lmenu_800E1DD0, Lmenu_800E1DD0, Lmenu_800E1DD0, Lmenu_800E1DD0, Lmenu_800E1C30, Lmenu_800E1DD0, Lmenu_800E1DD0, Lmenu_800E1C44, Lmenu_800E1C64, Lmenu_800E1C84, Lmenu_800E1CA4, Lmenu_800E1CC4, Lmenu_800E1CE4, Lmenu_800E1D04, Lmenu_800E1D24, Lmenu_800E1D44, Lmenu_800E1D64, Lmenu_800E1D84, Lmenu_800E1DA4, Lmenu_800E1B7C, Lmenu_800E1DD0, Lmenu_800E1DD0, Lmenu_800E1DD0, Lmenu_800E1C08
+
+glabel D_menu_800CAE08
+.ascii ".srf\0\0\0\0"
+
+glabel D_menu_800CAE10
+.ascii "Unable to open: \0\0\0\0"
+
+glabel D_menu_800CAE24
+.ascii ": Unable to find effect\0\0\0\0\0"
+
+glabel jtbl_menu_800CAE40
+.word Lmenu_800E4314, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E431C, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4324, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E432C, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E433C, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4344, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4358, Lmenu_800E4334
+
+glabel D_menu_800CAF18
+.float 0.001, 0.0
+
+glabel D_menu_800CAF20
+.word 0x00000000, 0x00000000, 0x00000000, func_8007DD84, 0x00000000, func_8007DD8C, 0x00000000, func_8007DD94, 0x00000000, func_8007DDB4, 0x00000000, func_80007834, 0x00000000, func_8000783C, 0x00000000, func_menu_800E4FB8, 0x00000000, func_80006624, 0x00000000, func_80009534, 0x00000000, func_80006928, 0x00000000, func_80006CBC, 0x00000000, func_800073F4, 0x00000000, func_800075B0, 0x00000000, func_8000771C, 0x00000000, func_8007DEA0, 0x00000000, func_8007DF68, 0x00000000, func_8000C2E0, 0x00000000, func_8000C2E8, 0x00000000, func_8000C304, 0x00000000, func_8000C2F4, 0x00000000, func_8000C2FC
+
+glabel D_menu_800CAFD0
+.word 0x00000000, 0x00000000, 0x00000000, func_menu_800E4410, 0x00000000, func_menu_800E4464, 0x00000000, func_menu_800E44B8, 0x00000000, func_menu_800E4518, 0x00000000, func_menu_800E4578, 0x00000000, func_menu_800E45D8, 0x00000000, func_menu_800E4638, 0x00000000, func_menu_800E4698, 0x00000000, func_menu_800E46F8, 0x00000000, func_menu_800E4758, 0x00000000, func_menu_800E47B8, 0x00000000, func_menu_800E4818, 0x00000000, func_menu_800E16B8
+
+glabel jtbl_menu_800CB040
+.word Lmenu_800E5190, Lmenu_800E51AC, Lmenu_800E51C8, Lmenu_800E51D8, Lmenu_800E51F0, Lmenu_800E520C, Lmenu_800E5228, Lmenu_800E5238, Lmenu_800E5248, Lmenu_800E5258, Lmenu_800E529C, Lmenu_800E529C, Lmenu_800E529C, Lmenu_800E529C, Lmenu_800E529C, Lmenu_800E529C, Lmenu_800E529C, Lmenu_800E529C, Lmenu_800E529C, Lmenu_800E529C, Lmenu_800E529C, Lmenu_800E529C, Lmenu_800E529C, Lmenu_800E529C, Lmenu_800E529C, Lmenu_800E529C, Lmenu_800E529C, Lmenu_800E529C, Lmenu_800E529C, Lmenu_800E529C, Lmenu_800E529C, Lmenu_800E529C, Lmenu_800E529C, Lmenu_800E529C, Lmenu_800E529C, Lmenu_800E5268
+
+glabel D_menu_800CB0D0
+.word 0x00000000, 0x00000000, 0x00000000, func_menu_800E50BC, 0x00000000, func_menu_800E52E4, 0x00000000, func_menu_800E0E90, 0x00000000, func_menu_800E0EC8, 0x00000000, func_menu_800E0F00, 0x00000000, func_menu_800E0F38, 0x00000000, func_menu_800E5334, 0x00000000, func_80002874, 0x00000000, func_80002874
+
+glabel D_menu_800CB120
+.ascii ": Unable to find image\0\0"
+
+glabel D_menu_800CB138
+.word 0x00000000, 0x00000000
+
+glabel D_menu_800CB140
+.word 0x00000000, 0x00000000, 0x00000000, func_menu_800E577C, 0x00000000, func_menu_800E52E4, 0x00000000, func_menu_800E0E90, 0x00000000, func_menu_800E0EC8, 0x00000000, func_menu_800E0F00, 0x00000000, func_menu_800E0F38, 0x00000000, func_menu_800E5334, 0x00000000, func_menu_800E5988, 0x00000000, func_menu_800E59A4
+
+glabel jtbl_menu_800CB190
+.word Lmenu_800E5BD8, Lmenu_800E5C64, Lmenu_800E5C74, Lmenu_800E5C90, Lmenu_800E5B50, Lmenu_800E5C0C
+
+glabel D_menu_800CB1A8
+.float 1.0, 0.0
+
+glabel D_menu_800CB1B0
+.word 0x00000000, 0x00000000, 0x00000000, func_menu_800E605C, 0x00000000, func_menu_800E5CF4, 0x00000000, func_menu_800E5D60, 0x00000000, func_menu_800E5EAC, 0x00000000, func_menu_800E0F00, 0x00000000, func_menu_800E5EF0, 0x00000000, func_menu_800E5F74
+
+glabel D_menu_800CB1F0
+.float 1.0, 0.0
+
+glabel jtbl_menu_800CB1F8
+.word Lmenu_800E6204, Lmenu_800E6258, Lmenu_800E6268, Lmenu_800E6278, Lmenu_800E6288, Lmenu_800E6298
+
+glabel D_menu_800CB210
+.word 0x00000000, 0x00000000, 0x00000000, func_menu_800E6480, 0x00000000, func_menu_800E62F8, 0x00000000, func_menu_800E0E90, 0x00000000, func_menu_800E0EC8, 0x00000000, func_menu_800E0F00, 0x00000000, func_menu_800E0F38, 0x00000000, func_menu_800E63CC
+
+glabel D_menu_800CB250
+.float 100.0
+
+glabel D_menu_800CB254
+.float 500.0
+
+glabel jtbl_menu_800CB258
+.word Lmenu_800E65C4, Lmenu_800E65D4, Lmenu_800E65E4, Lmenu_800E6618, Lmenu_800E6630, 0
+
+glabel D_menu_800CB270
+.word 0x00000000, 0x00000000, 0x00000000, func_menu_800E6B74, 0x00000000, func_menu_800E66E4, 0x00000000, func_menu_800E68F0, 0x00000000, func_menu_800E6954, 0x00000000, func_menu_800E0F00, 0x00000000, func_menu_800E6998, 0x00000000, func_menu_800E69E4
+
+glabel D_menu_800CB2B0
+.word 0x00000000
+
+glabel D_menu_800CB2B4
+.ascii ": Unable to find font\0\0\0\0\0\0\0"
+
+glabel D_menu_800CB2D0
+.word 0x00000000, 0x00000000, 0x00000000, func_menu_800E6BD4, 0x00000000, func_menu_800E52E4, 0x00000000, func_menu_800E0E90, 0x00000000, func_menu_800E0EC8, 0x00000000, func_menu_800E0F00, 0x00000000, func_menu_800E0F38, 0x00000000, func_menu_800E5334, 0x00000000, func_menu_800E6F2C, 0x00000000, func_menu_800E6F78
+
+glabel D_menu_800CB320
+.word 0x00000000, 0x00000000, 0x00000000, func_menu_800E73AC, 0x00000000, func_menu_800E72C0, 0x00000000, func_menu_800E0E90, 0x00000000, func_menu_800E0EC8, 0x00000000, func_menu_800E0F00, 0x00000000, func_menu_800E0F38, 0x00000000, func_menu_800E734C
+
+glabel D_menu_800CB360
+.word 0x00000000, 0x00000000, 0x00000000, func_menu_800E778C, 0x00000000, func_menu_800E759C, 0x00000000, func_menu_800E0E90, 0x00000000, func_menu_800E0EC8, 0x00000000, func_menu_800E75F4, 0x00000000, func_menu_800E0F38, 0x00000000, func_menu_800E7638
+
+glabel D_menu_800CB3A0
+.float 1.0
+
+glabel D_menu_800CB3A4
+.word 0x00000000
+
+glabel jtbl_menu_800CB3A8
+.word Lmenu_800E79F8, Lmenu_800E7A08, Lmenu_800E7A18, Lmenu_800E7904, Lmenu_800E7944, Lmenu_800E7974, Lmenu_800E79A4, Lmenu_800E79D4, Lmenu_800E7B18, Lmenu_800E7B40, Lmenu_800E7904, Lmenu_800E7A28
+
+glabel D_menu_800CB3D8
+.ascii ": Unable to find model\0\0"
+
+glabel D_menu_800CB3F0
+.ascii ": Unable to find jointed model\0\0"
+
+glabel D_menu_800CB410
+.ascii ": Unable to find bsp model\0\0\0\0\0\0"
+
+glabel D_menu_800CB430
+.word 0x00000000, 0x00000000, 0x00000000, func_menu_800E77EC, 0x00000000, func_menu_800E7DE4, 0x00000000, func_menu_800E7E84, 0x00000000, func_menu_800E7ECC, 0x00000000, func_menu_800E7F14, 0x00000000, func_menu_800E80AC

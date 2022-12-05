@@ -1,0 +1,6 @@
+.include "macro.inc"
+
+.section .data
+
+glabel D_race_80132170
+.word 0x44104000, 0xC3DE0000, 0x40EAB021, 0x44174000, 0xC3FA0000, 0x41980000, 0x44034000, 0xC3FC8000, 0x40933333

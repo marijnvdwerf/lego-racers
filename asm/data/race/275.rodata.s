@@ -1,0 +1,6 @@
+.include "macro.inc"
+
+.section .rodata
+
+glabel D_race_800CBC00
+.word 0x00000000, 0x00000000, 0x00000000, func_race_800E87C8, 0x00000000, func_80002874, 0x00000000, func_80002874, 0x00000000, func_race_800E86B0, 0x00000000, func_80002874, 0x00000000, func_race_800E8710, 0x00000000, func_race_800E87D8, 0x00000000, func_race_800E87D0, 0x00000000, func_race_800E87F0, 0x00000000, func_race_800E87F8, 0x00000000, func_race_800E87E0, 0x00000000, func_race_800E87E8
