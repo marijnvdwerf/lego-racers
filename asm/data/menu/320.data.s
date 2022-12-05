@@ -1,0 +1,9 @@
+.include "macro.inc"
+
+.section .data
+
+glabel D_menu_80126C00
+.word 0x00000001, 0x00000002, 0xFFFFFFFF
+
+glabel D_menu_80126C0C
+.word 0x3D23D70A, 0x3D23D70A, 0x3D23D70A, 0x3D23D70A, 0x3EC7AE14, 0x3ECCCCCD, 0x3D23D70A

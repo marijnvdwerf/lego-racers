@@ -1,0 +1,179 @@
+
+
+func_menu_8010F284 = 0x8010F284; // segment:menu rom:0x12D374
+func_menu_8010F2B4 = 0x8010F2B4; // segment:menu rom:0x12D3A4
+func_menu_8010F2F8 = 0x8010F2F8; // segment:menu rom:0x12D3E8
+func_menu_8010F400 = 0x8010F400; // segment:menu rom:0x12D4F0
+func_menu_8010F488 = 0x8010F488; // segment:menu rom:0x12D578
+func_menu_8010F738 = 0x8010F738; // segment:menu rom:0x12D828
+func_menu_8010F7A8 = 0x8010F7A8; // segment:menu rom:0x12D898
+func_menu_8010F8E0 = 0x8010F8E0; // segment:menu rom:0x12D9D0
+func_menu_8010FCF4 = 0x8010FCF4; // segment:menu rom:0x12DDE4
+func_menu_8010FD74 = 0x8010FD74; // segment:menu rom:0x12DE64
+func_menu_8010FE3C = 0x8010FE3C; // segment:menu rom:0x12DF2C
+func_menu_8010FF04 = 0x8010FF04; // segment:menu rom:0x12DFF4
+
+
+heap_start = 0x80132F70
+
+
+racefunc_80045990 = 0x80045990;
+do_race = 0x800460F0;
+
+do_menu = 0x80045cf4;
+menufunc_80046E20 = 0x80046E20;
+
+SmallRoomParams = 0x800307a0;
+BigRoomParams = 0x80030808;
+EchoParams = 0x80030890;
+ChorusParams = 0x800308b8;
+FlangeParams = 0x80030940;
+NoFxParams = 0x80030968;
+EffectCount = 0x80030990;
+EffectList = 0x80030994;
+default_sched = 0x800309b0;
+__libmus_current_sched = 0x800309bc
+last_task = 0x800309c0;
+
+
+__OsSchedInstall = 0x8001259C;
+
+MusHandleStop = 0x8000F70C;
+MusHandleSetFreqOffset = 0x8000F8C4;
+MusHandleSetPan = 0x8000F864;
+MusHandleSetVolume = 0x8000F80C;
+MusAsk = 0x8000f698;
+MusStop = 0x8000F5D4;
+MusStartSong = 0x8000F1B0;
+MusHandleAs = 0x8000F7BC;
+MusPtrBankInitialize = 0x8000FA2C;
+MusPtrBankSetSingle = 0x8000FA60;
+MusHandlePause = 0x8000FB0C;
+MusHandleUnPause = 0x8000FB30;
+MusFxBankInitialize = 0x8000FBD4;
+MusFxBankNumberOfEffects = 0x8000FC44;
+MusFxBankSetSingle = 0x8000FC5C;
+MusFxBankSetPtrBank = 0x8000FC78;
+MusInitialize = 0x8000eef4;
+MusStartEffect2 = 0x8000f4b4;
+__MusIntDmaIni = 0x80012130;
+MusIntSchedInit = 0x80012590;
+__MusIntAudManInit = 0x80012750;
+__MusIntSamplesInit = 0x800129f0;
+__MusIntMemInit = 0x80012b10;
+only_one_flag = 0x800309D0;
+
+SMALLROOM_PARAMS_N = 0x800309E0;
+BIGROOM_PARAMS_N = 0x80030a48;
+ECHO_PARAMS_N =0x80030ad0;
+CHORUS_PARAMS_N =0x80030af8;
+FLANGE_PARAMS_N =0x80030b20;
+NULL_PARAMS_N =0x80030b48;
+n_eqpower = 0x80030b70;
+
+n_alInit = 0x80014e40;
+n_alClose = 0x80014e7c;
+alGlobals = 0x80030c80;
+n_syn    = 0x80030c84;
+                             
+
+
+n_alEnvmixerPull = 0x80013200;
+n_alFxNew = 0x80012ce0;
+n_alAuxBusPull = 0x80012c40;
+n_alAdpcmPull = 0x80013ba0;
+n_alResamplePull = 0x800142B0;
+
+n_alSynAddPlayer = 0x80014EC0;
+n_alSynAllocVoice = 0x80014f10;
+n_alSavePull = 0x80015970;
+n_alMainBusPull = 0x800159C0;
+n_alSynAllocFX = 0x80015a40;
+
+// LIBULTRA
+osSetIntMask = 0x80015AA0;
+osCreatePiManager = 0x80015B40;
+osEPiStartDma = 0x80016020;
+osCartRomInit = 0x800160E0;
+osPiStartDma = 0x80016A80;
+osAiGetLength = 0x80016B30;
+osAiGetStatus = 0x80016B40;
+osAiSetFrequency = 0x80016B50;
+osAiSetNextBuffer = 0x80016C70;
+_init_lpfilter = 0x80016D30;
+alFxParam = 0x800195E4;
+alFxParamHdl = 0x800195F8;
+_doModFunc = 0x80019D7C;
+alLink = 0x80019F3C;
+alUnlink = 0x80019F5C;
+alHeapInit = 0x80019F90;
+alHeapDBAlloc = 0x80019FD0;
+bcopy = 0x8001A020;
+osInvalDCache = 0x8001A750;
+osInvalICache = 0x8001A800;
+osWritebackDCache = 0x8001A880;
+osWritebackDCacheAll = 0x8001A900;
+osContStartQuery = 0x8001A930;
+osContGetQuery = 0x8001A9B0;
+osContStartReadData = 0x8001A9D0;
+osContGetReadData = 0x8001AA58;
+osContInit = 0x8001ABB0;
+osVirtualToPhysical = 0x8001AEC0;
+sqrt = 0x8001AF20;
+cosf = 0x8001AF30; // maybe
+guOrtho = 0x8001B1B0;
+sinf = 0x8001B580;
+strlen = 0x8001B7F8;
+strncpy = 0x8001B81C;
+sprintf = 0x8001B850;
+osCreateMesgQueue = 0x8001D1A0;
+osRecvMesg = 0x8001DC80;
+osSendMesg = 0x8001DDB0;
+osSetEventMesg = 0x8001DEE0;
+osSpTaskLoad = 0x8001DF90;
+osSpTaskStartGo = 0x8001E19C;
+osSpTaskYield = 0x8001E5E0;
+osSpTaskYielded = 0x8001E600;
+osCreateScheduler = 0x8001E660;
+osScAddClient = 0x8001E7A8;
+osScGetCmdQ = 0x8001E890;
+osCreateThread = 0x8001F2D0;
+osSetThreadPri = 0x8001F4A0;
+osStartThread = 0x8001F570;
+osStopThread = 0x8001F690;
+osGetTime = 0x8001F7E0;
+osUnmapTLBAll = 0x8001FCF0;
+osViGetCurrentFramebuffer = 0x8001FD40;
+osViGetNextFramebuffer = 0x8001FE90;
+osCreateViManager = 0x8001FED0;
+osViSetEvent = 0x80020220;
+ osViSetMode = 0x80020280;
+osViSetSpecialFeatures = 0x800202D0;
+osViSwapBuffer = 0x80020440;
+osViBlack = 0x800207A0;
+__osMotorAccess = 0x80020800;
+osMotorInit = 0x80020944;
+osPfsAllocateFile = 0x80020C80;
+osPfsDeleteFile = 0x800210B0;
+osPfsReadWriteFile = 0x800212D0;
+osPfsFileState = 0x80021710;
+osPfsFindFile = 0x800218B0;
+osPfsIsPlug = 0x80021A70;
+osPfsFreeBlocks = 0x80021D50;
+osPfsNumFiles = 0x80021E60;
+osPfsInitPak = 0x80021F60;
+osPfsRepairId = 0x80022A60;
+osInitialize = 0x80022A60;
+__osRcpImTable = 0x80001450; // hword
+pows = 0x80001920; // double[9]
+
+// LIBSN
+__divdi3 = 0x80024070;
+__clz_tab = 0x80001150; // u8
+__clz_tab_1 = 0x80001250; // u8
+__clz_tab_2 = 0x80001350; // u8
+
+
+// HACK
+func_race_800E85AC = 0x800E85AC;
+func_race_800E8620 = 0x800E8620;

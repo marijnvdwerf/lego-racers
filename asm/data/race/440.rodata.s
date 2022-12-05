@@ -1,0 +1,33 @@
+.include "macro.inc"
+
+.section .rodata
+
+glabel D_race_800CC940
+.word 0x00000000
+
+glabel D_race_800CC944
+.ascii ".skb\0\0\0\0"
+
+glabel D_race_800CC94C
+.ascii "skymat\0\0"
+
+glabel D_race_800CC954
+.float 100.0
+
+glabel D_race_800CC958
+.float 1.0
+
+glabel D_race_800CC95C
+.float 1.0
+
+glabel D_race_800CC960
+.float 10.0
+
+glabel D_race_800CC964
+.float 40.0
+
+glabel D_race_800CC968
+.word 0x00000000, 0x00000000, 0x00000000, func_8007DD84, 0x00000000, func_8007DD8C, 0x00000000, func_8007DD94, 0x00000000, func_8007DDB4, 0x00000000, func_80007834, 0x00000000, func_8000783C, 0x00000000, func_race_800F18A0, 0x00000000, func_80006624, 0x00000000, func_80009534, 0x00000000, func_80006928, 0x00000000, func_80006CBC, 0x00000000, func_800073F4, 0x00000000, func_800075B0, 0x00000000, func_8000771C, 0x00000000, func_8007DEA0, 0x00000000, func_8007DF68, 0x00000000, func_8000C2E0, 0x00000000, func_8000C2E8, 0x00000000, func_8000C304, 0x00000000, func_8000C2F4, 0x00000000, func_8000C2FC
+
+glabel D_race_800CCA18
+.word 0x00000000, 0x00000000, 0x00000000, func_race_800F0794, 0x00000000, func_80058E5C, 0x00000000, func_race_800F1050

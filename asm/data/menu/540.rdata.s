@@ -1,0 +1,36 @@
+.include "macro.inc"
+
+.section .rdata
+
+glabel D_menu_800CDDD0
+.double 4294967296.0
+
+glabel D_menu_800CDDD8
+.float 255.0, 0.0
+
+glabel D_menu_800CDDE0
+.double 4294967296.0
+
+glabel D_menu_800CDDE8
+.float 0.05
+
+glabel D_menu_800CDDEC
+.float 0.5
+
+glabel jtbl_menu_800CDDF0
+.word Lmenu_80104ECC, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EE0, Lmenu_80104EE0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EE0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EF0, Lmenu_80104EE0
+
+glabel D_menu_800CDE9C
+.float 20.0
+
+glabel D_menu_800CDEA0
+.float 255.0
+
+glabel D_menu_800CDEA4
+.float 20.0
+
+glabel D_menu_800CDEA8
+.float 255.0, 0.0
+
+glabel D_menu_800CDEB0
+.word 0x00000000, 0x00000000, 0x00000000, func_menu_8011AFA8, 0x00000000, func_menu_8011AFA0, 0x00000000, func_menu_8011AF98, 0x00000000, func_menu_8011AF90, 0x00000000, func_menu_8011AF88, 0x00000000, func_menu_8011AF80, 0x00000000, func_menu_80101580, 0x00000000, func_menu_8010158C, 0x00000000, func_menu_8011AF68, 0x00000000, func_menu_8011AF60, 0x00000000, func_menu_8011AF58, 0x00000000, func_menu_8011AF50, 0x00000000, func_menu_8011AF48, 0x00000000, func_menu_80101598, 0x00000000, func_menu_80104F10, 0x00000000, func_menu_801015A0, 0x00000000, func_menu_801015A8, 0x00000000, func_menu_80105038, 0x00000000, func_menu_8011AF18, 0x00000000, func_menu_80104DC8, 0x00000000, func_menu_80119458, 0x00000000, func_menu_80104844, 0x00000000, func_menu_801195E4, 0x00000000, func_menu_80101688, 0x00000000, func_menu_8011AE98, 0x00000000, func_menu_80101680, 0x00000000, func_menu_8010460C, 0x00000000, func_menu_8010134C, 0x00000000, func_menu_80119170, 0x00000000, func_menu_801008C8, 0x00000000, func_menu_801056B0, 0x00000000, func_menu_8011AE5C, 0x00000000, func_menu_8010141C, 0x00000000, func_menu_80104E90, 0x00000000, func_menu_801013F8, 0x00000000, func_menu_80104E20, 0x00000000, func_menu_80101614, 0x00000000, func_menu_8010161C, 0x00000000, func_menu_80104E18, 0x00000000, func_menu_80105208, 0x00000000, func_menu_801052C8, 0x00000000, func_menu_801055B0

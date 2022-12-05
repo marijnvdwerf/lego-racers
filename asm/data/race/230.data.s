@@ -1,0 +1,12 @@
+.include "macro.inc"
+
+.section .data
+
+glabel D_race_80132100
+.word 0x00000001
+
+glabel D_race_80132104
+.word 0x00000002
+
+glabel D_race_80132108
+.word 0x3F800000, 0x00000000, 0x00000000, 0x00000000, 0x3F800000, 0x00000000, 0x00000000, 0x00000000, 0x3F800000

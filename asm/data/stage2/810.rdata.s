@@ -1,0 +1,15 @@
+.include "macro.inc"
+
+.section .rdata
+
+glabel D_80040A20
+.float 1.0
+
+glabel D_80040A24
+.float 8.0
+
+glabel D_80040A28
+.float 1024.0, 0.0
+
+glabel D_80040A30
+.word 0x00000000, 0x00000000, 0x00000000, func_80082534, 0x00000000, func_8008260C, 0x00000000, func_80082650, 0x00000000, func_8008266C, 0x00000000, func_800826DC, 0x00000000, func_8008273C, 0x00000000, func_80082688

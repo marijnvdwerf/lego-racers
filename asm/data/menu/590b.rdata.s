@@ -1,0 +1,45 @@
+.include "macro.inc"
+
+.section .rdata
+
+glabel D_menu_800CE5B0
+.float 1.0
+
+glabel D_menu_800CE5B4
+.word 0x00000000
+
+glabel D_menu_800CE5B8
+.ascii "rsanim\0\0"
+
+glabel D_menu_800CE5C0
+.word 0x404B020C, 0xC0073B64, 0x3FBE5604
+
+glabel D_menu_800CE5CC
+.word 0xC13851EC, 0xC0D88B44, 0x00000000
+
+glabel D_menu_800CE5D8
+.ascii "MENUDATA\\RS_SET\0"
+
+glabel D_menu_800CE5E8
+.ascii "MENUDATA\0\0\0\0"
+
+glabel D_menu_800CE5F4
+.float 1e37
+
+glabel D_menu_800CE5F8
+.float 0.963631
+
+glabel D_menu_800CE5FC
+.float -0.267238
+
+glabel D_menu_800CE600
+.float 1.0
+
+glabel D_menu_800CE604
+.ascii "crsdow\0\0\0\0\0\0"
+
+glabel D_menu_800CE610
+.word 0x00000000, 0x00000000, 0x00000000, func_menu_8011AFA8, 0x00000000, func_menu_8011AFA0, 0x00000000, func_menu_8011AF98, 0x00000000, func_menu_8011AF90, 0x00000000, func_menu_8011AF88, 0x00000000, func_menu_8011AF80, 0x00000000, func_menu_80101580, 0x00000000, func_menu_8010158C, 0x00000000, func_menu_8011AF68, 0x00000000, func_menu_8011AF60, 0x00000000, func_menu_8011AF58, 0x00000000, func_menu_8011AF50, 0x00000000, func_menu_8011AF48, 0x00000000, func_menu_80101598, 0x00000000, func_menu_8011AF28, 0x00000000, func_menu_801015A0, 0x00000000, func_menu_801015A8, 0x00000000, func_menu_8011AF20, 0x00000000, func_menu_8011AF18, 0x00000000, func_menu_80108AF8, 0x00000000, func_menu_80119458, 0x00000000, func_menu_80108504, 0x00000000, func_menu_801195E4, 0x00000000, func_menu_80101688, 0x00000000, func_menu_8011AE98, 0x00000000, func_menu_80101680, 0x00000000, func_menu_8010836C, 0x00000000, func_menu_8010134C, 0x00000000, func_menu_80119170, 0x00000000, func_menu_80108D2C, 0x00000000, func_menu_80109A94, 0x00000000, func_menu_8011AE5C, 0x00000000, func_menu_80108C24, 0x00000000, func_80002874, 0x00000000, func_menu_801099FC, 0x00000000, func_menu_80100850, 0x00000000, func_menu_80101614, 0x00000000, func_menu_8010161C, 0x00000000, func_menu_8010898C, 0x00000000, func_menu_8010969C, 0x00000000, func_menu_80108C64
+
+glabel D_menu_800CE760
+.word 0x00000000, 0x00000000, 0x00000000, func_menu_8011AFA8, 0x00000000, func_menu_8011AFA0, 0x00000000, func_menu_8011AF98, 0x00000000, func_menu_8011AF90, 0x00000000, func_menu_8011AF88, 0x00000000, func_menu_8011AF80, 0x00000000, func_menu_80101580, 0x00000000, func_menu_8010158C, 0x00000000, func_menu_8011AF68, 0x00000000, func_menu_8011AF60, 0x00000000, func_menu_8011AF58, 0x00000000, func_menu_8011AF50, 0x00000000, func_menu_8011AF48, 0x00000000, func_menu_80101598, 0x00000000, func_menu_80109FBC, 0x00000000, func_menu_801015A0, 0x00000000, func_menu_801015A8, 0x00000000, func_menu_8011AF20, 0x00000000, func_menu_8011AF18, 0x00000000, func_menu_80109D68, 0x00000000, func_menu_80119458, 0x00000000, func_menu_8010081C, 0x00000000, func_menu_801195E4, 0x00000000, func_menu_80101688, 0x00000000, func_menu_8011AE98, 0x00000000, func_menu_80101680, 0x00000000, func_menu_80109CD8, 0x00000000, func_menu_8010134C, 0x00000000, func_menu_80119170, 0x00000000, func_menu_801008C8, 0x00000000, func_menu_8010A020, 0x00000000, func_menu_8011AE5C, 0x00000000, func_menu_8010141C, 0x00000000, func_menu_80109FDC, 0x00000000, func_menu_801013F8, 0x00000000, func_menu_80109E90, 0x00000000, func_menu_80101614, 0x00000000, func_menu_8010161C

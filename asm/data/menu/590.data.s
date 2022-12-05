@@ -1,0 +1,12 @@
+.include "macro.inc"
+
+.section .data
+
+glabel D_menu_80127070
+.word 0x00000001, 0x00000002
+
+glabel D_menu_80127078
+.word 0x007C007D, 0x007F0080, 0x00810082, 0x00830000
+
+glabel D_menu_80127088
+.word 0x00840086, 0x00870088, 0x00000001, 0x00000002
