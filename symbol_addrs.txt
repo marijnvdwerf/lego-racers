@@ -1,3 +1,27 @@
+memcmp = 0x80001a10;
+memset = 0x80001a5c;
+strcmp = 0x80001a8c;
+strncmp = 0x80001ac8;
+strcat = 0x80001b20;
+strncat = 0x80001b80;
+strcpy = 0x80001be8;
+strncpy = 0x80001c20;
+strrchr = 0x80001c68;
+atoi = 0x80001cc8;
+atof = 0x80001d58;
+toupper = 0x80001e7c;
+tolower = 0x80001e9c;
+qsort = 0x80001ec4;
+strnicmp = 0x800021a0;
+strstr = 0x8000226c;
+srand = 0x80002424;
+rand = 0x80002430;
+
+stricmp = 0x8000247c;
+
+// boot
+boot = 0x8000258c;
+
 
 
 func_menu_8010F284 = 0x8010F284; // segment:menu rom:0x12D374
@@ -75,7 +99,7 @@ n_alInit = 0x80014e40;
 n_alClose = 0x80014e7c;
 alGlobals = 0x80030c80;
 n_syn    = 0x80030c84;
-                             
+
 
 
 n_alEnvmixerPull = 0x80013200;
@@ -163,15 +187,23 @@ osPfsFreeBlocks = 0x80021D50;
 osPfsNumFiles = 0x80021E60;
 osPfsInitPak = 0x80021F60;
 osPfsRepairId = 0x80022A60;
-osInitialize = 0x80022A60;
+osInitialize = 0x80023C30;
 __osRcpImTable = 0x80001450; // hword
 pows = 0x80001920; // double[9]
+
+// empty strings
+D_8003BCF0 = 0x000000008003bcf0; // type:char
 
 // LIBSN
 __divdi3 = 0x80024070;
 __clz_tab = 0x80001150; // u8
 __clz_tab_1 = 0x80001250; // u8
 __clz_tab_2 = 0x80001350; // u8
+
+// LIBMUS
+n_aspMainTextStart = 0x8000d870;
+n_aspMainDataStart = 0x80030430;
+jumptable = 0x800306E0;
 
 
 // HACK

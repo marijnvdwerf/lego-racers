@@ -1,6 +1,7 @@
 SECTIONS
 {
     __romPos = 0;
+    _gp = 0x0;
     header_ROM_START = __romPos;
     header_VRAM = ADDR(.header);
     .header : AT(header_ROM_START) SUBALIGN(16)
@@ -9,6 +10,7 @@ SECTIONS
         header_s = .;
         build/asm/header.s.o(.data);
         header_DATA_END = .;
+        header_DATA_SIZE = ABSOLUTE(header_DATA_END - header_DATA_START);
     }
     __romPos += SIZEOF(.header);
     header_ROM_END = __romPos;
@@ -22,6 +24,7 @@ SECTIONS
         boot_bin = .;
         build/assets/boot.bin.o(.data);
         boot_DATA_END = .;
+        boot_DATA_SIZE = ABSOLUTE(boot_DATA_END - boot_DATA_START);
     }
     __romPos += SIZEOF(.boot);
     boot_ROM_END = __romPos;
@@ -32,7 +35,7 @@ SECTIONS
     .main 0x80000400 : AT(main_ROM_START) SUBALIGN(16)
     {
         main_TEXT_START = .;
-        build/asm/1000.s.o(.text);
+        build/asm/snmain.s.o(.text);
         main_DATA_START = .;
         main_RODATA_START = .;
         build/asm/data/libc.rdata.s.o(.rdata);
@@ -54,6 +57,7 @@ SECTIONS
         build/asm/data/libultra/rodata.rodata.s.o(.rodata);
         build/asm/data/libultra/rodata2.rodata.s.o(.rodata);
         main_RODATA_END = .;
+        main_RODATA_SIZE = ABSOLUTE(main_RODATA_END - main_RODATA_START);
         build/asm/libc.s.o(.text);
         build/asm/main/010.s.o(.text);
         build/asm/main/020.s.o(.text);
@@ -203,6 +207,7 @@ SECTIONS
         build/asm/alloc.s.o(.text);
         build/asm/__builtin_delete.s.o(.text);
         main_TEXT_END = .;
+        main_TEXT_SIZE = ABSOLUTE(main_TEXT_END - main_TEXT_START);
         main_25D30_data__s = .;
         build/asm/data/main/25D30.data.s.o(.data);
         main_25E40_data__s = .;
@@ -229,6 +234,8 @@ SECTIONS
         build/assets/gspF3DEX2_NoN_fifoDataStart.bin.o(.data);
         n_aspMain_data_bin = .;
         build/assets/n_aspMain_data.bin.o(.data);
+        libmus_player_data__s = .;
+        build/asm/data/libmus/player.data.s.o(.data);
         lib_313A0_data__s = .;
         build/asm/data/lib/313A0.data.s.o(.data);
         lib_315D0_data__s = .;
@@ -240,12 +247,13 @@ SECTIONS
         lib_31890_data__s = .;
         build/asm/data/lib/31890.data.s.o(.data);
         main_DATA_END = .;
+        main_DATA_SIZE = ABSOLUTE(main_DATA_END - main_DATA_START);
     }
     main_bss_VRAM = ADDR(.main_bss);
     .main_bss (NOLOAD) : SUBALIGN(16)
     {
         main_BSS_START = .;
-        build/asm/1000.s.o(.bss);
+        build/asm/snmain.s.o(.bss);
         build/asm/libc.s.o(.bss);
         build/asm/main/010.s.o(.bss);
         build/asm/main/020.s.o(.bss);
@@ -389,9 +397,10 @@ SECTIONS
         build/asm/alloc.s.o(.bss);
         build/asm/__builtin_delete.s.o(.bss);
         main_BSS_END = .;
+        main_BSS_SIZE = ABSOLUTE(main_BSS_END - main_BSS_START);
     }
     __romPos += SIZEOF(.main);
-    __romPos = (__romPos + 15) & ~15; /* align 16 */
+    __romPos = ALIGN(__romPos, 16);
     main_ROM_END = __romPos;
     main_VRAM_END = .;
 
@@ -588,6 +597,7 @@ SECTIONS
         build/asm/stage2/800.s.o(.text);
         build/asm/stage2/810.s.o(.text);
         stage2_TEXT_END = .;
+        stage2_TEXT_SIZE = ABSOLUTE(stage2_TEXT_END - stage2_TEXT_START);
         stage2_010_data__s = .;
         build/asm/data/stage2/010.data.s.o(.data);
         stage2_030a_data__s = .;
@@ -687,6 +697,7 @@ SECTIONS
         stage2_800_data__s = .;
         build/asm/data/stage2/800.data.s.o(.data);
         stage2_DATA_END = .;
+        stage2_DATA_SIZE = ABSOLUTE(stage2_DATA_END - stage2_DATA_START);
         build/asm/stage2/010.s.o(.rodata);
         build/asm/stage2/020.s.o(.rodata);
         build/asm/stage2/030.s.o(.rodata);
@@ -769,6 +780,7 @@ SECTIONS
         build/asm/stage2/800.s.o(.rodata);
         build/asm/stage2/810.s.o(.rodata);
         stage2_RODATA_END = .;
+        stage2_RODATA_SIZE = ABSOLUTE(stage2_RODATA_END - stage2_RODATA_START);
     }
     stage2_bss_VRAM = ADDR(.stage2_bss);
     .stage2_bss (NOLOAD) : SUBALIGN(16)
@@ -856,9 +868,10 @@ SECTIONS
         build/asm/stage2/800.s.o(.bss);
         build/asm/stage2/810.s.o(.bss);
         stage2_BSS_END = .;
+        stage2_BSS_SIZE = ABSOLUTE(stage2_BSS_END - stage2_BSS_START);
     }
     __romPos += SIZEOF(.stage2);
-    __romPos = (__romPos + 15) & ~15; /* align 16 */
+    __romPos = ALIGN(__romPos, 16);
     stage2_ROM_END = __romPos;
     stage2_VRAM_END = .;
 
@@ -975,6 +988,7 @@ SECTIONS
         build/asm/data/race/950.rodata.s.o(.rodata);
         build/asm/data/race/960.rodata.s.o(.rodata);
         race_RODATA_END = .;
+        race_RODATA_SIZE = ABSOLUTE(race_RODATA_END - race_RODATA_START);
         race_ctors_640_data__s = .;
         build/asm/data/race/ctors/640.data.s.o(.data);
         race_ctors_660_data__s = .;
@@ -1095,6 +1109,7 @@ SECTIONS
         build/asm/race/950.s.o(.text);
         build/asm/race/960.s.o(.text);
         race_TEXT_END = .;
+        race_TEXT_SIZE = ABSOLUTE(race_TEXT_END - race_TEXT_START);
         race_030_data__s = .;
         build/asm/data/race/030.data.s.o(.data);
         race_035_data__s = .;
@@ -1156,6 +1171,7 @@ SECTIONS
         race_950_data__s = .;
         build/asm/data/race/950.data.s.o(.data);
         race_DATA_END = .;
+        race_DATA_SIZE = ABSOLUTE(race_DATA_END - race_DATA_START);
     }
     race_bss_VRAM = ADDR(.race_bss);
     .race_bss (NOLOAD) : SUBALIGN(16)
@@ -1268,9 +1284,10 @@ SECTIONS
         build/asm/race/950.s.o(.bss);
         build/asm/race/960.s.o(.bss);
         race_BSS_END = .;
+        race_BSS_SIZE = ABSOLUTE(race_BSS_END - race_BSS_START);
     }
     __romPos += SIZEOF(.race);
-    __romPos = (__romPos + 15) & ~15; /* align 16 */
+    __romPos = ALIGN(__romPos, 16);
     race_ROM_END = __romPos;
     race_VRAM_END = .;
 
@@ -1451,6 +1468,7 @@ SECTIONS
         build/asm/menu/970.s.o(.text);
         build/asm/menu/980.s.o(.text);
         menu_TEXT_END = .;
+        menu_TEXT_SIZE = ABSOLUTE(menu_TEXT_END - menu_TEXT_START);
         menu_144A40_data__s = .;
         build/asm/data/menu/144A40.data.s.o(.data);
         menu_144A50_data__s = .;
@@ -1578,6 +1596,7 @@ SECTIONS
         menu_145270_data__s = .;
         build/asm/data/menu/145270.data.s.o(.data);
         menu_DATA_END = .;
+        menu_DATA_SIZE = ABSOLUTE(menu_DATA_END - menu_DATA_START);
         build/asm/menu/010.s.o(.rodata);
         build/asm/menu/020.s.o(.rodata);
         build/asm/menu/030.s.o(.rodata);
@@ -1677,6 +1696,7 @@ SECTIONS
         build/asm/menu/970.s.o(.rodata);
         build/asm/menu/980.s.o(.rodata);
         menu_RODATA_END = .;
+        menu_RODATA_SIZE = ABSOLUTE(menu_RODATA_END - menu_RODATA_START);
     }
     menu_bss_VRAM = ADDR(.menu_bss);
     .menu_bss (NOLOAD) : SUBALIGN(16)
@@ -1781,9 +1801,10 @@ SECTIONS
         build/asm/menu/970.s.o(.bss);
         build/asm/menu/980.s.o(.bss);
         menu_BSS_END = .;
+        menu_BSS_SIZE = ABSOLUTE(menu_BSS_END - menu_BSS_START);
     }
     __romPos += SIZEOF(.menu);
-    __romPos = (__romPos + 15) & ~15; /* align 16 */
+    __romPos = ALIGN(__romPos, 16);
     menu_ROM_END = __romPos;
     menu_VRAM_END = .;
 
@@ -1795,6 +1816,7 @@ SECTIONS
         ljam_bin = .;
         build/assets/ljam.bin.o(.data);
         ljam_DATA_END = .;
+        ljam_DATA_SIZE = ABSOLUTE(ljam_DATA_END - ljam_DATA_START);
     }
     __romPos += SIZEOF(.ljam);
     ljam_ROM_END = __romPos;
