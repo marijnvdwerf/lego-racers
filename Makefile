@@ -44,5 +44,5 @@ clean:
 	sed -E '/        (_?[0-9A-F]+)_bin = \.;/d' legoracers.ld > legoracers.ld2
 	sed -E '/        build\/assets\/([0-9A-F]+)\.bin\.o\(\.data\);/d' legoracers.ld2 > legoracers.ld
 	rm legoracers.ld2
-	patch -p1 -i patch.diff
+	patch -p1 --no-backup-if-mismatch -i patch.diff
 
