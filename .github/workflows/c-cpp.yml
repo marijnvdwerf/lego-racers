@@ -23,7 +23,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y binuntils-mips-linux-gnu
+        sudo apt-get install -y binutils-linux-mips-gnu
     - name: make
       run: make
     - name: make check
