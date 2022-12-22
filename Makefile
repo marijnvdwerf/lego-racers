@@ -21,6 +21,8 @@ OBJS := $(AS_OBJS) $(BIN_OBJS)
 
 BINOFLAGS := -I binary -O elf32-big
 
+.PHONY: all
+all: rom.z64
 
 $(BUILD_DIR)/%.s.o: %.s
 	@echo "$(@D)"
@@ -46,3 +48,7 @@ clean:
 	rm legoracers.ld2
 	patch -p1 --no-backup-if-mismatch -i patch.diff
 
+
+.PHONY: check
+check: rom.z64
+	echo "6e9c4b097628f0147e9e79393dba6d7b4e59986f  rom.z64" | shasum --check -
