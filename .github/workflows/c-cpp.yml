@@ -20,6 +20,7 @@ jobs:
         shasum baserom.z64
       env:
         N64_BASEROM_URL: ${{ secrets.N64_BASEROM_URL }}
+    - run: sudo apt-get install -y binuntils-mips-linux-gnu
     - name: make
       run: make
     - name: make check
