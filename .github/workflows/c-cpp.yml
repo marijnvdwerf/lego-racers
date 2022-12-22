@@ -16,15 +16,11 @@ jobs:
     - uses: actions/checkout@v3
     - name: Download rom
       run: |
-        wget $N64_BASEROM_URL > baserom.z64
+        wget --output-document baserom.z64 $N64_BASEROM_URL
         shasum baserom.z64
       env:
         N64_BASEROM_URL: ${{ secrets.N64_BASEROM_URL }}
-    - name: configure
-      run: ./configure
     - name: make
       run: make
     - name: make check
       run: make check
-    - name: make distcheck
-      run: make distcheck
