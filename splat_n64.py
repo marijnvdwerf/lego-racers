@@ -37,7 +37,7 @@ def get_n64_config(region: str):
 
     # Add subsegments to main segment
     # offset: 0x7FFFF400
-    segment.add_segment(0x1000, "start", "snmain")
+    segment.add_segment(0x1000, "start", "snmain")  # main
     segment.add_segment(0x1064, "garbage")
     segment.add_segment(0x1070, ".rdata", "libc")
     segment.add_segment(0x10A0, ".rdata", "main/030")
@@ -70,6 +70,7 @@ def get_n64_config(region: str):
     segment.add_segment(0x20D0, "rodata", "libultra/rodata")
     segment.add_segment(0x2518, "garbage")
     segment.add_segment(0x2520, "rodata", "libultra/rodata2")
+
     # .text
     segment.add_segment(0x2610, "c", "libc")
     segment.add_segment(0x30CC, "garbage")
@@ -88,8 +89,8 @@ def get_n64_config(region: str):
     segment.add_segment(0x8624, "garbage")
     segment.add_segment(0x8630, "c", "main/070")
     segment.add_segment(0x8D04, "garbage")
-    segment.add_segment(0x8D10, "c", "main/080a")
-    segment.add_segment(0x9350, "c", "main/080b")
+    segment.add_segment(0x8D10, "c", "main/080a")  # needs split
+    segment.add_segment(0x9350, "c", "main/080b")  # needs split
     segment.add_segment(0xAA24, "garbage")
     segment.add_segment(0xAA30, "c", "main/090")
     segment.add_segment(0xB894, "garbage")
@@ -103,7 +104,7 @@ def get_n64_config(region: str):
     segment.add_segment(0xCF28, "garbage")
     segment.add_segment(0xCF30, "c", "main/140")
     segment.add_segment(0xD00C, "garbage")
-    segment.add_segment(0xD010, "textbin", "rspboot")
+    segment.add_segment(0xD010, "textbin", "rspboot")  # rspbootTextStart
     segment.add_segment(0xD0E0, "textbin", "gspF3DEX2_NoN_fifoTextStart")
     segment.add_segment(0xE470, "textbin", "n_aspMain.text")
     segment.add_segment(0xF0D0, "asm", "libmus/player")
@@ -188,7 +189,7 @@ def get_n64_config(region: str):
     segment.add_segment(0x1DDA0, "asm", "libultra/1DDA0")
     segment.add_segment(0x1DDD0, "asm", "libultra/1DDD0")
     segment.add_segment(0x1DF10, "asm", "libultra/1DF10")
-    segment.add_segment(0x1E880, "asm", "libultra/1E880")
+    segment.add_segment(0x1E880, "asm", "libultra/1E880")  # osRecvMesg
     segment.add_segment(0x1E9B0, "asm", "libultra/1E9B0")
     segment.add_segment(0x1EB90, "asm", "libultra/1EB90")
     segment.add_segment(0x1EDD0, "asm", "libultra/1EDD0")
@@ -255,26 +256,27 @@ def get_n64_config(region: str):
     segment.add_segment(0x25D0C, "garbage")
     segment.add_segment(0x25D10, "asm", "__builtin_delete")
     segment.add_segment(0x25D2C, "garbage")
+
     # .data
-    segment.add_segment(0x25D30, "data", "main/25D30")
+    segment.add_segment(0x25D30, "data", "main/25D30")  # main_060, libc
     segment.add_segment(0x25E34, "garbage")
-    segment.add_segment(0x25E40, "data", "main/25E40")
+    segment.add_segment(0x25E40, "data", "main/25E40")  # main_010
     segment.add_segment(0x27E98, "garbage")
-    segment.add_segment(0x27EA0, "data", "main/27EA0")
+    segment.add_segment(0x27EA0, "data", "main/27EA0")  # main_020, main_050
     segment.add_segment(0x306B4, "garbage")
-    segment.add_segment(0x306C0, "data", "main/306C0")
+    segment.add_segment(0x306C0, "data", "main/306C0")  # main_060
     segment.add_segment(0x30948, "garbage")
-    segment.add_segment(0x30950, "data", "main/30950")
+    segment.add_segment(0x30950, "data", "main/30950")  # main_080
     segment.add_segment(0x30954, "garbage")
-    segment.add_segment(0x30960, "data", "main/30960")
+    segment.add_segment(0x30960, "data", "main/30960")  # main_080
     segment.add_segment(0x30968, "garbage")
-    segment.add_segment(0x30970, "data", "main/30970")
+    segment.add_segment(0x30970, "data", "main/30970")  # main_080
     segment.add_segment(0x309C4, "garbage")
-    segment.add_segment(0x309D0, "data", "main/309D0")
+    segment.add_segment(0x309D0, "data", "main/309D0")  # main_090
     segment.add_segment(0x309D4, "garbage")
-    segment.add_segment(0x309E0, "data", "main/309E0")
+    segment.add_segment(0x309E0, "data", "main/309E0")  # main_090
     segment.add_segment(0x309E4, "garbage")
-    segment.add_segment(0x309F0, "data", "main/309F0")
+    segment.add_segment(0x309F0, "data", "main/309F0")  # main_110, main_120
     segment.add_segment(0x30BF4, "garbage")
     segment.add_segment(0x30C00, "data", "main/30C00")
     segment.add_segment(0x30C04, "garbage")
@@ -282,15 +284,15 @@ def get_n64_config(region: str):
     segment.add_segment(0x31030, "bin", "n_aspMain_data")
     segment.add_segment(0x312E0, "data", "libmus/player")
     segment.add_segment(0x31394, "garbage")
-    segment.add_segment(0x313A0, "data", "lib/313A0")
+    segment.add_segment(0x313A0, "data", "lib/313A0")  # 12510
     segment.add_segment(0x315C4, "garbage")
     segment.add_segment(0x315D0, "data", "lib/315D0")
     segment.add_segment(0x315D4, "garbage")
     segment.add_segment(0x315E0, "data", "lib/315E0")
     segment.add_segment(0x3187C, "garbage")
-    segment.add_segment(0x31880, "data", "lib/31880")
+    segment.add_segment(0x31880, "data", "lib/31880")  # 12510
     segment.add_segment(0x31888, "garbage")
-    segment.add_segment(0x31890, "data", "lib/31890")
+    segment.add_segment(0x31890, "data", "lib/31890")  # ossetintmask
 
     segment = config.add_segment(
         0x33010, "code", "stage2", vram=2147728608, bss_size=266096
@@ -299,7 +301,7 @@ def get_n64_config(region: str):
     # Add subsegments to stage2 segment
     segment.add_segment(0x33010, "rdata", "stage2/010a")
     segment.add_segment(0x3301C, "garbage")
-    segment.add_segment(0x33020, "rdata", "stage2/010b")
+    segment.add_segment(0x33020, "rdata", "stage2/010b")  # 2
     segment.add_segment(0x33021, "garbage")
     segment.add_segment(0x33030, "rdata", "stage2/010c")
     segment.add_segment(0x33038, "garbage")
@@ -436,6 +438,7 @@ def get_n64_config(region: str):
     segment.add_segment(0x37BE0, "rdata", "stage2/790")
     segment.add_segment(0x37CF0, "rdata", "stage2/800")
     segment.add_segment(0x37D50, "rdata", "stage2/810")
+
     # Ctors
     segment.add_segment(0x37DA0, "ctors", "stage2/080.ctors")
     segment.add_segment(0x37DA4, "garbage")
@@ -459,11 +462,11 @@ def get_n64_config(region: str):
     segment.add_segment(0x38CF4, "garbage")
     segment.add_segment(0x38D00, "asm", "stage2/020")
     segment.add_segment(0x38D3C, "garbage")
-    segment.add_segment(0x38D40, "asm", "stage2/030")
+    segment.add_segment(0x38D40, "asm", "stage2/030")  # split
     segment.add_segment(0x39CB8, "garbage")
     segment.add_segment(0x39CC0, "asm", "stage2/040")
     segment.add_segment(0x3B13C, "garbage")
-    segment.add_segment(0x3B140, "asm", "stage2/050")
+    segment.add_segment(0x3B140, "asm", "stage2/050")  # split
     segment.add_segment(0x3CCB8, "garbage")
     segment.add_segment(0x3CCC0, "c", "stage2/060")
     segment.add_segment(0x3CD68, "garbage")
@@ -489,11 +492,11 @@ def get_n64_config(region: str):
     segment.add_segment(0x43738, "garbage")
     segment.add_segment(0x43740, "asm", "stage2/170")
     segment.add_segment(0x43F4C, "garbage")
-    segment.add_segment(0x43F50, "asm", "stage2/180")
+    segment.add_segment(0x43F50, "asm", "stage2/180")  # split
     segment.add_segment(0x47948, "garbage")
     segment.add_segment(0x47950, "asm", "stage2/190")
     segment.add_segment(0x4B30C, "garbage")
-    segment.add_segment(0x4B310, "asm", "stage2/200")
+    segment.add_segment(0x4B310, "asm", "stage2/200")  # split
     segment.add_segment(0x4BEB4, "garbage")
     segment.add_segment(0x4BEC0, "asm", "stage2/210")
     segment.add_segment(0x4CF48, "garbage")
@@ -505,7 +508,7 @@ def get_n64_config(region: str):
     segment.add_segment(0x50118, "garbage")
     segment.add_segment(0x50120, "asm", "stage2/250")
     segment.add_segment(0x505BC, "garbage")
-    segment.add_segment(0x505C0, "asm", "stage2/260")
+    segment.add_segment(0x505C0, "asm", "stage2/260")  # split
     segment.add_segment(0x5290C, "garbage")
     segment.add_segment(0x52910, "asm", "stage2/270")
     segment.add_segment(0x54524, "garbage")
@@ -513,7 +516,7 @@ def get_n64_config(region: str):
     segment.add_segment(0x548E4, "garbage")
     segment.add_segment(0x548F0, "asm", "stage2/290")
     segment.add_segment(0x54AEC, "garbage")
-    segment.add_segment(0x54AF0, "asm", "stage2/300")
+    segment.add_segment(0x54AF0, "asm", "stage2/300")  # split
     segment.add_segment(0x56648, "garbage")
     segment.add_segment(0x56650, "asm", "stage2/310")
     segment.add_segment(0x573A8, "garbage")
@@ -618,7 +621,7 @@ def get_n64_config(region: str):
     segment.add_segment(0x79814, "garbage")
     segment.add_segment(0x79820, "asm", "stage2/810")
     segment.add_segment(0x79AB4, "garbage")
-    segment.add_segment(0x79AC0, "data", "stage2/010")
+    segment.add_segment(0x79AC0, "data", "stage2/010")  # DATA
     segment.add_segment(0x79AC4, "garbage")
     segment.add_segment(0x79AD0, "data", "stage2/030a")
     segment.add_segment(0x79AD4, "garbage")
@@ -735,41 +738,41 @@ def get_n64_config(region: str):
     segment.add_segment(0x80BC8, "garbage")
     segment.add_segment(0x80BD0, "rdata", "race/020")
     segment.add_segment(0x80BE8, "garbage")
-    segment.add_segment(0x80BF0, "rdata", "race/025")
-    segment.add_segment(0x80C30, "rdata", "race/030")
+    segment.add_segment(0x80BF0, "rdata", "race/025")  # SPLIT
+    segment.add_segment(0x80C30, "rdata", "race/030")  # 800CA870
     segment.add_segment(0x80C48, "garbage")
     segment.add_segment(0x80C50, "rdata", "race/035")
     segment.add_segment(0x80D68, "garbage")
-    segment.add_segment(0x80D70, "rdata", "race/040")
-    segment.add_segment(0x80DB0, "rdata", "race/050")
-    segment.add_segment(0x80DF0, "rdata", "race/060")
+    segment.add_segment(0x80D70, "rdata", "race/040")  # 800CA9B0
+    segment.add_segment(0x80DB0, "rdata", "race/050")  # 800CA9F0
+    segment.add_segment(0x80DF0, "rdata", "race/060")  # 800CAA30
     segment.add_segment(0x80E08, "garbage")
-    segment.add_segment(0x80E10, "rdata", "race/070")
-    segment.add_segment(0x80E90, "rdata", "race/080")
-    segment.add_segment(0x80ED0, "rdata", "race/090")
+    segment.add_segment(0x80E10, "rdata", "race/070")  # 800CAA50
+    segment.add_segment(0x80E90, "rdata", "race/080")  # 800CAAD0
+    segment.add_segment(0x80ED0, "rdata", "race/090")  # 800CAB10
     segment.add_segment(0x80F18, "garbage")
     segment.add_segment(0x80F20, "rdata", "race/100a")
     segment.add_segment(0x814D8, "garbage")
-    segment.add_segment(0x814E0, "rdata", "race/100b")
-    segment.add_segment(0x81520, "rdata", "race/110")
-    segment.add_segment(0x81560, "rdata", "race/120")
-    segment.add_segment(0x815A0, "rdata", "race/130")
-    segment.add_segment(0x815F0, "rdata", "race/140")
-    segment.add_segment(0x81660, "rdata", "race/150")
-    segment.add_segment(0x81690, "rdata", "race/154")
+    segment.add_segment(0x814E0, "rdata", "race/100b")  # 800CB120
+    segment.add_segment(0x81520, "rdata", "race/110")  # 800CB160
+    segment.add_segment(0x81560, "rdata", "race/120")  # 800CB1A0
+    segment.add_segment(0x815A0, "rdata", "race/130")  # 800CB1E0
+    segment.add_segment(0x815F0, "rdata", "race/140")  # 800CB230
+    segment.add_segment(0x81660, "rdata", "race/150")  # 800CB2A0
+    segment.add_segment(0x81690, "rdata", "race/154")  # 800CB2D0
     segment.add_segment(0x816D8, "garbage")
-    segment.add_segment(0x816E0, "rdata", "race/157")
-    segment.add_segment(0x81720, "rdata", "race/160")
+    segment.add_segment(0x816E0, "rdata", "race/157")  # 800CB320
+    segment.add_segment(0x81720, "rdata", "race/160")  # 800CB360
     segment.add_segment(0x81738, "garbage")
-    segment.add_segment(0x81740, "rdata", "race/170")
-    segment.add_segment(0x81800, "rdata", "race/180")
+    segment.add_segment(0x81740, "rdata", "race/170")  # 800CB380
+    segment.add_segment(0x81800, "rdata", "race/180")  # 800CB440
     segment.add_segment(0x81918, "garbage")
-    segment.add_segment(0x81920, "rdata", "race/190")
-    segment.add_segment(0x81960, "rdata", "race/200")
-    segment.add_segment(0x81A30, "rdata", "race/210")
-    segment.add_segment(0x81B10, "rdata", "race/220")
-    segment.add_segment(0x81BF0, "rdata", "race/230")
-    segment.add_segment(0x81CC0, "rdata", "race/240")
+    segment.add_segment(0x81920, "rdata", "race/190")  # 800CB560
+    segment.add_segment(0x81960, "rdata", "race/200")  # 800CB5A0
+    segment.add_segment(0x81A30, "rdata", "race/210")  # 800CB670
+    segment.add_segment(0x81B10, "rdata", "race/220")  # 800CB750
+    segment.add_segment(0x81BF0, "rdata", "race/230")  # 800CB830
+    segment.add_segment(0x81CC0, "rdata", "race/240")  # 800CB900
     segment.add_segment(0x81CD8, "garbage")
     segment.add_segment(0x81CE0, "rdata", "race/250")
     segment.add_segment(0x81CE1, "garbage")
@@ -779,32 +782,32 @@ def get_n64_config(region: str):
     segment.add_segment(0x81D7C, "garbage")
     segment.add_segment(0x81D80, "rdata", "race/270")
     segment.add_segment(0x81FB8, "garbage")
-    segment.add_segment(0x81FC0, "rdata", "race/275")
+    segment.add_segment(0x81FC0, "rdata", "race/275")  # Hazard rodata
     segment.add_segment(0x82028, "garbage")
     segment.add_segment(0x82030, "rdata", "race/280")
     segment.add_segment(0x82178, "garbage")
-    segment.add_segment(0x82180, "rdata", "race/290")
-    segment.add_segment(0x82200, "rdata", "race/300")
-    segment.add_segment(0x82280, "rdata", "race/310")
+    segment.add_segment(0x82180, "rdata", "race/290")  # 800CBDC0
+    segment.add_segment(0x82200, "rdata", "race/300")  # 800CBE40
+    segment.add_segment(0x82280, "rdata", "race/310")  # 800cbec0
     segment.add_segment(0x822F8, "garbage")
-    segment.add_segment(0x82300, "rdata", "race/320")
+    segment.add_segment(0x82300, "rdata", "race/320")  # maybe split
     segment.add_segment(0x824E8, "garbage")
-    segment.add_segment(0x824F0, "rdata", "race/325")
-    segment.add_segment(0x825B0, "rdata", "race/330")
-    segment.add_segment(0x826A0, "rdata", "race/340")
+    segment.add_segment(0x824F0, "rdata", "race/325")  # 800CC130
+    segment.add_segment(0x825B0, "rdata", "race/330")  # 800cc1f0
+    segment.add_segment(0x826A0, "rdata", "race/340")  # 800CC2E0
     segment.add_segment(0x82728, "garbage")
     segment.add_segment(0x82730, "rdata", "race/350")
     segment.add_segment(0x827A0, "rdata", "race/360")
     segment.add_segment(0x82810, "rdata", "race/370")
     segment.add_segment(0x828B8, "garbage")
-    segment.add_segment(0x828C0, "rdata", "race/380")
-    segment.add_segment(0x82970, "rdata", "race/390")
+    segment.add_segment(0x828C0, "rdata", "race/380")  # 800CC500
+    segment.add_segment(0x82970, "rdata", "race/390")  # 800CC5B0
     segment.add_segment(0x82A28, "garbage")
-    segment.add_segment(0x82A30, "rdata", "race/400")
-    segment.add_segment(0x82AD0, "rdata", "race/410")
-    segment.add_segment(0x82BD0, "rdata", "race/420")
-    segment.add_segment(0x82C80, "rdata", "race/430")
-    segment.add_segment(0x82D00, "rdata", "race/440")
+    segment.add_segment(0x82A30, "rdata", "race/400")  # 800CC670
+    segment.add_segment(0x82AD0, "rdata", "race/410")  # 800CC710
+    segment.add_segment(0x82BD0, "rdata", "race/420")  # 800cc810
+    segment.add_segment(0x82C80, "rdata", "race/430")  # 800cc8c0
+    segment.add_segment(0x82D00, "rdata", "race/440")  # 800CC940
     segment.add_segment(0x82DF8, "garbage")
     segment.add_segment(0x82E00, "rdata", "race/450")
     segment.add_segment(0x82E90, "rdata", "race/460")
@@ -825,7 +828,7 @@ def get_n64_config(region: str):
     segment.add_segment(0x833D4, "garbage")
     segment.add_segment(0x833E0, "rdata", "race/550")
     segment.add_segment(0x837C8, "garbage")
-    segment.add_segment(0x837D0, "rdata", "race/560a")
+    segment.add_segment(0x837D0, "rdata", "race/560a")  # main
     segment.add_segment(0x837EA, "garbage")
     segment.add_segment(0x837F0, "rdata", "race/560b")
     segment.add_segment(0x838C8, "garbage")
@@ -859,7 +862,7 @@ def get_n64_config(region: str):
     segment.add_segment(0x84370, "rdata", "race/700")
     segment.add_segment(0x84440, "rdata", "race/720")
     segment.add_segment(0x84528, "garbage")
-    segment.add_segment(0x84530, "rdata", "race/730")
+    segment.add_segment(0x84530, "rdata", "race/730")  # maybe split
     segment.add_segment(0x8488C, "garbage")
     segment.add_segment(0x84890, "rdata", "race/740")
     segment.add_segment(0x848D8, "garbage")
@@ -868,25 +871,25 @@ def get_n64_config(region: str):
     segment.add_segment(0x848F0, "rdata", "race/760")
     segment.add_segment(0x84910, "rdata", "race/770")
     segment.add_segment(0x849D8, "garbage")
-    segment.add_segment(0x849E0, "rdata", "race/780")
-    segment.add_segment(0x84A60, "rdata", "race/790")
-    segment.add_segment(0x84B00, "rdata", "race/800")
-    segment.add_segment(0x84B40, "rdata", "race/810")
+    segment.add_segment(0x849E0, "rdata", "race/780")  # 800CE620
+    segment.add_segment(0x84A60, "rdata", "race/790")  # 800CE6A0
+    segment.add_segment(0x84B00, "rdata", "race/800")  # 800CE740
+    segment.add_segment(0x84B40, "rdata", "race/810")  # 800CE780
     segment.add_segment(0x84BA8, "garbage")
-    segment.add_segment(0x84BB0, "rdata", "race/820")
-    segment.add_segment(0x84C80, "rdata", "race/830")
+    segment.add_segment(0x84BB0, "rdata", "race/820")  # 800CE7F0
+    segment.add_segment(0x84C80, "rdata", "race/830")  # 800ce8c0
     segment.add_segment(0x84DC4, "garbage")
     segment.add_segment(0x84DD0, "rdata", "race/835")
     segment.add_segment(0x84E80, "rdata", "race/840")
     segment.add_segment(0x84ED8, "garbage")
     segment.add_segment(0x84EE0, "rdata", "race/850")
     segment.add_segment(0x84FA8, "garbage")
-    segment.add_segment(0x84FB0, "rdata", "race/860")
-    segment.add_segment(0x85040, "rdata", "race/870")
-    segment.add_segment(0x85090, "rdata", "race/880")
-    segment.add_segment(0x85300, "rdata", "race/890")
-    segment.add_segment(0x85360, "rdata", "race/910")
-    segment.add_segment(0x85420, "rdata", "race/920")
+    segment.add_segment(0x84FB0, "rdata", "race/860")  # 800CEBF0
+    segment.add_segment(0x85040, "rdata", "race/870")  # 800CEC80
+    segment.add_segment(0x85090, "rdata", "race/880")  # 800cecd0
+    segment.add_segment(0x85300, "rdata", "race/890")  # 800cef40
+    segment.add_segment(0x85360, "rdata", "race/910")  # 800CEFA0
+    segment.add_segment(0x85420, "rdata", "race/920")  # 800cf060
     segment.add_segment(0x85498, "garbage")
     segment.add_segment(0x854A0, "rdata", "race/930")
     segment.add_segment(0x85588, "garbage")
@@ -895,6 +898,7 @@ def get_n64_config(region: str):
     segment.add_segment(0x8573C, "garbage")
     segment.add_segment(0x85740, "rdata", "race/960")
     segment.add_segment(0x85754, "garbage")
+
     # Ctors
     segment.add_segment(0x85760, "ctors", "race/640.ctors")
     segment.add_segment(0x85764, "garbage")
@@ -904,6 +908,7 @@ def get_n64_config(region: str):
     segment.add_segment(0x85784, "garbage")
     segment.add_segment(0x85790, "ctors", "race/880.ctors")
     segment.add_segment(0x85794, "garbage")
+
     # Dtors
     segment.add_segment(0x857A0, "dtors", "race/660.dtors")
     segment.add_segment(0x857A4, "garbage")
@@ -911,11 +916,11 @@ def get_n64_config(region: str):
     segment.add_segment(0x857B4, "garbage")
     segment.add_segment(0x857C0, "asm", "race/010")
     segment.add_segment(0x870AC, "garbage")
-    segment.add_segment(0x870B0, "asm", "race/020")
-    segment.add_segment(0x875A0, "asm", "race/025")
+    segment.add_segment(0x870B0, "asm", "race/020")  # SPLIT
+    segment.add_segment(0x875A0, "asm", "race/025")  # SPLIT
     segment.add_segment(0x88524, "garbage")
-    segment.add_segment(0x88530, "asm", "race/030")
-    segment.add_segment(0x88A90, "asm", "race/035")
+    segment.add_segment(0x88530, "asm", "race/030")  # SPLIT
+    segment.add_segment(0x88A90, "asm", "race/035")  # SPLIT
     segment.add_segment(0x8A5D8, "garbage")
     segment.add_segment(0x8A5E0, "asm", "race/040")
     segment.add_segment(0x8BC4C, "garbage")
@@ -929,7 +934,7 @@ def get_n64_config(region: str):
     segment.add_segment(0x8CC9C, "garbage")
     segment.add_segment(0x8CCA0, "asm", "race/090")
     segment.add_segment(0x8D2EC, "garbage")
-    segment.add_segment(0x8D2F0, "asm", "race/100")
+    segment.add_segment(0x8D2F0, "asm", "race/100")  # split
     segment.add_segment(0x92AA4, "garbage")
     segment.add_segment(0x92AB0, "asm", "race/110")
     segment.add_segment(0x92E34, "garbage")
@@ -939,7 +944,7 @@ def get_n64_config(region: str):
     segment.add_segment(0x93638, "garbage")
     segment.add_segment(0x93640, "asm", "race/140")
     segment.add_segment(0x93DDC, "garbage")
-    segment.add_segment(0x93DE0, "asm", "race/150")
+    segment.add_segment(0x93DE0, "asm", "race/150")  # split
     segment.add_segment(0x9430C, "garbage")
     segment.add_segment(0x94310, "asm", "race/154")
     segment.add_segment(0x94A6C, "garbage")
@@ -949,7 +954,7 @@ def get_n64_config(region: str):
     segment.add_segment(0x951FC, "garbage")
     segment.add_segment(0x95200, "asm", "race/170")
     segment.add_segment(0x95734, "garbage")
-    segment.add_segment(0x95740, "asm", "race/180")
+    segment.add_segment(0x95740, "asm", "race/180")  # split
     segment.add_segment(0x960B4, "garbage")
     segment.add_segment(0x960C0, "asm", "race/190")
     segment.add_segment(0x96444, "garbage")
@@ -965,8 +970,8 @@ def get_n64_config(region: str):
     segment.add_segment(0x9B3BC, "garbage")
     segment.add_segment(0x9B3C0, "asm", "race/250")
     segment.add_segment(0x9BA84, "garbage")
-    segment.add_segment(0x9BA90, "asm", "race/260")
-    segment.add_segment(0x9CB90, "asm", "race/265")
+    segment.add_segment(0x9BA90, "asm", "race/260")  # SPLIT
+    segment.add_segment(0x9CB90, "asm", "race/265")  # SPLIT?
     segment.add_segment(0x9E928, "garbage")
     segment.add_segment(0x9E930, "asm", "race/270")
     segment.add_segment(0x9EA50, "asm", "race/275")
@@ -979,7 +984,7 @@ def get_n64_config(region: str):
     segment.add_segment(0xA0054, "garbage")
     segment.add_segment(0xA0060, "asm", "race/310")
     segment.add_segment(0xA0598, "garbage")
-    segment.add_segment(0xA05A0, "asm", "race/320")
+    segment.add_segment(0xA05A0, "asm", "race/320")  # SPLIT
     segment.add_segment(0xA1610, "asm", "race/325")
     segment.add_segment(0xA1ADC, "garbage")
     segment.add_segment(0xA1AE0, "asm", "race/330")
@@ -998,7 +1003,7 @@ def get_n64_config(region: str):
     segment.add_segment(0xA4EF8, "garbage")
     segment.add_segment(0xA4F00, "asm", "race/400")
     segment.add_segment(0xA55F4, "garbage")
-    segment.add_segment(0xA5600, "asm", "race/410")
+    segment.add_segment(0xA5600, "asm", "race/410")  # SPLIT
     segment.add_segment(0xA6214, "garbage")
     segment.add_segment(0xA6220, "asm", "race/420")
     segment.add_segment(0xA6638, "garbage")
@@ -1026,7 +1031,7 @@ def get_n64_config(region: str):
     segment.add_segment(0xB164C, "garbage")
     segment.add_segment(0xB1650, "asm", "race/540")
     segment.add_segment(0xB2174, "garbage")
-    segment.add_segment(0xB2180, "asm", "race/550")
+    segment.add_segment(0xB2180, "asm", "race/550")  # split?
     segment.add_segment(0xB6C48, "garbage")
     segment.add_segment(0xB6C50, "asm", "race/560a")
     segment.add_segment(0xB7100, "asm", "race/560b")
@@ -1050,7 +1055,7 @@ def get_n64_config(region: str):
     segment.add_segment(0xC832C, "garbage")
     segment.add_segment(0xC8330, "asm", "race/650")
     segment.add_segment(0xC895C, "garbage")
-    segment.add_segment(0xC8960, "asm", "race/660")
+    segment.add_segment(0xC8960, "asm", "race/660")  # split
     segment.add_segment(0xCCA5C, "garbage")
     segment.add_segment(0xCCA60, "asm", "race/670")
     segment.add_segment(0xCCF2C, "garbage")
@@ -1064,7 +1069,7 @@ def get_n64_config(region: str):
     segment.add_segment(0xCFAF8, "garbage")
     segment.add_segment(0xCFB00, "asm", "race/720")
     segment.add_segment(0xD0998, "garbage")
-    segment.add_segment(0xD09A0, "asm", "race/730")
+    segment.add_segment(0xD09A0, "asm", "race/730")  # split
     segment.add_segment(0xD5DB8, "garbage")
     segment.add_segment(0xD5DC0, "asm", "race/740")
     segment.add_segment(0xD5EF4, "garbage")
@@ -1112,6 +1117,7 @@ def get_n64_config(region: str):
     segment.add_segment(0xE6D30, "asm", "race/950")
     segment.add_segment(0xE822C, "garbage")
     segment.add_segment(0xE8230, "asm", "race/960")
+
     # .data
     segment.add_segment(0xE8430, "data", "race/030")
     segment.add_segment(0xE8434, "garbage")
@@ -1125,7 +1131,7 @@ def get_n64_config(region: str):
     segment.add_segment(0xE8474, "garbage")
     segment.add_segment(0xE8480, "data", "race/210")
     segment.add_segment(0xE8484, "garbage")
-    segment.add_segment(0xE8490, "data", "race/0xE8490")
+    segment.add_segment(0xE8490, "data", "race/0xE8490")  # 210 or 220
     segment.add_segment(0xE84A8, "garbage")
     segment.add_segment(0xE84B0, "data", "race/220")
     segment.add_segment(0xE84B4, "garbage")
@@ -1193,7 +1199,7 @@ def get_n64_config(region: str):
     segment.add_segment(0xE89DD, "garbage")
     segment.add_segment(0xE89E0, "rdata", "menu/020-030")
     segment.add_segment(0xE8B04, "garbage")
-    segment.add_segment(0xE8B10, "rdata", "menu/050")
+    segment.add_segment(0xE8B10, "rdata", "menu/050")  ###
     segment.add_segment(0xE8B78, "garbage")
     segment.add_segment(0xE8B80, "rdata", "menu/050-060")
     segment.add_segment(0xE8C71, "garbage")
@@ -1299,7 +1305,7 @@ def get_n64_config(region: str):
     segment.add_segment(0xEE5A8, "garbage")
     segment.add_segment(0xEE5B0, "rdata", "menu/830-840")
     segment.add_segment(0xEE828, "garbage")
-    segment.add_segment(0xEE830, "rdata", "menu/840b")
+    segment.add_segment(0xEE830, "rdata", "menu/840b")  # ???
     segment.add_segment(0xEE8F8, "garbage")
     segment.add_segment(0xEE900, "rdata", "menu/850-860")
     segment.add_segment(0xEEB68, "garbage")
@@ -1329,16 +1335,17 @@ def get_n64_config(region: str):
     segment.add_segment(0xEF6B8, "garbage")
     segment.add_segment(0xEF6C0, "rdata", "menu/980")
     segment.add_segment(0xEF758, "garbage")
+
     # .text
     segment.add_segment(0xEF760, "asm", "menu/010")
     segment.add_segment(0xF2708, "garbage")
-    segment.add_segment(0xF2710, "asm", "menu/020")
+    segment.add_segment(0xF2710, "asm", "menu/020")  # split
     segment.add_segment(0xF52BC, "garbage")
     segment.add_segment(0xF52C0, "asm", "menu/030")
     segment.add_segment(0xF594C, "garbage")
     segment.add_segment(0xF5950, "asm", "menu/040")
     segment.add_segment(0xF66FC, "garbage")
-    segment.add_segment(0xF6700, "asm", "menu/050")
+    segment.add_segment(0xF6700, "asm", "menu/050")  # split
     segment.add_segment(0xFACD4, "garbage")
     segment.add_segment(0xFACE0, "asm", "menu/060")
     segment.add_segment(0xFC32C, "garbage")
@@ -1364,7 +1371,7 @@ def get_n64_config(region: str):
     segment.add_segment(0x10661C, "garbage")
     segment.add_segment(0x106620, "asm", "menu/170")
     segment.add_segment(0x1069F8, "garbage")
-    segment.add_segment(0x106A00, "asm", "menu/180")
+    segment.add_segment(0x106A00, "asm", "menu/180")  # split
     segment.add_segment(0x108608, "garbage")
     segment.add_segment(0x108610, "asm", "menu/190")
     segment.add_segment(0x10914C, "garbage")
@@ -1376,7 +1383,7 @@ def get_n64_config(region: str):
     segment.add_segment(0x10A334, "garbage")
     segment.add_segment(0x10A340, "asm", "menu/230")
     segment.add_segment(0x10A54C, "garbage")
-    segment.add_segment(0x10A550, "asm", "menu/240")
+    segment.add_segment(0x10A550, "asm", "menu/240")  # split
     segment.add_segment(0x10AFF8, "garbage")
     segment.add_segment(0x10B000, "asm", "menu/250")
     segment.add_segment(0x10B694, "garbage")
@@ -1394,13 +1401,13 @@ def get_n64_config(region: str):
     segment.add_segment(0x10D678, "garbage")
     segment.add_segment(0x10D680, "asm", "menu/320")
     segment.add_segment(0x1101DC, "garbage")
-    segment.add_segment(0x1101E0, "asm", "menu/330")
+    segment.add_segment(0x1101E0, "asm", "menu/330")  # split
     segment.add_segment(0x111848, "garbage")
     segment.add_segment(0x111850, "asm", "menu/340")
     segment.add_segment(0x11223C, "garbage")
     segment.add_segment(0x112240, "asm", "menu/350")
     segment.add_segment(0x11282C, "garbage")
-    segment.add_segment(0x112830, "asm", "menu/360")
+    segment.add_segment(0x112830, "asm", "menu/360")  # probably split
     segment.add_segment(0x1131EC, "garbage")
     segment.add_segment(0x1131F0, "asm", "menu/370")
     segment.add_segment(0x1134D8, "garbage")
@@ -1418,7 +1425,7 @@ def get_n64_config(region: str):
     segment.add_segment(0x118784, "garbage")
     segment.add_segment(0x118790, "asm", "menu/440")
     segment.add_segment(0x119348, "garbage")
-    segment.add_segment(0x119350, "asm", "menu/450")
+    segment.add_segment(0x119350, "asm", "menu/450")  # split
     segment.add_segment(0x11B738, "garbage")
     segment.add_segment(0x11B740, "asm", "menu/460")
     segment.add_segment(0x11CB9C, "garbage")
@@ -1449,7 +1456,7 @@ def get_n64_config(region: str):
     segment.add_segment(0x1252CC, "garbage")
     segment.add_segment(0x1252D0, "asm", "menu/580")
     segment.add_segment(0x1258FC, "garbage")
-    segment.add_segment(0x125900, "asm", "menu/590")
+    segment.add_segment(0x125900, "asm", "menu/590")  # split
     segment.add_segment(0x12815C, "garbage")
     segment.add_segment(0x128160, "asm", "menu/600")
     segment.add_segment(0x129724, "garbage")
@@ -1457,7 +1464,7 @@ def get_n64_config(region: str):
     segment.add_segment(0x129FAC, "garbage")
     segment.add_segment(0x129FB0, "asm", "menu/620")
     segment.add_segment(0x12B178, "garbage")
-    segment.add_segment(0x12B180, "asm", "menu/630")
+    segment.add_segment(0x12B180, "asm", "menu/630")  # split
     segment.add_segment(0x12BC3C, "garbage")
     segment.add_segment(0x12BC40, "asm", "menu/640")
     segment.add_segment(0x12C82C, "garbage")
@@ -1499,7 +1506,7 @@ def get_n64_config(region: str):
     segment.add_segment(0x13945C, "garbage")
     segment.add_segment(0x139460, "asm", "menu/830")
     segment.add_segment(0x139674, "garbage")
-    segment.add_segment(0x139680, "asm", "menu/840")
+    segment.add_segment(0x139680, "asm", "menu/840")  # split
     segment.add_segment(0x13B714, "garbage")
     segment.add_segment(0x13B720, "asm", "menu/850")
     segment.add_segment(0x13BE34, "garbage")
@@ -1509,11 +1516,11 @@ def get_n64_config(region: str):
     segment.add_segment(0x13C86C, "garbage")
     segment.add_segment(0x13C870, "asm", "menu/880")
     segment.add_segment(0x13CF7C, "garbage")
-    segment.add_segment(0x13CF80, "asm", "menu/890")
+    segment.add_segment(0x13CF80, "asm", "menu/890")  # split
     segment.add_segment(0x13D388, "garbage")
     segment.add_segment(0x13D390, "asm", "menu/900")
     segment.add_segment(0x13D84C, "garbage")
-    segment.add_segment(0x13D850, "asm", "menu/910a")
+    segment.add_segment(0x13D850, "asm", "menu/910a")  # split
     segment.add_segment(0x13DB00, "asm", "menu/910b")
     segment.add_segment(0x13FC9C, "garbage")
     segment.add_segment(0x13FCA0, "asm", "menu/920")
@@ -1524,11 +1531,12 @@ def get_n64_config(region: str):
     segment.add_segment(0x1423A8, "garbage")
     segment.add_segment(0x1423B0, "asm", "menu/950")
     segment.add_segment(0x143A74, "garbage")
-    segment.add_segment(0x143A80, "asm", "menu/960")
+    segment.add_segment(0x143A80, "asm", "menu/960")  # split
     segment.add_segment(0x143D2C, "garbage")
     segment.add_segment(0x143D30, "asm", "menu/970")
     segment.add_segment(0x143FDC, "garbage")
-    segment.add_segment(0x143FE0, "asm", "menu/980")
+    segment.add_segment(0x143FE0, "asm", "menu/980")  # split
+
     # data
     segment.add_segment(0x144A40, "data", "menu/144A40")
     segment.add_segment(0x144A48, "garbage")
@@ -1586,7 +1594,7 @@ def get_n64_config(region: str):
     segment.add_segment(0x144D74, "garbage")
     segment.add_segment(0x144D80, "data", "menu/144D80")
     segment.add_segment(0x144D88, "garbage")
-    segment.add_segment(0x144D90, "data", "menu/144D90")
+    segment.add_segment(0x144D90, "data", "menu/144D90")  # 650?
     segment.add_segment(0x144F98, "garbage")
     segment.add_segment(0x144FA0, "data", "menu/144FA0")
     segment.add_segment(0x144FA8, "garbage")
