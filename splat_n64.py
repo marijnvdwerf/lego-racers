@@ -1,16 +1,24 @@
-from splat_api import create_config
+from splat_api import SplatConfig, create_config
 
 
-def get_n64_config(region: str):
-    config = create_config(
-        name="Legoracers (North America)",
-        sha1="8decc41869926e20da2eb3da526e6395aa33cece",
-    )
+def get_n64_config(region: str) -> SplatConfig:
+    if region == "e":
+        config = create_config(
+            "Legoracers (Europe)", "6e9c4b097628f0147e9e79393dba6d7b4e59986f"
+        )
+        target_path = "../legoracers.e.z64"
+    elif region == "u":
+        config = create_config(
+            "Legoracers (North America)", "8decc41869926e20da2eb3da526e6395aa33cece"
+        )
+        target_path = "../legoracers.u.z64"
+    else:
+        raise ValueError("Invalid region")
 
     # Set options
     config.set_option("basename", "legoracers")
     config.set_option("platform", "n64")
-    config.set_option("target_path", "../legoracers.u.z64")
+    config.set_option("target_path", target_path)
     config.set_option("base_path", ".")
     config.set_option("compiler", "GCC")
     config.set_option("find_file_boundaries", True)
@@ -1471,7 +1479,7 @@ def get_n64_config(region: str):
     segment.add_segment(0x12C830, "asm", "menu/650")
     segment.add_segment(0x12CF88, "garbage")
     segment.add_segment(0x12CF90, "cpp", "menu/660")
-    segment.add_segment(0x12E244, "garbage")
+    segment.add_segment({"e": 0x12E24C, "u": 0x12E244}[region], "garbage")
     segment.add_segment(0x12E250, "asm", "menu/670")
     segment.add_segment(0x12F174, "garbage")
     segment.add_segment(0x12F180, "asm", "menu/680")
