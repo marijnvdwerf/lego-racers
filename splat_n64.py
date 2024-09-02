@@ -9,9 +9,7 @@ def get_n64_config(region: str) -> SplatConfig:
         )
         target_path = "../legoracers.e.z64"
     elif region == "u":
-        config = create_config(
-            "Legoracers (North America)", "8decc41869926e20da2eb3da526e6395aa33cece"
-        )
+        config = create_config("Legoracers (North America)", "8decc41869926e20da2eb3da526e6395aa33cece")
         target_path = "../legoracers.u.z64"
     else:
         raise ValueError("Invalid region")
@@ -40,9 +38,7 @@ def get_n64_config(region: str) -> SplatConfig:
 
     config.add_segment(0x40, "bin", "boot")
 
-    segment = config.add_segment(
-        0x1000, "code", "main", vram=2147484672, bss_size=39120
-    )
+    segment = config.add_segment(0x1000, "code", "main", vram=2147484672, bss_size=39120)
 
     # Add subsegments to main segment
     # offset: 0x7FFFF400
@@ -303,9 +299,7 @@ def get_n64_config(region: str) -> SplatConfig:
     segment.add_segment(0x31888, "garbage")
     segment.add_segment(0x31890, "data", "lib/31890")  # ossetintmask
 
-    segment = config.add_segment(
-        0x33010, "code", "stage2", vram=2147728608, bss_size=266096
-    )
+    segment = config.add_segment(0x33010, "code", "stage2", vram=2147728608, bss_size=266096)
 
     # Add subsegments to stage2 segment
     segment.add_segment(0x33010, "rdata", "stage2/010a")
