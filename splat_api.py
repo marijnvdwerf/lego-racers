@@ -1,4 +1,4 @@
-from typing import Dict, List, Union
+from typing import Dict, List, Optional, Union
 
 
 class Segment:
@@ -9,13 +9,17 @@ class Segment:
         self.attributes = kwargs
         self.subsegments: List[List[Union[int, str]]] = []
 
-    def add_segment(self, start: int, type: str, name: str = ""):
-        self.subsegments.append([start, type, name])
+    def add_segment(self, start: int, type: str, name: Optional[str] = None):
+        segment: List[Union[int, str]] = [start, type]
+        if name:
+            segment.append(name)
+        self.subsegments.append(segment)
         return self
 
 
 class SplatConfig:
     def __init__(self, name: str, sha1: str):
+        self.end: Optional[int] = None
         self.name = name
         self.sha1 = sha1
         self.options: Dict[str, Union[str, bool, int, List[str]]] = {}
@@ -28,6 +32,9 @@ class SplatConfig:
         segment = Segment(name, type, start, **kwargs)
         self.segments.append(segment)
         return segment
+
+    def set_end(self, end: int) -> None:
+        self.end = end
 
 
 def create_config(name: str, sha1: str) -> SplatConfig:

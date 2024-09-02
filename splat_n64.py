@@ -4,7 +4,8 @@ from splat_api import SplatConfig, create_config
 def get_n64_config(region: str) -> SplatConfig:
     if region == "e":
         config = create_config(
-            "Legoracers (Europe)", "6e9c4b097628f0147e9e79393dba6d7b4e59986f"
+            "Legoracers (European (basic spec.))",
+            "6e9c4b097628f0147e9e79393dba6d7b4e59986f",
         )
         target_path = "../legoracers.e.z64"
     elif region == "u":
@@ -1675,6 +1676,6 @@ def get_n64_config(region: str) -> SplatConfig:
 
     config.add_segment(0x145280, "bin", "ljam")
 
-    config.add_segment(0xFFE620, "bin", "ljam")
+    config.set_end(0xFFE620)
 
     return config
