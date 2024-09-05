@@ -1,0 +1,190 @@
+#!/usr/bin/env python3
+
+from pathlib import Path
+import sys
+import hashlib
+
+import yaml
+from ninja_syntax import Writer
+from splat_n64 import get_n64_config
+import splat.scripts.split as split
+import shutil
+
+
+def generate_shasum(file_path):
+    sha1 = hashlib.sha1()
+    with open(file_path, "rb") as f:
+        while True:
+            data = f.read(65536)
+            if not data:
+                break
+            sha1.update(data)
+    return sha1.hexdigest()
+
+
+def segment_to_dict(
+    segment,
+):
+    dict = {
+        "name": segment.name,
+        "type": segment.type,
+        "start": segment.start,
+        **segment.attributes,
+    }
+
+    filtered_subsegments = [subseg for subseg in segment.subsegments if subseg[1] != "garbage"]
+    if filtered_subsegments:
+        dict["subsegments"] = filtered_subsegments
+
+    return dict
+
+
+def config_to_dict(
+    config,
+):
+    dict = {
+        "name": config.name,
+        "sha1": config.sha1,
+        "options": config.options,
+        "segments": [segment_to_dict(seg) for seg in config.segments],
+    }
+    if config.end:
+        dict["segments"].append([config.end])
+
+    return dict
+
+
+def main():
+    # Get the absolute path of the script
+    script_path = Path(sys.argv[0]).absolute()
+    script_dir = script_path.parent.resolve()
+    current_dir = Path.cwd().absolute()
+
+    # Check if we're in the same directory as the script
+    if current_dir == script_dir:
+        print("Error: Please run configure from a build directory, not the root of the repo.")
+        sys.exit(1)
+
+    # Check if a ROM file was provided
+    if len(sys.argv) != 2:
+        print("Usage: ../configure rom.z64")
+        sys.exit(1)
+
+    rom_path = sys.argv[1]
+
+    # Get configs
+    config_e = get_n64_config("e")
+    config_u = get_n64_config("u")
+
+    # Generate shasum of input ROM
+    rom_shasum = generate_shasum(rom_path)
+
+    # Check if shasum matches any config
+    if rom_shasum == config_e.sha1:
+        config = config_e
+        version = "e"
+    elif rom_shasum == config_u.sha1:
+        config = config_u
+        version = "u"
+    else:
+        print(f"Error: ROM shasum {rom_shasum} does not match any known version.")
+        sys.exit(1)
+
+    # Copy the ROM file to baserom.z64
+    shutil.copy(rom_path, "baserom.z64")
+
+    config.options["target_path"] = str(Path("baserom.z64").resolve())
+    config.options["extensions_path"] = str(script_dir / "tools" / "splat_ext")
+    config.options["base_path"] = str(script_dir)
+    config.options["src_path"] = "src"
+
+    config_dict = config_to_dict(config)
+    with open("splat.yaml", "w") as yaml_file:
+        yaml.dump(config_dict, yaml_file, default_flow_style=False)
+
+    split.main(["splat.yaml"], modes="all", verbose=False)
+
+    #
+    # from rich.pretty import pprint
+    # pprint(script_dir)
+    #
+    # # Fix up object paths for items outside of the build directory
+    # for entry in split.linker_writer.entries:
+    #     if entry.object_path.is_absolute():
+    #         entry.object_path = entry.object_path.relative_to(script_dir)
+    #
+    # pprint(split.linker_writer.__dict__)
+    # split.linker_writer.save_linker_script(split.options.opts.ld_script_path)
+
+    # Generate build.ninja file
+    with open("build.ninja", "w") as ninja_file:
+        n = Writer(ninja_file)
+
+        # Variables
+        n.variable("BUILD_DIR", "build")
+        n.variable("AS", "mips-linux-gnu-as")
+        n.variable("LD", "mips-linux-gnu-ld")
+        n.variable("OBJCOPY", "mips-linux-gnu-objcopy")
+        n.variable("ROM_SIZE", "0x1000000")
+        n.variable("ASFLAGS", "-G0 -EB -mtune=vr4300 -march=vr4300 -mabi=32 -I. -Iinclude -O1 --no-construct-floats")
+        n.variable("LD_SCRIPT", "legoracers.ld")
+        n.variable(
+            "LDFLAGS",
+            "-T $LD_SCRIPT -mips3 --accept-unknown-input-arch --no-check-sections --allow-multiple-definition -T undefined_syms_auto.txt -T undefined_syms.txt",
+        )
+        n.variable("BINOFLAGS", "-I binary -O elf32-big")
+
+        # Rules
+        n.rule("as", command="$AS $ASFLAGS $in -o $out", description="AS $in")
+        n.rule("bin_to_o", command="$OBJCOPY $BINOFLAGS $in $out", description="OBJCOPY $in")
+        n.rule(
+            "c_compile",
+            command="cpp -nostdinc -undef -D__GNUC__=2 -D__OPTIMIZE__ -lang-c -Dmips -D__mips__ -D__mips -Dn64 -D__n64__ -D__n64 -D_PSYQ -D__EXTENSIONS__ -D_MIPSEB -D__CHAR_UNSIGNED__ -D_LANGUAGE_C $in $out.i && "
+            "wibo tools/cc1n64.exe -quiet -G0 -O2 $out.i -o $out.s && "
+            "tools/modern-asn64.py $AS $out.s $ASFLAGS -o $out",
+            description="CC $in",
+        )
+        n.rule(
+            "cpp_compile",
+            command="cpp -nostdinc -undef -D__GNUC__=2 -D__OPTIMIZE__ -lang-c++ -Dmips -D__mips__ -D__mips -Dn64 -D__n64__ -D__n64 -D_PSYQ -D__EXTENSIONS__ -D_MIPSEB -D__CHAR_UNSIGNED__ -D_LANGUAGE_C_PLUS_PLUS $in $out.i && "
+            "wibo tools/cc1pln64.exe -quiet -G0 -O2 $out.i -o $out.s && "
+            "tools/modern-asn64.py $AS $out.s $ASFLAGS -o $out",
+            description="CXX $in",
+        )
+        n.rule("link", command="$LD $LDFLAGS -Map $out.map -o $out", description="LINK $out")
+        n.rule(
+            "objcopy",
+            command="$OBJCOPY -O binary --pad-to=$ROM_SIZE --gap-fill=0x00 $in $out && ./fix.sh $out",
+            description="OBJCOPY $in",
+        )
+
+        # Build statements
+        n.build(
+            "$BUILD_DIR/rom.elf",
+            "link",
+            [
+                "$BUILD_DIR/asm/file1.s.o",
+                "$BUILD_DIR/asm/file2.s.o",
+                "$BUILD_DIR/src/file1.c.o",
+                "$BUILD_DIR/src/file2.cpp.o",
+                "$BUILD_DIR/assets/file1.bin.o",
+            ],
+        )
+        n.build("rom.z64", "objcopy", "$BUILD_DIR/rom.elf")
+
+        # Add more build statements for your source files
+        n.build("$BUILD_DIR/asm/file1.s.o", "as", "asm/file1.s")
+        n.build("$BUILD_DIR/asm/file2.s.o", "as", "asm/file2.s")
+        n.build("$BUILD_DIR/src/file1.c.o", "c_compile", "src/file1.c")
+        n.build("$BUILD_DIR/src/file2.cpp.o", "cpp_compile", "src/file2.cpp")
+        n.build("$BUILD_DIR/assets/file1.bin.o", "bin_to_o", "assets/file1.bin")
+
+        # Default target
+        n.default("rom.z64")
+
+    print(f"Configuration complete. ROM version: {version}")
+    print("build.ninja file generated.")
+
+
+if __name__ == "__main__":
+    main()
