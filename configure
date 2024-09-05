@@ -183,7 +183,7 @@ def main():
         # Default target
         n.default("rom.z64")
 
-    print(f"Configuration complete. ROM version: {version}")
+    print(f"Configuration complete. ROM version: {region}")
     print("build.ninja file generated.")
 
 
