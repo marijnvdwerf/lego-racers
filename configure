@@ -9,6 +9,7 @@ from ninja_syntax import Writer
 from splat_n64 import get_n64_config
 import splat.scripts.split as split
 import shutil
+from symbols_n64 import get_n64_symbols
 
 
 def generate_shasum(file_path):
@@ -98,6 +99,27 @@ def main():
     baserom_path = project_dir / "baserom.z64"
     shutil.copy(rom_path, baserom_path)
 
+    # Generate symbol_addrs.txt
+    symbols = get_n64_symbols(region)
+    symbol_addrs_path = project_dir / "symbol_addrs.txt"
+    with open(symbol_addrs_path, "w") as f:
+        for symbol in symbols:
+            options = []
+            if symbol.segment:
+                options.append(f"segment:{symbol.segment}")
+            if symbol.rom is not None:
+                options.append(f"rom:0x{symbol.rom:X}")
+            if symbol.type:
+                options.append(f"type:{symbol.type}")
+            if symbol.size:
+                options.append(f"size:0x{symbol.size:X}")
+
+            options_str = " ".join(options)
+            if options_str:
+                f.write(f"{symbol.name} = 0x{symbol.addr:08X}; // {options_str}\n")
+            else:
+                f.write(f"{symbol.name} = 0x{symbol.addr:08X};\n")
+
     # Update config options to use project-relative paths
     config.options["base_path"] = "../.."
     config.options["target_path"] = str(baserom_path.relative_to(Path.cwd()))
@@ -105,6 +127,8 @@ def main():
     config.options["src_path"] = "src"
     config.options["asm_path"] = str((project_dir / "asm").relative_to(Path.cwd()))
     config.options["asset_path"] = str((project_dir / "assets").relative_to(Path.cwd()))
+    config.options["asset_path"] = str((project_dir / "assets").relative_to(Path.cwd()))
+    config.options["symbol_addrs_path"] = str(symbol_addrs_path.relative_to(Path.cwd()))
     config.options["build_path"] = "build/.."
 
     config_dict = config_to_dict(config)
@@ -186,6 +210,7 @@ def main():
 
     print(f"Configuration complete. ROM version: {region}")
     print("build.ninja file generated.")
+    print("symbol_addrs.txt generated.")
 
 
 if __name__ == "__main__":
