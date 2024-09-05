@@ -61,13 +61,13 @@ def main():
     current_dir = Path.cwd().absolute()
 
     # Check if we're in the same directory as the script
-    if current_dir == script_dir:
-        print("Error: Please run configure from a build directory, not the root of the repo.")
+    if current_dir != script_dir:
+        print("Error: Please run configure from the root of the repo.")
         sys.exit(1)
 
     # Check if a ROM file was provided
     if len(sys.argv) != 2:
-        print("Usage: ../configure rom.z64")
+        print("Usage: ./configure rom.z64")
         sys.exit(1)
 
     rom_path = sys.argv[1]
@@ -82,42 +82,43 @@ def main():
     # Check if shasum matches any config
     if rom_shasum == config_e.sha1:
         config = config_e
-        version = "e"
+        region = "e"
     elif rom_shasum == config_u.sha1:
         config = config_u
-        version = "u"
+        region = "u"
     else:
         print(f"Error: ROM shasum {rom_shasum} does not match any known version.")
         sys.exit(1)
 
-    # Copy the ROM file to baserom.z64
-    shutil.copy(rom_path, "baserom.z64")
+    # Set up project directory
+    project_dir = Path.cwd() / "ver" / region
+    project_dir.mkdir(parents=True, exist_ok=True)
 
-    config.options["target_path"] = str(Path("baserom.z64").resolve())
-    config.options["extensions_path"] = str(script_dir / "tools" / "splat_ext")
-    config.options["base_path"] = str(script_dir)
+    # Copy the ROM file to the project directory
+    baserom_path = project_dir / "baserom.z64"
+    shutil.copy(rom_path, baserom_path)
+
+    # Update config options to use project-relative paths
+    config.options["base_path"] = "../.."
+    config.options["target_path"] = str(baserom_path.relative_to(Path.cwd()))
+    config.options["extensions_path"] = "tools/splat_ext"
     config.options["src_path"] = "src"
+    config.options["asm_path"] = str((project_dir / "asm").relative_to(Path.cwd()))
+    config.options["asset_path"] = str((project_dir / "assets").relative_to(Path.cwd()))
 
     config_dict = config_to_dict(config)
-    with open("splat.yaml", "w") as yaml_file:
+
+    # Write the YAML file to the project directory
+    yaml_path = project_dir / "legoracers.yaml"
+    with open(yaml_path, "w") as yaml_file:
         yaml.dump(config_dict, yaml_file, default_flow_style=False)
 
-    split.main(["splat.yaml"], modes="all", verbose=False)
+    # Run splat with the new YAML file
+    split.main([str(yaml_path)], modes="all", verbose=False)
 
-    #
-    # from rich.pretty import pprint
-    # pprint(script_dir)
-    #
-    # # Fix up object paths for items outside of the build directory
-    # for entry in split.linker_writer.entries:
-    #     if entry.object_path.is_absolute():
-    #         entry.object_path = entry.object_path.relative_to(script_dir)
-    #
-    # pprint(split.linker_writer.__dict__)
-    # split.linker_writer.save_linker_script(split.options.opts.ld_script_path)
-
-    # Generate build.ninja file
-    with open("build.ninja", "w") as ninja_file:
+    # Generate build.ninja file in the project directory
+    ninja_path = project_dir / "build.ninja"
+    with open(ninja_path, "w") as ninja_file:
         n = Writer(ninja_file)
 
         # Variables
