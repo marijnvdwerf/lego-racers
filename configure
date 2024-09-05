@@ -105,6 +105,7 @@ def main():
     config.options["src_path"] = "src"
     config.options["asm_path"] = str((project_dir / "asm").relative_to(Path.cwd()))
     config.options["asset_path"] = str((project_dir / "assets").relative_to(Path.cwd()))
+    config.options["build_path"] = "build/.."
 
     config_dict = config_to_dict(config)
 
