@@ -1,5 +1,4 @@
 from splat.segtypes.common.data import CommonSegData
-from splat.util import options
 
 
 class N64SegCtors(CommonSegData):
