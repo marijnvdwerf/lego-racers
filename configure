@@ -5,6 +5,7 @@ import shutil
 import sys
 from pathlib import Path
 
+import splat
 import splat.scripts.split as split
 import yaml
 
@@ -132,6 +133,9 @@ def main():
     config.options["symbol_addrs_path"] = str(symbol_addrs_path.relative_to(Path.cwd()))
     config.options["build_path"] = "build/.."
 
+    config.options["create_undefined_funcs_auto"] = False
+    config.options["create_undefined_syms_auto"] = False
+
     config_dict = config_to_dict(config)
 
     # Write the YAML file to the project directory
@@ -184,6 +188,30 @@ def main():
             command="$OBJCOPY -O binary --pad-to=$ROM_SIZE --gap-fill=0x00 $in $out && ./fix.sh $out",
             description="OBJCOPY $in",
         )
+
+        from rich.pretty import pprint
+
+        linker_entries = split.linker_writer.entries
+        for entry in linker_entries:
+            pprint(entry.__dict__)
+
+            if isinstance(entry.segment, splat.segtypes.n64.header.N64SegHeader):
+                n.build(str(entry.object_path), "as", [str(s) for s in entry.src_paths])
+            elif isinstance(entry.segment, splat.segtypes.common.data.CommonSegData) or isinstance(
+                entry.segment, splat.segtypes.common.asm.CommonSegAsm
+            ):
+                pprint([entry.segment.siblings])
+                n.build(str(entry.object_path), "as", [str(s) for s in entry.src_paths])
+            elif isinstance(entry.segment, splat.segtypes.common.c.CommonSegC):
+                n.build(str(entry.object_path), "c_compile", [str(s) for s in entry.src_paths])
+            elif isinstance(entry.segment, splat.segtypes.common.cpp.CommonSegCpp):
+                n.build(str(entry.object_path), "cpp_compile", [str(s) for s in entry.src_paths])
+            elif isinstance(entry.segment, splat.segtypes.common.textbin.CommonSegTextbin):
+                n.build(str(entry.object_path), "as", [str(s) for s in entry.src_paths])
+            elif isinstance(entry.segment, splat.segtypes.common.bin.CommonSegBin):
+                n.build(str(entry.object_path), "bin_to_o", [str(s) for s in entry.src_paths])
+            else:
+                raise Exception(f"Unknown segment type: {entry.segment}")
 
         # Build statements
         n.build(
