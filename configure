@@ -193,14 +193,14 @@ def main():
 
         linker_entries = split.linker_writer.entries
         for entry in linker_entries:
-            pprint(entry.__dict__)
+            if entry.segment.type[0] == ".":
+                continue
 
             if isinstance(entry.segment, splat.segtypes.n64.header.N64SegHeader):
                 n.build(str(entry.object_path), "as", [str(s) for s in entry.src_paths])
             elif isinstance(entry.segment, splat.segtypes.common.data.CommonSegData) or isinstance(
                 entry.segment, splat.segtypes.common.asm.CommonSegAsm
             ):
-                pprint([entry.segment.siblings])
                 n.build(str(entry.object_path), "as", [str(s) for s in entry.src_paths])
             elif isinstance(entry.segment, splat.segtypes.common.c.CommonSegC):
                 n.build(str(entry.object_path), "c_compile", [str(s) for s in entry.src_paths])
