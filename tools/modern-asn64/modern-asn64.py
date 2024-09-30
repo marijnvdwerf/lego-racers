@@ -70,15 +70,6 @@ def get_line_tokens(line: str) -> List[str]:
 with open(input_filename, mode="r") as input_file:
     input_lines: List[str] = input_file.readlines()
     preprocessed: List[str] = [
-        ".macro glabel label\n"
-        "    .global \\label\n"
-        "    \\label:\n"
-        ".endm\n"
-        ".macro dlabel label\n"
-        "    .global \\label\n"
-        "    \\label:\n"
-        ".endm\n"
-        "\n"
         ".macro move a, b\n"
         "    addu \\a, \\b, $0\n"
         ".endm\n"
