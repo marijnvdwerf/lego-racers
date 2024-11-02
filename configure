@@ -57,7 +57,7 @@ def config_to_dict(
     return dict
 
 
-def main():
+def main() -> None:
     # Get the absolute path of the script
     script_path = Path(sys.argv[0]).absolute()
     script_dir = script_path.parent.resolve()
@@ -97,6 +97,9 @@ def main():
     project_dir = Path.cwd() / "ver" / region
     project_dir.mkdir(parents=True, exist_ok=True)
 
+    build_dir = Path.cwd() / "build"
+    build_dir.mkdir(parents=True, exist_ok=True)
+
     # Copy the ROM file to the project directory
     baserom_path = project_dir / "baserom.z64"
     shutil.copy(rom_path, baserom_path)
@@ -130,11 +133,13 @@ def main():
     config.options["asm_path"] = str((project_dir / "asm").relative_to(Path.cwd()))
     config.options["asset_path"] = str((project_dir / "assets").relative_to(Path.cwd()))
     config.options["asset_path"] = str((project_dir / "assets").relative_to(Path.cwd()))
+    config.options["cache_path"] = str((project_dir / ".splat_cache").relative_to(Path.cwd()))
     config.options["symbol_addrs_path"] = str(symbol_addrs_path.relative_to(Path.cwd()))
-    config.options["build_path"] = "build/.."
+    config.options["build_path"] = "build"
+    config.options["nonmatchings_path"] = "../../../nonmatchings"
 
     config.options["create_undefined_funcs_auto"] = False
-    config.options["create_undefined_syms_auto"] = False
+    config.options["create_undefined_syms_auto"] = True
 
     config_dict = config_to_dict(config)
 
@@ -144,10 +149,10 @@ def main():
         yaml.dump(config_dict, yaml_file, default_flow_style=False)
 
     # Run splat with the new YAML file
-    split.main([str(yaml_path)], modes="all", verbose=False)
+    split.main([str(yaml_path.relative_to(Path.cwd()))], modes=["all"], verbose=False)
 
     # Generate build.ninja file in the project directory
-    ninja_path = project_dir / "build.ninja"
+    ninja_path = script_dir / "build.ninja"
     with open(ninja_path, "w") as ninja_file:
         n = Writer(ninja_file)
 
@@ -157,11 +162,18 @@ def main():
         n.variable("LD", "mips-linux-gnu-ld")
         n.variable("OBJCOPY", "mips-linux-gnu-objcopy")
         n.variable("ROM_SIZE", "0x1000000")
-        n.variable("ASFLAGS", "-G0 -EB -mtune=vr4300 -march=vr4300 -mabi=32 -I. -Iinclude -O1 --no-construct-floats")
+        n.variable("CC1PLN64", str(script_dir / "tools/bin/cc1pln64.exe"))
+        n.variable("CC1N64", str(script_dir / "tools/bin/cc1n64.exe"))
+        n.variable("MODERN_ASN64", str(script_dir / "tools/modern-asn64/modern-asn64.py"))
+        n.variable("UNDEFINED_SYMS", str(project_dir / "undefined_syms.txt"))
+        n.variable("UNDEFINED_SYMS_AUTO", str(script_dir / "undefined_syms_auto.txt"))
+        n.variable(
+            "ASFLAGS", "-G0 -EB -mtune=vr4300 -march=vr4300 -mabi=32 -I. -Iinclude -Iver/e -O1 --no-construct-floats"
+        )
         n.variable("LD_SCRIPT", "legoracers.ld")
         n.variable(
             "LDFLAGS",
-            "-T $LD_SCRIPT -mips3 --accept-unknown-input-arch --no-check-sections --allow-multiple-definition -T undefined_syms_auto.txt -T undefined_syms.txt",
+            "-T $LD_SCRIPT -mips3 --accept-unknown-input-arch --no-check-sections --allow-multiple-definition -T $UNDEFINED_SYMS_AUTO",
         )
         n.variable("BINOFLAGS", "-I binary -O elf32-big")
 
@@ -170,17 +182,19 @@ def main():
         n.rule("bin_to_o", command="$OBJCOPY $BINOFLAGS $in $out", description="OBJCOPY $in")
         n.rule(
             "c_compile",
-            command="cpp -nostdinc -undef -D__GNUC__=2 -D__OPTIMIZE__ -lang-c -Dmips -D__mips__ -D__mips -Dn64 -D__n64__ -D__n64 -D_PSYQ -D__EXTENSIONS__ -D_MIPSEB -D__CHAR_UNSIGNED__ -D_LANGUAGE_C $in $out.i && "
-            "wibo tools/cc1n64.exe -quiet -G0 -O2 $out.i -o $out.s && "
-            "tools/modern-asn64.py $AS $out.s $ASFLAGS -o $out",
+            command="cpp -nostdinc -undef -D__GNUC__=2 -D__OPTIMIZE__ -lang-c -Dmips -D__mips__ -D__mips -Dn64 -D__n64__ -D__n64 -D_PSYQ -D__EXTENSIONS__ -D_MIPSEB -D__CHAR_UNSIGNED__ -D_LANGUAGE_C -Iinclude -MD -MF $out.d $in $out.i && "
+            "wibo $CC1N64 -quiet -G0 -O2 $out.i -o $out.s && "
+            "$MODERN_ASN64 $AS $out.s $ASFLAGS -o $out",
             description="CC $in",
+            depfile="$out.d",
         )
         n.rule(
             "cpp_compile",
-            command="cpp -nostdinc -undef -D__GNUC__=2 -D__OPTIMIZE__ -lang-c++ -Dmips -D__mips__ -D__mips -Dn64 -D__n64__ -D__n64 -D_PSYQ -D__EXTENSIONS__ -D_MIPSEB -D__CHAR_UNSIGNED__ -D_LANGUAGE_C_PLUS_PLUS $in $out.i && "
-            "wibo tools/cc1pln64.exe -quiet -G0 -O2 $out.i -o $out.s && "
-            "tools/modern-asn64.py $AS $out.s $ASFLAGS -o $out",
+            command="cpp -nostdinc -undef -D__GNUC__=2 -D__OPTIMIZE__ -lang-c++ -Dmips -D__mips__ -D__mips -Dn64 -D__n64__ -D__n64 -D_PSYQ -D__EXTENSIONS__ -D_MIPSEB -D__CHAR_UNSIGNED__ -D_LANGUAGE_C_PLUS_PLUS -Iinclude -MD -MT $out  $in $out.i  && "
+            "wibo $CC1PLN64 -quiet -G0 -O2 $out.i -o $out.s && "
+            "$MODERN_ASN64 $AS $out.s $ASFLAGS -o $out",
             description="CXX $in",
+            depfile="$out.d",
         )
         n.rule("link", command="$LD $LDFLAGS -Map $out.map -o $out", description="LINK $out")
         n.rule(
@@ -189,50 +203,46 @@ def main():
             description="OBJCOPY $in",
         )
 
-        from rich.pretty import pprint
-
         linker_entries = split.linker_writer.entries
+        object_files: list[str] = []
         for entry in linker_entries:
             if entry.segment.type[0] == ".":
                 continue
 
+            sources = [str(s) for s in entry.src_paths]
+            object_path = str(entry.object_path)
+            object_files.append(object_path)
+
             if isinstance(entry.segment, splat.segtypes.n64.header.N64SegHeader):
-                n.build(str(entry.object_path), "as", [str(s) for s in entry.src_paths])
+                n.build(object_path, "as", sources)
             elif isinstance(entry.segment, splat.segtypes.common.data.CommonSegData) or isinstance(
                 entry.segment, splat.segtypes.common.asm.CommonSegAsm
             ):
-                n.build(str(entry.object_path), "as", [str(s) for s in entry.src_paths])
-            elif isinstance(entry.segment, splat.segtypes.common.c.CommonSegC):
-                n.build(str(entry.object_path), "c_compile", [str(s) for s in entry.src_paths])
+                n.build(object_path, "as", sources)
             elif isinstance(entry.segment, splat.segtypes.common.cpp.CommonSegCpp):
-                n.build(str(entry.object_path), "cpp_compile", [str(s) for s in entry.src_paths])
+                n.build(object_path, "cpp_compile", sources)
+            elif isinstance(entry.segment, splat.segtypes.common.c.CommonSegC):
+                n.build(object_path, "c_compile", sources)
             elif isinstance(entry.segment, splat.segtypes.common.textbin.CommonSegTextbin):
-                n.build(str(entry.object_path), "as", [str(s) for s in entry.src_paths])
+                n.build(object_path, "as", sources)
             elif isinstance(entry.segment, splat.segtypes.common.bin.CommonSegBin):
-                n.build(str(entry.object_path), "bin_to_o", [str(s) for s in entry.src_paths])
+                n.build(object_path, "bin_to_o", sources)
             else:
                 raise Exception(f"Unknown segment type: {entry.segment}")
 
         # Build statements
         n.build(
-            "$BUILD_DIR/rom.elf",
+            "rom.elf",
             "link",
             [
-                "$BUILD_DIR/asm/file1.s.o",
-                "$BUILD_DIR/asm/file2.s.o",
-                "$BUILD_DIR/src/file1.c.o",
-                "$BUILD_DIR/src/file2.cpp.o",
-                "$BUILD_DIR/assets/file1.bin.o",
+                str(script_dir / "legoracers.ld"),
             ],
+            implicit=object_files,
+            variables={
+                "mapfile": str("rom.map"),
+            },
         )
-        n.build("rom.z64", "objcopy", "$BUILD_DIR/rom.elf")
-
-        # Add more build statements for your source files
-        n.build("$BUILD_DIR/asm/file1.s.o", "as", "asm/file1.s")
-        n.build("$BUILD_DIR/asm/file2.s.o", "as", "asm/file2.s")
-        n.build("$BUILD_DIR/src/file1.c.o", "c_compile", "src/file1.c")
-        n.build("$BUILD_DIR/src/file2.cpp.o", "cpp_compile", "src/file2.cpp")
-        n.build("$BUILD_DIR/assets/file1.bin.o", "bin_to_o", "assets/file1.bin")
+        n.build("rom.z64", "objcopy", "rom.elf")
 
         # Default target
         n.default("rom.z64")
