@@ -1,3 +1,7 @@
 # ROMs
 *.z64
 *.n64
+
+__pycache__/
+.splache
+build/
