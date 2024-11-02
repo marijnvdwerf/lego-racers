@@ -4,4 +4,5 @@ FROM --platform=linux/amd64 mcr.microsoft.com/devcontainers/python:1-3.12-bullse
 RUN wget https://github.com/decompals/wibo/releases/download/0.6.16/wibo -O /usr/local/bin/wibo && \
     chmod +x /usr/local/bin/wibo
 
-
+# Install Ninja and binutils-mips-linux-gnu
+RUN apt-get update && apt-get install -y ninja-build binutils-mips-linux-gnu
