@@ -1,0 +1,28 @@
+name: Build ROM
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build with Dev Container
+        uses: devcontainers/ci@v0.3
+        with:
+          runCmd: |
+            # Download ROM from secret URL
+            curl -L "${{ secrets.N64_BASEROM_URL }}" -o baserom.z64
+
+            # Setup, configure and build
+            ./setup
+            ./configure baserom.z64
+            ninja
+
+            # Verify SHA1
+            echo "6e9c4b097628f0147e9e79393dba6d7b4e59986f rom.z64" | sha1sum --check
