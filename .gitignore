@@ -5,3 +5,15 @@
 __pycache__/
 .splache
 build/
+ver/
+nonmatchings/
+
+*.elf
+tools/**/*.exe
+
+/undefined_funcs_auto.txt
+/undefined_syms_auto.txt
+/build.ninja
+/legoracers.ld
+/.ninja_log
+/rom.elf.map
