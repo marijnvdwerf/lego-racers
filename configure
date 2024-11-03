@@ -99,7 +99,22 @@ def clean_rom_and_generate_soil(config, rom_path):
         return rom_data, soil_script
 
 
+def check_compiler_binaries():
+    """Check if required compiler binaries exist"""
+    bin_dir = Path("tools/bin")
+    cc1n64_path = bin_dir / "cc1n64.exe"
+    cc1pln64_path = bin_dir / "cc1pln64.exe"
+
+    if not cc1n64_path.exists() or not cc1pln64_path.exists():
+        print("Error: Required compiler binaries not found!")
+        print("Please run './setup' first to download the required files.")
+        sys.exit(1)
+
+
 def main() -> None:
+    # Add this near the start of main(), before any ROM processing
+    check_compiler_binaries()
+
     # Get the absolute path of the script
     script_path = Path(sys.argv[0]).absolute()
     script_dir = script_path.parent.resolve()
