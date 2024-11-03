@@ -2,9 +2,9 @@ name: Build ROM
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
@@ -24,4 +24,4 @@ jobs:
             ninja
 
             # Verify SHA1
-            echo "6e9c4b097628f0147e9e79393dba6d7b4e59986f rom.z64" | sha1sum --check 
+            echo "6e9c4b097628f0147e9e79393dba6d7b4e59986f rom.z64" | sha1sum --check
