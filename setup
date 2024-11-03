@@ -4,19 +4,19 @@
 CC1N64_URL="https://github.com/marijnvdwerf/sn64/releases/download/1%2C0%2C0%2C2/cc1n64.exe"
 CC1PLN64_URL="https://github.com/marijnvdwerf/sn64/releases/download/1%2C0%2C0%2C2/cc1pln64.exe"
 
-# Create bin directory if it doesn't exist
-mkdir -p bin
+# Create tools/bin directory if it doesn't exist
+mkdir -p tools/bin
 
 # Download cc1n64.exe
 echo "Downloading cc1n64.exe..."
-curl -L -o bin/cc1n64.exe "$CC1N64_URL"
+curl -s -L -o tools/bin/cc1n64.exe "$CC1N64_URL"
 
 # Download cc1pln64.exe
 echo "Downloading cc1pln64.exe..."
-curl -L -o bin/cc1pln64.exe "$CC1PLN64_URL"
+curl -s -L -o tools/bin/cc1pln64.exe "$CC1PLN64_URL"
 
 # Make the files executable
-chmod +x bin/cc1n64.exe
-chmod +x bin/cc1pln64.exe
+chmod +x tools/bin/cc1n64.exe
+chmod +x tools/bin/cc1pln64.exe
 
-echo "Setup complete!" 
+echo "Setup complete!"
