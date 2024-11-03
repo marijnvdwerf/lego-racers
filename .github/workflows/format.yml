@@ -1,0 +1,42 @@
+name: Format
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install clang-format
+        run: sudo apt-get install -y clang-format
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Prettier
+        run: npm install -g prettier
+
+      - name: Check C/C++ formatting
+        run: |
+          find src include -name '*.c' -o -name '*.h' -o -name '*.cpp' -o -name '*.hpp' | xargs clang-format --dry-run -Werror
+
+      - name: Check YAML formatting
+        run: |
+          prettier --check "**/*.{yml,yaml}"
+
+      - name: Suggest fixes
+        if: failure()
+        run: |
+          echo "Some files need formatting. Run the following commands locally:"
+          echo "For C/C++ files:"
+          echo "  find src include -name '*.c' -o -name '*.h' -o -name '*.cpp' -o -name '*.hpp' | xargs clang-format -i"
+          echo "For YAML files:"
+          echo "  prettier --write \"**/*.{yml,yaml}\""
