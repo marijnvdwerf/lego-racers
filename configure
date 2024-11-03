@@ -57,6 +57,48 @@ def config_to_dict(
     return dict
 
 
+def clean_rom_and_generate_soil(config, rom_path):
+    """Clean ROM data and generate soil script with original garbage data"""
+    overrides = {}
+
+    with open(rom_path, "rb") as rom:
+        rom_data = bytearray(rom.read())
+
+        # Process segments
+        for s, segment in enumerate(config.segments):
+            if not hasattr(segment, "subsegments"):
+                continue
+
+            for ss, subsegment in enumerate(segment.subsegments):
+                if subsegment[1] == "garbage":
+                    start = subsegment[0]
+
+                    # Calculate end position
+                    if ss + 1 < len(segment.subsegments):
+                        end = segment.subsegments[ss + 1][0]
+                    else:
+                        next_seg = config.segments[s + 1]
+                        end = next_seg.start
+
+                    length = end - start
+
+                    # Store original data before zeroing
+                    overrides[start] = rom_data[start : start + length]
+
+                    # Zero out the data
+                    rom_data[start : start + length] = b"\0" * length
+
+        # Generate soil patch script
+        soil_script = "#!/bin/bash\n\nFILE=$1\n\n"
+        for offset, content in sorted(overrides.items()):
+            hex_bytes = "".join([f"\\x{b:02X}" for b in content])
+            soil_script += (
+                f'echo -en "{hex_bytes}" | dd status=none conv=notrunc of=$FILE bs=1 seek=$((0x{offset:X}))\n'
+            )
+
+        return rom_data, soil_script
+
+
 def main() -> None:
     # Get the absolute path of the script
     script_path = Path(sys.argv[0]).absolute()
@@ -100,9 +142,22 @@ def main() -> None:
     build_dir = Path.cwd() / "build"
     build_dir.mkdir(parents=True, exist_ok=True)
 
-    # Copy the ROM file to the project directory
+    # Clean ROM and generate soil script
+    clean_data, soil_script = clean_rom_and_generate_soil(config, rom_path)
+
+    # Write clean ROM
     baserom_path = project_dir / "baserom.z64"
-    shutil.copy(rom_path, baserom_path)
+    with open(baserom_path, "wb") as f:
+        f.write(clean_data)
+
+    # Update config's SHA1 with the clean ROM's hash
+    config.sha1 = hashlib.sha1(clean_data).hexdigest()
+
+    # Write soil script
+    soil_path = project_dir / "soil.sh"
+    with open(soil_path, "w") as f:
+        f.write(soil_script)
+    soil_path.chmod(0o777)
 
     # Generate symbol_addrs.txt
     symbols = get_n64_symbols(region)
@@ -138,7 +193,7 @@ def main() -> None:
     config.options["build_path"] = "build"
     config.options["nonmatchings_path"] = "../../../nonmatchings"
 
-    config.options["create_undefined_funcs_auto"] = False
+    config.options["create_undefined_funcs_auto"] = True
     config.options["create_undefined_syms_auto"] = True
 
     config_dict = config_to_dict(config)
@@ -165,15 +220,16 @@ def main() -> None:
         n.variable("CC1PLN64", str(script_dir / "tools/bin/cc1pln64.exe"))
         n.variable("CC1N64", str(script_dir / "tools/bin/cc1n64.exe"))
         n.variable("MODERN_ASN64", str(script_dir / "tools/modern-asn64/modern-asn64.py"))
-        n.variable("UNDEFINED_SYMS", str(project_dir / "undefined_syms.txt"))
+        n.variable("UNDEFINED_SYMS", str(script_dir / "undefined_syms.txt"))
         n.variable("UNDEFINED_SYMS_AUTO", str(script_dir / "undefined_syms_auto.txt"))
+        n.variable("SOIL_PATH", str(project_dir / "soil.sh"))
         n.variable(
             "ASFLAGS", "-G0 -EB -mtune=vr4300 -march=vr4300 -mabi=32 -I. -Iinclude -Iver/e -O1 --no-construct-floats"
         )
         n.variable("LD_SCRIPT", "legoracers.ld")
         n.variable(
             "LDFLAGS",
-            "-T $LD_SCRIPT -mips3 --accept-unknown-input-arch --no-check-sections --allow-multiple-definition -T $UNDEFINED_SYMS_AUTO",
+            "-T $LD_SCRIPT -mips3 --accept-unknown-input-arch --no-check-sections --allow-multiple-definition -T $UNDEFINED_SYMS_AUTO -T $UNDEFINED_SYMS",
         )
         n.variable("BINOFLAGS", "-I binary -O elf32-big")
 
@@ -199,7 +255,7 @@ def main() -> None:
         n.rule("link", command="$LD $LDFLAGS -Map $out.map -o $out", description="LINK $out")
         n.rule(
             "objcopy",
-            command="$OBJCOPY -O binary --pad-to=$ROM_SIZE --gap-fill=0x00 $in $out && ./fix.sh $out",
+            command="$OBJCOPY -O binary --pad-to=$ROM_SIZE --gap-fill=0x00 $in $out && $SOIL_PATH $out",
             description="OBJCOPY $in",
         )
 
