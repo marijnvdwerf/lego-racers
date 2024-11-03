@@ -22,6 +22,10 @@ INCLUDE_ASM("nonmatchings/main/060", func_80006CBC);
 
 INCLUDE_ASM("nonmatchings/main/060", func_80006F0C);
 
+INCLUDE_RODATA("nonmatchings/main/060", D_80000550);
+
+INCLUDE_RODATA("nonmatchings/main/060", D_800006B0);
+
 INCLUDE_ASM("nonmatchings/main/060", func_80006F28);
 
 INCLUDE_ASM("nonmatchings/main/060", func_800071CC);
@@ -79,3 +83,5 @@ INCLUDE_ASM("nonmatchings/main/060", func_80007A00);
 INCLUDE_ASM("nonmatchings/main/060", func_80007A0C);
 
 INCLUDE_ASM("nonmatchings/main/060", func_80007A18);
+
+INCLUDE_RODATA("nonmatchings/main/060", D_800006B8);

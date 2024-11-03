@@ -29,3 +29,5 @@ INCLUDE_ASM("nonmatchings/main/070", func_80008064);
 INCLUDE_ASM("nonmatchings/main/070", func_800080EC);
 
 INCLUDE_ASM("nonmatchings/main/070", func_800080F8);
+
+INCLUDE_RODATA("nonmatchings/main/070", D_80000730);
