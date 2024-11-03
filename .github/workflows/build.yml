@@ -19,7 +19,8 @@ jobs:
             # Download ROM from secret URL
             curl -L "${{ secrets.N64_BASEROM_URL }}" -o baserom.z64
 
-            # Configure and build
+            # Setup, configure and build
+            ./setup
             ./configure baserom.z64
             ninja
 
