@@ -8,6 +8,17 @@ requires-python = ">=3.12"
 line-length = 120
 extend-exclude = '''
 (
-  ^/ninja_syntax.py    # exclude a file named foo.py in the root of the project
+  ^/ninja_syntax.py|     # exclude ninja syntax
+  ^/tools/modern-asn64/  # exclude modern-asn64 directory
 )
 '''
+force-exclude = false
+include = '(\.pyi?$|configure$)'  # Include .py, .pyi, and the configure file
+
+[tool.ruff]
+line-length = 120
+extend-exclude = [
+    "ninja_syntax.py",    # exclude ninja syntax
+    "tools/modern-asn64/*"
+]
+extend-include = ["configure"]  # Explicitly include the configure file
