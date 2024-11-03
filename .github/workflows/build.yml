@@ -17,7 +17,7 @@ jobs:
         with:
           runCmd: |
             # Download ROM from secret URL
-            curl -L ${{ secrets.N64_BASEROM_URL }} -o baserom.z64
+            curl -L "${{ secrets.N64_BASEROM_URL }}" -o baserom.z64
 
             # Configure and build
             ./configure baserom.z64
