@@ -151,10 +151,10 @@ with open(input_filename, mode="r") as input_file:
             elif directive == "rdata":
                 # Modern gas doesn't understand these directives, so get rid of them
                 line = "\t.section .rdata\n"
-            elif directive == "word":
-                # SN's cc1 uses $ for label references but . for the actual label names, so fix them up
-                if tokens[1][0] == "$":
-                    line = f"\t.word\t.{tokens[1][1:]}\n"
+            # elif directive == "word":
+            #     # SN's cc1 uses $ for label references but . for the actual label names, so fix them up
+            #     if tokens[1][0] == "$":
+            #         line = f"\t.word\t.{tokens[1][1:]}\n"
         elif identifier[-1] == ":": # Labels
             # Nothing to do here, but it might be handy to have in the future
             label_name: str = identifier[:-1]
