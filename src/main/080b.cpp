@@ -35,13 +35,6 @@ public:
     virtual int virt50(int, void*, int, void*);
 };
 
-class Fizz {
-public:
-    char pad0[0xC];
-    u32 unkC;
-    u32 unk10;
-};
-
 class FileNode {
 public:
     char unk0[12];
@@ -70,12 +63,16 @@ public:
     Other* unk0;
     int unk4;
     DirectoryNode unk8;
-    void* unk2C;
+    FileNode* unk2C;
     Main080b();
     void func_800087E4(Other&);
     void reset();
-
     void func_80008D2C();
+    void* Main080b::func_800093EC();
+    Other* Main080b::func_800093F8();
+    bool Main080b::func_80009404();
+
+    // Virtual functions
     virtual int func_800088BC(char* inputStr, int* outVal1, int* outVal2);
     virtual int func_80008B14();
     virtual int func_80008B20(s32 arg1, u8* buffer_ptr, u32 remainingSize, u32 arg4, u32* arg5);
@@ -154,7 +151,7 @@ int Main080b::func_800088BC(char* inputStr, int* outVal1, int* outVal2)
         }
     }
 
-    Fizz* res = (Fizz*)node->func_80008EBC(D_80038E20, this->unk0);
+    FileNode* res = node->func_80008EBC(D_80038E20, this->unk0);
     if (res == NULL) {
         return 8;
     }
@@ -194,7 +191,7 @@ int Main080b::func_80008A00(char* inputStr)
         }
     }
 
-    void* res = node->func_80008EBC(D_80038E20, this->unk0);
+    FileNode* res = node->func_80008EBC(D_80038E20, this->unk0);
     if (res == NULL) {
         return 8;
     }
@@ -475,8 +472,17 @@ void DirectoryNode::func_80008F58(Other* other)
     this->unkC = 1;
 }
 
-INCLUDE_ASM("nonmatchings/main/080b", func_800093EC);
+void* Main080b::func_800093EC()
+{
+    return this->unk2C;
+}
 
-INCLUDE_ASM("nonmatchings/main/080b", func_800093F8);
+Other* Main080b::func_800093F8()
+{
+    return this->unk0;
+}
 
-INCLUDE_ASM("nonmatchings/main/080b", func_80009404);
+bool Main080b::func_80009404()
+{
+    return this->unk0 != nullptr;
+}
