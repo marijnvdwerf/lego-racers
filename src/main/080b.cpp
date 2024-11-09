@@ -7,18 +7,12 @@ void func_8007ED94(int);
 void func_8007EDC8();
 }
 
-#define nullptr 0
-
-typedef unsigned int uint32_t;
-typedef unsigned char uint8_t;
-typedef signed int int32_t;
+#define nullptr (0)
 
 extern char D_80038E30[];
-extern char D_800007A8[];
 
 #define MAX_BUFFER 12
-#define NULL ((void*)0)
-extern char D_80038E20[12];
+extern char D_80038E20[MAX_BUFFER];
 
 class Other {
 public:
@@ -75,7 +69,7 @@ public:
     // Virtual functions
     virtual int func_800088BC(char* inputStr, int* outVal1, int* outVal2);
     virtual int func_80008B14();
-    virtual int func_80008B20(s32 arg1, u8* buffer_ptr, u32 remainingSize, u32 arg4, u32* arg5);
+    virtual int func_80008B20(s32 offset, u8* buffer, u32 bufferSize, u32 maxLength, u32* processedLength);
     virtual void func_80008CF8(int, void*, int, void*);
     virtual ~Main080b();
     virtual int func_80008A00(char* arg1);
@@ -83,9 +77,9 @@ public:
 
 Main080b::Main080b()
 {
-    this->unk0 = 0;
+    this->unk0 = nullptr;
     this->unk4 = 0;
-    this->unk2C = NULL;
+    this->unk2C = nullptr;
 }
 
 Main080b::~Main080b()
@@ -127,7 +121,7 @@ int Main080b::func_800088BC(char* inputStr, int* outVal1, int* outVal2)
     int i = -1;
 
     while (1) {
-        uint32_t bufferPos = 0;
+        u32 bufferPos = 0;
 
         while (inputStr[++i] && inputStr[i] != '\\') {
             if (bufferPos >= MAX_BUFFER) {
@@ -143,7 +137,7 @@ int Main080b::func_800088BC(char* inputStr, int* outVal1, int* outVal2)
 
         if (inputStr[i] == '\\') {
             node = node->func_80008E20(D_80038E20, this->unk0);
-            if (node == NULL) {
+            if (node == nullptr) {
                 return 8;
             }
         } else {
@@ -152,7 +146,7 @@ int Main080b::func_800088BC(char* inputStr, int* outVal1, int* outVal2)
     }
 
     FileNode* res = node->func_80008EBC(D_80038E20, this->unk0);
-    if (res == NULL) {
+    if (res == nullptr) {
         return 8;
     }
     *outVal1 = res->unkC;
@@ -167,7 +161,7 @@ int Main080b::func_80008A00(char* inputStr)
     int i = -1;
 
     while (1) {
-        uint32_t bufferPos = 0;
+        u32 bufferPos = 0;
 
         while (inputStr[++i] && inputStr[i] != '\\') {
             if (bufferPos >= MAX_BUFFER) {
@@ -183,7 +177,7 @@ int Main080b::func_80008A00(char* inputStr)
 
         if (inputStr[i] == '\\') {
             node = node->func_80008E20(D_80038E20, this->unk0);
-            if (node == NULL) {
+            if (node == nullptr) {
                 return 8;
             }
         } else {
@@ -192,7 +186,7 @@ int Main080b::func_80008A00(char* inputStr)
     }
 
     FileNode* res = node->func_80008EBC(D_80038E20, this->unk0);
-    if (res == NULL) {
+    if (res == nullptr) {
         return 8;
     }
     this->unk2C = res;
@@ -207,12 +201,11 @@ int Main080b::func_80008B14()
 
 int Main080b::func_80008B20(s32 offset, u8* buffer, u32 bufferSize, u32 maxLength, u32* processedLength)
 {
-
-    uint8_t* currentPos;
-    uint32_t totalProcessed;
-    uint32_t currentOffset;
-    uint32_t remainingSize;
-    int32_t hasCR;
+    u8* currentPos;
+    u32 totalProcessed;
+    u32 currentOffset;
+    u32 remainingSize;
+    s32 hasCR;
 
     // Initialize processed length
     *processedLength = 0;
@@ -229,7 +222,7 @@ int Main080b::func_80008B20(s32 offset, u8* buffer, u32 bufferSize, u32 maxLengt
 
     while (1) {
         // Determine chunk size (max 64 bytes)
-        uint32_t chunkSize;
+        u32 chunkSize;
         if (remainingSize > 0x40) {
             chunkSize = 0x40;
         } else {
@@ -237,8 +230,8 @@ int Main080b::func_80008B20(s32 offset, u8* buffer, u32 bufferSize, u32 maxLengt
         }
 
         // Process chunk through context handler
-        uint32_t bytesProcessed;
-        int32_t result = this->unk0->virt50(
+        u32 bytesProcessed;
+        s32 result = this->unk0->virt50(
             offset + currentOffset,
             buffer + currentOffset,
             chunkSize,
@@ -254,7 +247,7 @@ int Main080b::func_80008B20(s32 offset, u8* buffer, u32 bufferSize, u32 maxLengt
         // Process special characters
         if (currentOffset < totalProcessed) {
             do {
-                uint8_t ch = buffer[currentOffset];
+                u8 ch = buffer[currentOffset];
 
                 if (ch == 0x0D) { // CR
                     hasCR = true;
@@ -392,7 +385,7 @@ void DirectoryNode::func_80008F58(Other* other)
         return;
     }
 
-    uint32_t fileOffset = this->unk10;
+    u32 fileOffset = this->unk10;
     int bytesRead;
     int i;
 
@@ -406,7 +399,7 @@ void DirectoryNode::func_80008F58(Other* other)
     this->unk14 = D_80038E30[0] + (D_80038E30[1] << 8) + (D_80038E30[2] << 16) + (D_80038E30[3] << 24);
 
     // Validate count
-    if (this->unk14 > 0x186A0) {
+    if (this->unk14 > 100000) {
         crash("", 0, 0, 0);
     }
 
