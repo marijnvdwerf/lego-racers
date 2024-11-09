@@ -1,8 +1,10 @@
 #include "common.h"
 
 extern "C" {
-void dealloc(void* ptr);
 void crash(const char* msg, int a, int b, int c);
+int strncmp(const char* str1, const char* str2, size_t n);
+void func_8007ED94(int);
+void func_8007EDC8();
 }
 
 #define nullptr 0
@@ -40,28 +42,34 @@ public:
     u32 unk10;
 };
 
-class Node {
+class FileNode {
 public:
-    char unk0;
-    int unk4;
-    int unk8;
+    char unk0[12];
+    int unkC;
+    int unk10;
+};
+
+class DirectoryNode {
+public:
+    char unk0[12];
     char unkC;
     int unk10;
-    int unk14;
-    int unk18;
-    int childCount;
-    Node* children;
-    Node();
+    u32 unk14;
+    FileNode* unk18;
+    u32 childCount;
+    DirectoryNode* children;
+    DirectoryNode();
     void reset();
-    Node* func_80008E20(void*, Other*);
-    int func_80008EBC(void*, Other*);
+    DirectoryNode* func_80008E20(char*, Other*);
+    FileNode* func_80008EBC(char*, Other*);
+    void func_80008F58(Other*);
 };
 
 class Main080b {
 public:
     Other* unk0;
     int unk4;
-    Node unk8;
+    DirectoryNode unk8;
     void* unk2C;
     Main080b();
     void func_800087E4(Other&);
@@ -93,10 +101,6 @@ char* D_8002FD60 = {
 };
 int D_8002FD64 = -1;
 
-INCLUDE_RODATA("nonmatchings/main/080b", D_800007A8); // ""
-
-const char D_800007AC[] = "LJAM";
-
 void Main080b::func_800087E4(Other& other)
 {
     u8 buffer[8];
@@ -105,11 +109,11 @@ void Main080b::func_800087E4(Other& other)
 
     int err = other.virt50(0, D_80038E30, 4, &buffer);
     if (err) {
-        crash(D_800007A8, 0, 0, 0);
+        crash("", 0, 0, 0);
     }
 
-    if (memcmp(D_80038E30, D_800007AC, 4)) {
-        crash(D_800007A8, 0, 0, 0);
+    if (memcmp(D_80038E30, "LJAM", 4)) {
+        crash("", 0, 0, 0);
     }
 }
 
@@ -122,7 +126,7 @@ void Main080b::reset()
 
 int Main080b::func_800088BC(char* inputStr, int* outVal1, int* outVal2)
 {
-    Node* node = &this->unk8;
+    DirectoryNode* node = &this->unk8;
     int i = -1;
 
     while (1) {
@@ -162,7 +166,7 @@ int Main080b::func_800088BC(char* inputStr, int* outVal1, int* outVal2)
 
 int Main080b::func_80008A00(char* inputStr)
 {
-    Node* node = &this->unk8;
+    DirectoryNode* node = &this->unk8;
     int i = -1;
 
     while (1) {
@@ -321,9 +325,9 @@ extern "C" void func_80008D48(int a)
     D_8002FD64 = a;
 }
 
-Node::Node()
+DirectoryNode::DirectoryNode()
 {
-    this->unk0 = 0;
+    this->unk0[0] = '\0';
     this->unkC = 0;
     this->unk10 = 4;
     this->unk14 = 0;
@@ -332,7 +336,7 @@ Node::Node()
     this->children = 0;
 }
 
-void Node::reset()
+void DirectoryNode::reset()
 {
     this->unkC = 0;
     if (this->children) {
@@ -341,24 +345,135 @@ void Node::reset()
         }
 
         if (this->children) {
-            dealloc(this->children);
+            delete[] this->children;
         }
         this->children = nullptr;
         this->childCount = 0;
     }
 
     if (this->unk18) {
-        dealloc(this->unk18);
+        if (this->unk18) {
+            delete[] this->unk18;
+        }
         this->unk18 = nullptr;
         this->unk14 = 0;
     }
 }
 
-INCLUDE_ASM("nonmatchings/main/080b", func_80008E20__4NodePvP5Other);
+DirectoryNode* DirectoryNode::func_80008E20(char* searchStr, Other* other)
+{
+    if (this->unkC == 0) {
+        this->func_80008F58(other);
+    }
 
-INCLUDE_ASM("nonmatchings/main/080b", func_80008EBC__4NodePvP5Other);
+    for (u32 index = 0; index < this->childCount; index++) {
+        if (strncmp(this->children[index].unk0, searchStr, 12) == 0) {
+            return &this->children[index];
+        }
+    }
+    return nullptr;
+}
 
-INCLUDE_ASM("nonmatchings/main/080b", func_80008F58);
+FileNode* DirectoryNode::func_80008EBC(char* searchStr, Other* other)
+{
+    if (this->unkC == 0) {
+        this->func_80008F58(other);
+    }
+
+    for (u32 index = 0; index < this->unk14; index++) {
+        if (strncmp(this->unk18[index].unk0, searchStr, 12) == 0) {
+            return &this->unk18[index];
+        }
+    }
+
+    return nullptr;
+}
+
+void DirectoryNode::func_80008F58(Other* other)
+{
+    if (this->unkC != 0) {
+        return;
+    }
+
+    uint32_t fileOffset = this->unk10;
+    int bytesRead;
+    int i;
+
+    // Read number of Node2 entries
+    if (other->virt50(fileOffset, &D_80038E30, 4, &bytesRead) != 0) {
+        crash("", 0, 0, 0);
+    }
+    fileOffset += 4;
+
+    // Parse number of Node2 entries (4 bytes)
+    this->unk14 = D_80038E30[0] + (D_80038E30[1] << 8) + (D_80038E30[2] << 16) + (D_80038E30[3] << 24);
+
+    // Validate count
+    if (this->unk14 > 0x186A0) {
+        crash("", 0, 0, 0);
+    }
+
+    // Allocate and read Node2 entries
+    if (this->unk14 > 0) {
+        func_8007ED94(D_8002FD64);
+        this->unk18 = new FileNode[this->unk14];
+        func_8007EDC8();
+
+        if (this->unk18 == nullptr) {
+            crash("", 0, 0, 0);
+        }
+
+        // Read each Node2 entry
+        for (i = 0; i < this->unk14; i++) {
+            if (other->virt50(fileOffset, &D_80038E30, 0x14, &bytesRead) != 0) {
+                crash("", 0, 0, 0);
+            }
+            fileOffset += bytesRead;
+
+            memcpy(this->unk18[i].unk0, &D_80038E30[0], 12); // Copy first 12 bytes
+            this->unk18[i].unkC = D_80038E30[0xC] + (D_80038E30[0xD] << 8) + (D_80038E30[0xE] << 16) + (D_80038E30[0xF] << 24);
+            this->unk18[i].unk10 = D_80038E30[0x10] + (D_80038E30[0x11] << 8) + (D_80038E30[0x12] << 16) + (D_80038E30[0x13] << 24);
+        }
+    }
+
+    // Read number of child nodes
+    if (other->virt50(fileOffset, &D_80038E30, 4, &bytesRead) != 0) {
+        crash("", 0, 0, 0);
+    }
+    fileOffset += 4;
+
+    // Parse number of children (4 bytes)
+    this->childCount = D_80038E30[0] + (D_80038E30[1] << 8) + (D_80038E30[2] << 16) + (D_80038E30[3] << 24);
+
+    if (this->childCount > 0x186A0) {
+        crash("", 0, 0, 0);
+    }
+
+    // Allocate and initialize child nodes
+    if (this->childCount > 0) {
+        func_8007ED94(D_8002FD64);
+        this->children = new DirectoryNode[this->childCount];
+        func_8007EDC8();
+
+        if (this->children == nullptr) {
+            crash("", 0, 0, 0);
+        }
+
+        // Read data for each child node
+        for (i = 0; i < this->childCount; i++) {
+            if (other->virt50(fileOffset, &D_80038E30, 0x10, &bytesRead)) {
+                crash("", 0, 0, 0);
+            }
+            fileOffset += bytesRead;
+
+            memcpy(this->children[i].unk0, &D_80038E30[0], 12); // Copy first 12 bytes
+            this->children[i].unkC = 0;
+            this->children[i].unk10 = D_80038E30[0xC] + (D_80038E30[0xD] << 8) + (D_80038E30[0xE] << 16) + (D_80038E30[0xF] << 24);
+        }
+    }
+
+    this->unkC = 1;
+}
 
 INCLUDE_ASM("nonmatchings/main/080b", func_800093EC);
 

@@ -66,9 +66,6 @@ def get_n64_symbols(region: str) -> List[Symbol]:
     add_symbol(0x80008750, "__8Main080b")
     add_symbol(0x800087E4, "func_800087E4__8Main080bR5Other")
     add_symbol(0x80008D2C, "func_80008D2C__8Main080b")
-    add_symbol(0x80008D54, "__4Node")
-    add_symbol(0x80008E20, "func_80008E20__4NodePvP5Other")
-    add_symbol(0x80008EBC, "func_80008EBC__4NodePvP5Other")
     add_symbol(0x8007ED70, "__builtin_delete")
 
     if region == "e":
@@ -293,7 +290,8 @@ def get_n64_symbols(region: str) -> List[Symbol]:
 
     # LIBSN
     add_symbol(0x80024070, "__divdi3")
-    add_symbol(0x80025110, "dealloc")
+    add_symbol(0x800250F0, "__builtin_vec_new")
+    add_symbol(0x80025110, "__builtin_vec_delete")
     add_symbol(0x80001150, "__clz_tab", type="u8")
     add_symbol(0x80001250, "__clz_tab_1", type="u8")
     add_symbol(0x80001350, "__clz_tab_2", type="u8")
