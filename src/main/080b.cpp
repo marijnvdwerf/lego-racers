@@ -31,24 +31,24 @@ public:
 
 class FileNode {
 public:
-    char unk0[12];
-    int unkC;
-    int unk10;
+    char name[12];
+    int offset;
+    int size;
 };
 
-class DirectoryNode {
+class FolderNode {
 public:
-    char unk0[12];
-    char unkC;
-    int unk10;
-    u32 unk14;
-    FileNode* unk18;
-    u32 childCount;
-    DirectoryNode* children;
-    DirectoryNode();
+    char name[12];
+    char initialized;
+    int offset;
+    u32 fileCount;
+    FileNode* files;
+    u32 folderCount;
+    FolderNode* folders;
+    FolderNode();
     void reset();
-    DirectoryNode* func_80008E20(char*, Other*);
-    FileNode* func_80008EBC(char*, Other*);
+    FolderNode* getFolder(char* searchStr, Other* other);
+    FileNode* getFile(char* searchStr, Other* other);
     void func_80008F58(Other*);
 };
 
@@ -56,7 +56,7 @@ class Main080b {
 public:
     Other* unk0;
     int unk4;
-    DirectoryNode unk8;
+    FolderNode root;
     FileNode* unk2C;
     Main080b();
     void func_800087E4(Other&);
@@ -67,12 +67,12 @@ public:
     bool Main080b::func_80009404();
 
     // Virtual functions
-    virtual int func_800088BC(char* inputStr, int* outVal1, int* outVal2);
+    virtual int locateFile(char* inputStr, int* offset, int* size);
     virtual int func_80008B14();
     virtual int func_80008B20(s32 offset, u8* buffer, u32 bufferSize, u32 maxLength, u32* processedLength);
     virtual void func_80008CF8(int, void*, int, void*);
     virtual ~Main080b();
-    virtual int func_80008A00(char* arg1);
+    virtual int findFile(char* arg1);
 };
 
 Main080b::Main080b()
@@ -110,14 +110,14 @@ void Main080b::func_800087E4(Other& other)
 
 void Main080b::reset()
 {
-    this->unk8.reset();
+    this->root.reset();
     this->unk0 = nullptr;
     this->unk4 = 0;
 }
 
-int Main080b::func_800088BC(char* inputStr, int* outVal1, int* outVal2)
+int Main080b::locateFile(char* inputStr, int* offset, int* size)
 {
-    DirectoryNode* node = &this->unk8;
+    FolderNode* node = &this->root;
     int i = -1;
 
     while (1) {
@@ -136,7 +136,7 @@ int Main080b::func_800088BC(char* inputStr, int* outVal1, int* outVal2)
         }
 
         if (inputStr[i] == '\\') {
-            node = node->func_80008E20(D_80038E20, this->unk0);
+            node = node->getFolder(D_80038E20, this->unk0);
             if (node == nullptr) {
                 return 8;
             }
@@ -145,19 +145,19 @@ int Main080b::func_800088BC(char* inputStr, int* outVal1, int* outVal2)
         }
     }
 
-    FileNode* res = node->func_80008EBC(D_80038E20, this->unk0);
+    FileNode* res = node->getFile(D_80038E20, this->unk0);
     if (res == nullptr) {
         return 8;
     }
-    *outVal1 = res->unkC;
-    *outVal2 = res->unk10;
+    *offset = res->offset;
+    *size = res->size;
     this->unk4 = 1;
     return 0;
 }
 
-int Main080b::func_80008A00(char* inputStr)
+int Main080b::findFile(char* inputStr)
 {
-    DirectoryNode* node = &this->unk8;
+    FolderNode* node = &this->root;
     int i = -1;
 
     while (1) {
@@ -176,7 +176,7 @@ int Main080b::func_80008A00(char* inputStr)
         }
 
         if (inputStr[i] == '\\') {
-            node = node->func_80008E20(D_80038E20, this->unk0);
+            node = node->getFolder(D_80038E20, this->unk0);
             if (node == nullptr) {
                 return 8;
             }
@@ -185,7 +185,7 @@ int Main080b::func_80008A00(char* inputStr)
         }
     }
 
-    FileNode* res = node->func_80008EBC(D_80038E20, this->unk0);
+    FileNode* res = node->getFile(D_80038E20, this->unk0);
     if (res == nullptr) {
         return 8;
     }
@@ -307,7 +307,7 @@ void Main080b::func_80008CF8(int a, void* b, int c, void* d)
 
 void Main080b::func_80008D2C()
 {
-    this->unk8.reset();
+    this->root.reset();
 }
 
 extern "C" void func_80008D48(int a)
@@ -315,154 +315,154 @@ extern "C" void func_80008D48(int a)
     D_8002FD64 = a;
 }
 
-DirectoryNode::DirectoryNode()
+FolderNode::FolderNode()
 {
-    this->unk0[0] = '\0';
-    this->unkC = 0;
-    this->unk10 = 4;
-    this->unk14 = 0;
-    this->unk18 = 0;
-    this->childCount = 0;
-    this->children = 0;
+    this->name[0] = '\0';
+    this->initialized = 0;
+    this->offset = 4;
+    this->fileCount = 0;
+    this->files = 0;
+    this->folderCount = 0;
+    this->folders = 0;
 }
 
-void DirectoryNode::reset()
+void FolderNode::reset()
 {
-    this->unkC = 0;
-    if (this->children) {
-        for (u32 i = 0; i < this->childCount; i++) {
-            this->children[i].reset();
+    this->initialized = 0;
+    if (this->folders) {
+        for (u32 i = 0; i < this->folderCount; i++) {
+            this->folders[i].reset();
         }
 
-        if (this->children) {
-            delete[] this->children;
+        if (this->folders) {
+            delete[] this->folders;
         }
-        this->children = nullptr;
-        this->childCount = 0;
+        this->folders = nullptr;
+        this->folderCount = 0;
     }
 
-    if (this->unk18) {
-        if (this->unk18) {
-            delete[] this->unk18;
+    if (this->files) {
+        if (this->files) {
+            delete[] this->files;
         }
-        this->unk18 = nullptr;
-        this->unk14 = 0;
+        this->files = nullptr;
+        this->fileCount = 0;
     }
 }
 
-DirectoryNode* DirectoryNode::func_80008E20(char* searchStr, Other* other)
+FolderNode* FolderNode::getFolder(char* searchStr, Other* other)
 {
-    if (this->unkC == 0) {
+    if (this->initialized == 0) {
         this->func_80008F58(other);
     }
 
-    for (u32 index = 0; index < this->childCount; index++) {
-        if (strncmp(this->children[index].unk0, searchStr, 12) == 0) {
-            return &this->children[index];
+    for (u32 index = 0; index < this->folderCount; index++) {
+        if (strncmp(this->folders[index].name, searchStr, 12) == 0) {
+            return &this->folders[index];
         }
     }
     return nullptr;
 }
 
-FileNode* DirectoryNode::func_80008EBC(char* searchStr, Other* other)
+FileNode* FolderNode::getFile(char* searchStr, Other* other)
 {
-    if (this->unkC == 0) {
+    if (this->initialized == 0) {
         this->func_80008F58(other);
     }
 
-    for (u32 index = 0; index < this->unk14; index++) {
-        if (strncmp(this->unk18[index].unk0, searchStr, 12) == 0) {
-            return &this->unk18[index];
+    for (u32 index = 0; index < this->fileCount; index++) {
+        if (strncmp(this->files[index].name, searchStr, 12) == 0) {
+            return &this->files[index];
         }
     }
 
     return nullptr;
 }
 
-void DirectoryNode::func_80008F58(Other* other)
+void FolderNode::func_80008F58(Other* other)
 {
-    if (this->unkC != 0) {
+    if (this->initialized != 0) {
         return;
     }
 
-    u32 fileOffset = this->unk10;
+    u32 offset = this->offset;
     int bytesRead;
     int i;
 
     // Read number of Node2 entries
-    if (other->virt50(fileOffset, &D_80038E30, 4, &bytesRead) != 0) {
+    if (other->virt50(offset, &D_80038E30, 4, &bytesRead) != 0) {
         crash("", 0, 0, 0);
     }
-    fileOffset += 4;
+    offset += 4;
 
     // Parse number of Node2 entries (4 bytes)
-    this->unk14 = D_80038E30[0] + (D_80038E30[1] << 8) + (D_80038E30[2] << 16) + (D_80038E30[3] << 24);
+    this->fileCount = D_80038E30[0] + (D_80038E30[1] << 8) + (D_80038E30[2] << 16) + (D_80038E30[3] << 24);
 
     // Validate count
-    if (this->unk14 > 100000) {
+    if (this->fileCount > 100000) {
         crash("", 0, 0, 0);
     }
 
     // Allocate and read Node2 entries
-    if (this->unk14 > 0) {
+    if (this->fileCount > 0) {
         func_8007ED94(D_8002FD64);
-        this->unk18 = new FileNode[this->unk14];
+        this->files = new FileNode[this->fileCount];
         func_8007EDC8();
 
-        if (this->unk18 == nullptr) {
+        if (this->files == nullptr) {
             crash("", 0, 0, 0);
         }
 
-        // Read each Node2 entry
-        for (i = 0; i < this->unk14; i++) {
-            if (other->virt50(fileOffset, &D_80038E30, 0x14, &bytesRead) != 0) {
+        // Read each entry
+        for (i = 0; i < this->fileCount; i++) {
+            if (other->virt50(offset, &D_80038E30, 0x14, &bytesRead) != 0) {
                 crash("", 0, 0, 0);
             }
-            fileOffset += bytesRead;
+            offset += bytesRead;
 
-            memcpy(this->unk18[i].unk0, &D_80038E30[0], 12); // Copy first 12 bytes
-            this->unk18[i].unkC = D_80038E30[0xC] + (D_80038E30[0xD] << 8) + (D_80038E30[0xE] << 16) + (D_80038E30[0xF] << 24);
-            this->unk18[i].unk10 = D_80038E30[0x10] + (D_80038E30[0x11] << 8) + (D_80038E30[0x12] << 16) + (D_80038E30[0x13] << 24);
+            memcpy(this->files[i].name, &D_80038E30[0], 12); // Copy first 12 bytes
+            this->files[i].offset = D_80038E30[0xC] + (D_80038E30[0xD] << 8) + (D_80038E30[0xE] << 16) + (D_80038E30[0xF] << 24);
+            this->files[i].size = D_80038E30[0x10] + (D_80038E30[0x11] << 8) + (D_80038E30[0x12] << 16) + (D_80038E30[0x13] << 24);
         }
     }
 
     // Read number of child nodes
-    if (other->virt50(fileOffset, &D_80038E30, 4, &bytesRead) != 0) {
+    if (other->virt50(offset, &D_80038E30, 4, &bytesRead) != 0) {
         crash("", 0, 0, 0);
     }
-    fileOffset += 4;
+    offset += 4;
 
     // Parse number of children (4 bytes)
-    this->childCount = D_80038E30[0] + (D_80038E30[1] << 8) + (D_80038E30[2] << 16) + (D_80038E30[3] << 24);
+    this->folderCount = D_80038E30[0] + (D_80038E30[1] << 8) + (D_80038E30[2] << 16) + (D_80038E30[3] << 24);
 
-    if (this->childCount > 0x186A0) {
+    if (this->folderCount > 0x186A0) {
         crash("", 0, 0, 0);
     }
 
     // Allocate and initialize child nodes
-    if (this->childCount > 0) {
+    if (this->folderCount > 0) {
         func_8007ED94(D_8002FD64);
-        this->children = new DirectoryNode[this->childCount];
+        this->folders = new FolderNode[this->folderCount];
         func_8007EDC8();
 
-        if (this->children == nullptr) {
+        if (this->folders == nullptr) {
             crash("", 0, 0, 0);
         }
 
         // Read data for each child node
-        for (i = 0; i < this->childCount; i++) {
-            if (other->virt50(fileOffset, &D_80038E30, 0x10, &bytesRead)) {
+        for (i = 0; i < this->folderCount; i++) {
+            if (other->virt50(offset, &D_80038E30, 0x10, &bytesRead)) {
                 crash("", 0, 0, 0);
             }
-            fileOffset += bytesRead;
+            offset += bytesRead;
 
-            memcpy(this->children[i].unk0, &D_80038E30[0], 12); // Copy first 12 bytes
-            this->children[i].unkC = 0;
-            this->children[i].unk10 = D_80038E30[0xC] + (D_80038E30[0xD] << 8) + (D_80038E30[0xE] << 16) + (D_80038E30[0xF] << 24);
+            memcpy(this->folders[i].name, &D_80038E30[0], 12); // Copy first 12 bytes
+            this->folders[i].initialized = 0;
+            this->folders[i].offset = D_80038E30[0xC] + (D_80038E30[0xD] << 8) + (D_80038E30[0xE] << 16) + (D_80038E30[0xF] << 24);
         }
     }
 
-    this->unkC = 1;
+    this->initialized = 1;
 }
 
 void* Main080b::func_800093EC()
