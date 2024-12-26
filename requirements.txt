@@ -2,5 +2,6 @@ black>=24.8.0
 isort>=5.13.2
 mypy>=1.11.2
 rich>=0.1.0
-splat64[mips]>=0.27.0
+splat64[mips]==0.27.3
 types-pyyaml>=6.0.12.20240808
+ips-util==1.0
