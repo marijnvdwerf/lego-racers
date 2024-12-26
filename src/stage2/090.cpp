@@ -26,7 +26,7 @@ public:
 };
 
 extern "C" {
-void func_80046B3C(const char*, int, int, int);
+void crash(const char*, int, int, int);
 void func_8007ED94(s32);
 void func_8007EDC8();
 void func_menu_800EF8A4(Menu320*, s32);
@@ -41,7 +41,7 @@ void menufunc_80046E20(s32 arg0)
     D_8009C060 = new Menu320();
     func_8007EDC8();
     if (!D_8009C060) {
-        func_80046B3C("", 0, 0, 0);
+        crash("", 0, 0, 0);
     }
     func_menu_800EF8A4(D_8009C060, arg0);
     func_menu_800F086C(D_8009C060);

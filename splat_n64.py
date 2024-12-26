@@ -52,6 +52,7 @@ def get_n64_config(region: str) -> SplatConfig:
     segment.add_segment(0x1358, "garbage")
     segment.add_segment(0x1360, ".rdata", "main/080a")
     segment.add_segment(0x1390, ".rdata", "main/080b")
+    segment.add_segment(0x13F0, "rdata", "main/080c")
     segment.add_segment(0x17F8, "garbage")
     segment.add_segment(0x1800, "rdata", "main/1800")
     segment.add_segment(0x1888, "garbage")
@@ -95,9 +96,10 @@ def get_n64_config(region: str) -> SplatConfig:
     segment.add_segment(0x8630, "c", "main/070")
     segment.add_segment(0x8D04, "garbage")
     segment.add_segment(0x8D10, "c", "main/080a")  # needs split
-    segment.add_segment(0x9350, "c", "main/080b")  # needs split
+    segment.add_segment(0x9350, "cpp", "main/080b")
+    segment.add_segment(0xA010, "asm", "main/080c")  # needs split
     segment.add_segment(0xAA24, "garbage")
-    segment.add_segment(0xAA30, "c", "main/090")
+    segment.add_segment(0xAA30, "asm", "main/090")
     segment.add_segment(0xB894, "garbage")
     segment.add_segment(0xB8A0, "c", "main/100")
     segment.add_segment(0xBCEC, "garbage")
@@ -273,7 +275,7 @@ def get_n64_config(region: str) -> SplatConfig:
     segment.add_segment(0x30948, "garbage")
     segment.add_segment(0x30950, "data", "main/30950")  # main_080
     segment.add_segment(0x30954, "garbage")
-    segment.add_segment(0x30960, "data", "main/30960")  # main_080
+    segment.add_segment(0x30960, ".data", "main/080b")
     segment.add_segment(0x30968, "garbage")
     segment.add_segment(0x30970, "data", "main/30970")  # main_080
     segment.add_segment(0x309C4, "garbage")

@@ -1,6 +1,6 @@
 #include "common.h"
 
-void func_80046B3C(const char*, int, int, int);
+void crash(const char*, int, int, int);
 s32 __builtin_new(int);
 void func_8007ED94(s32);
 void func_8007EDC8();
@@ -19,7 +19,7 @@ void racefunc_80045990(s32 arg0)
     D_80089850 = func_race_80100890(__builtin_new(0x3880));
     func_8007EDC8();
     if (D_80089850 == 0) {
-        func_80046B3C("", 0, 0, 0);
+        crash("", 0, 0, 0);
     }
     func_race_80100938(D_80089850, arg0);
     func_race_80100A24(D_80089850);
