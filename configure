@@ -11,6 +11,7 @@ import yaml
 from ninja_syntax import Writer
 from splat_n64 import get_n64_config
 from symbols_n64 import get_n64_symbols
+from io import BytesIO
 
 
 def generate_shasum(file_path):
@@ -56,9 +57,10 @@ def config_to_dict(
     return dict
 
 
-def clean_rom_and_generate_soil(config, rom_path):
-    """Clean ROM data and generate soil script with original garbage data"""
+def clean_rom_and_generate_patches(config, rom_path):
+    """Clean ROM data and generate soil script and IPS patch with original garbage data"""
     overrides = {}
+    patches = []
 
     with open(rom_path, "rb") as rom:
         rom_data = bytearray(rom.read())
@@ -82,7 +84,11 @@ def clean_rom_and_generate_soil(config, rom_path):
                     length = end - start
 
                     # Store original data before zeroing
-                    overrides[start] = rom_data[start : start + length]
+                    original_data = rom_data[start : start + length]
+                    overrides[start] = original_data
+
+                    # Store patch information
+                    patches.append((start, original_data))
 
                     # Zero out the data
                     rom_data[start : start + length] = b"\0" * length
@@ -95,7 +101,22 @@ def clean_rom_and_generate_soil(config, rom_path):
                 f'echo -en "{hex_bytes}" | dd status=none conv=notrunc of=$FILE bs=1 seek=$((0x{offset:X}))\n'
             )
 
-        return rom_data, soil_script
+        # Generate IPS patch
+        patch_data = BytesIO()
+        patch_data.write(b"PATCH")
+
+        for offset, data in patches:
+            # Write offset (3 bytes)
+            patch_data.write(offset.to_bytes(3, "big"))
+            # Write length (2 bytes)
+            patch_data.write(len(data).to_bytes(2, "big"))
+            # Write data
+            patch_data.write(data)
+
+        patch_data.write(b"EOF")
+        patch_data.seek(0)
+
+        return rom_data, soil_script, patch_data.getvalue()
 
 
 def check_compiler_binaries():
@@ -156,8 +177,8 @@ def main() -> None:
     build_dir = Path.cwd() / "build"
     build_dir.mkdir(parents=True, exist_ok=True)
 
-    # Clean ROM and generate soil script
-    clean_data, soil_script = clean_rom_and_generate_soil(config, rom_path)
+    # Clean ROM and generate patches
+    clean_data, soil_script, ips_patch = clean_rom_and_generate_patches(config, rom_path)
 
     # Write clean ROM
     baserom_path = project_dir / "baserom.z64"
@@ -172,6 +193,11 @@ def main() -> None:
     with open(soil_path, "w") as f:
         f.write(soil_script)
     soil_path.chmod(0o777)
+
+    # Write IPS patch
+    ips_path = project_dir / "garbage.ips"
+    with open(ips_path, "wb") as f:
+        f.write(ips_patch)
 
     # Generate symbol_addrs.txt
     symbols = get_n64_symbols(region)
@@ -236,7 +262,7 @@ def main() -> None:
         n.variable("MODERN_ASN64", str(script_dir / "tools/modern-asn64/modern-asn64.py"))
         n.variable("UNDEFINED_SYMS", str(script_dir / "undefined_syms.txt"))
         n.variable("UNDEFINED_SYMS_AUTO", str(script_dir / "undefined_syms_auto.txt"))
-        n.variable("SOIL_PATH", str(project_dir / "soil.sh"))
+        n.variable("IPS_PATCH", str(project_dir / "garbage.ips"))
         n.variable(
             "ASFLAGS", "-G0 -EB -mtune=vr4300 -march=vr4300 -mabi=32 -I. -Iinclude -Iver/e -O1 --no-construct-floats"
         )
@@ -252,8 +278,8 @@ def main() -> None:
         n.rule("bin_to_o", command="$OBJCOPY $BINOFLAGS $in $out", description="OBJCOPY $in")
         n.rule(
             "c_compile",
-            command="cpp -nostdinc -undef -D__GNUC__=2 -D__OPTIMIZE__ -lang-c -Dmips -D__mips__ -D__mips -Dn64 -D__n64__ -D__n64 -D_PSYQ -D__EXTENSIONS__ -D_MIPSEB -D__CHAR_UNSIGNED__ -D_LANGUAGE_C -Iinclude -MD -MF $out.d $in $out.i && "
-            "wibo $CC1N64 -quiet -G0 -O2 $out.i -o $out.s && "
+            command="cpp -nostdinc -undef -D__GNUC__=2 -D__OPTIMIZE__ -lang-c -Dmips -D__mips__ -D__mips -Dn64 -D__n64__ -D__n64 -D_PSYQ -D__EXTENSIONS__ -D_MIPSEB -D__CHAR_UNSIGNED__ -D_LANGUAGE_C -Iinclude -MD -MT $out $in $out.i && "
+            "wibo $CC1N64 -quiet -g -G0 -O2 $out.i -o $out.s && "
             "$MODERN_ASN64 $AS $out.s $ASFLAGS -o $out",
             description="CC $in",
             depfile="$out.d",
@@ -261,7 +287,7 @@ def main() -> None:
         n.rule(
             "cpp_compile",
             command="cpp -nostdinc -undef -D__GNUC__=2 -D__OPTIMIZE__ -lang-c++ -Dmips -D__mips__ -D__mips -Dn64 -D__n64__ -D__n64 -D_PSYQ -D__EXTENSIONS__ -D_MIPSEB -D__CHAR_UNSIGNED__ -D_LANGUAGE_C_PLUS_PLUS -Iinclude -MD -MT $out  $in $out.i  && "
-            "wibo $CC1PLN64 -quiet -G0 -O2 $out.i -o $out.s && "
+            "wibo $CC1PLN64 -quiet -g -G0 -O2 -g $out.i -o $out.s && "
             "$MODERN_ASN64 $AS $out.s $ASFLAGS -o $out",
             description="CXX $in",
             depfile="$out.d",
@@ -269,7 +295,7 @@ def main() -> None:
         n.rule("link", command="$LD $LDFLAGS -Map $out.map -o $out", description="LINK $out")
         n.rule(
             "objcopy",
-            command="$OBJCOPY -O binary --pad-to=$ROM_SIZE --gap-fill=0x00 $in $out && $SOIL_PATH $out",
+            command="$OBJCOPY -O binary --pad-to=$ROM_SIZE --gap-fill=0x00 $in $out.raw && python -m ips_util apply $IPS_PATCH  $out.raw -o $out",
             description="OBJCOPY $in",
         )
 
