@@ -1,14 +1,14 @@
 #include "include_asm.h"
-typedef int s32;
+typedef long int s32;
 typedef short s16;
-typedef char s8;
-typedef unsigned int u32;
+typedef signed char s8;
+typedef long unsigned int u32;
 typedef unsigned short u16;
 typedef unsigned char u8;
 typedef float f32;
 typedef double f64;
 
-typedef u32 size_t;
+typedef unsigned int size_t;
 
 #ifdef __cplusplus
 extern "C" {
@@ -26,7 +26,7 @@ void func_menu_8012341C(void*, int);
 void func_menu_801006D0(void*);
 void func_menu_80100698(void*, int);
 
-extern u32 osTvType;
+extern s32 osTvType;
 #ifdef __cplusplus
 };
 #endif
