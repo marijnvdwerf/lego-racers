@@ -281,7 +281,7 @@ def main() -> None:
         n.rule("bin_to_o", command="$OBJCOPY $BINOFLAGS $in $out", description="OBJCOPY $in")
         n.rule(
             "c_compile",
-            command="cpp -nostdinc -undef -D__GNUC__=2 -D__OPTIMIZE__ -lang-c -Dmips -D__mips__ -D__mips -Dn64 -D__n64__ -D__n64 -D_PSYQ -D__EXTENSIONS__ -D_MIPSEB -D__CHAR_UNSIGNED__ -D_LANGUAGE_C -Iinclude -MD -MT $out $in $out.i && "
+            command="cpp -nostdinc -undef -D__GNUC__=2 -D__OPTIMIZE__ -lang-c -Dmips -D__mips__ -D__mips -Dn64 -D__n64__ -D__n64 -D_PSYQ -D__EXTENSIONS__ -D_MIPSEB -D__CHAR_UNSIGNED__ -D_LANGUAGE_C -Iexternal/libultra/include -Iinclude -MD -MT $out $in $out.i && "
             "wibo $CC1N64 -quiet -g -G0 -O2 $out.i -o $out.s && "
             "$MODERN_ASN64 $AS $out.s $ASFLAGS -o $out",
             description="CC $in",
@@ -289,7 +289,7 @@ def main() -> None:
         )
         n.rule(
             "cpp_compile",
-            command="cpp -nostdinc -undef -D__GNUC__=2 -D__OPTIMIZE__ -lang-c++ -Dmips -D__mips__ -D__mips -Dn64 -D__n64__ -D__n64 -D_PSYQ -D__EXTENSIONS__ -D_MIPSEB -D__CHAR_UNSIGNED__ -D_LANGUAGE_C_PLUS_PLUS -Iinclude -MD -MT $out  $in $out.i  && "
+            command="cpp -nostdinc -undef -D__GNUC__=2 -D__OPTIMIZE__ -lang-c++ -Dmips -D__mips__ -D__mips -Dn64 -D__n64__ -D__n64 -D_PSYQ -D__EXTENSIONS__ -D_MIPSEB -D__CHAR_UNSIGNED__ -D_LANGUAGE_C_PLUS_PLUS -Iexternal/libultra/include -Iinclude -MD -MT $out  $in $out.i  && "
             "wibo $CC1PLN64 -quiet -g -G0 -O2 -g $out.i -o $out.s && "
             "$MODERN_ASN64 $AS $out.s $ASFLAGS -o $out",
             description="CXX $in",
