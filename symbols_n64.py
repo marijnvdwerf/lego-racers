@@ -51,7 +51,7 @@ def get_n64_symbols(region: str) -> List[Symbol]:
     add_symbol(0x800059D0, "wcslen")
     add_symbol(0x80005B70, "__6String")
     add_symbol(0x80005B88, "_._6String")
-    add_symbol(0x80005BBC, "func_80005BBC__6Stringi")
+    add_symbol(0x80005BBC, "func_80005BBC__6Stringl")
     add_symbol(0x80005C78, "func_80005C78__6StringP6String")
     add_symbol(0x80005CB4, "func_80005CB4__6String")
     add_symbol(0x80005CF4, "func_80005CF4__6String")
