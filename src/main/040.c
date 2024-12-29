@@ -43,7 +43,7 @@ void func_80005750(s8* offset, s8* dest, s32 len)
     }
 }
 
-void ascii_to_n64(s8* buffer, s8* dest, s32 len)
+void ascii_to_n64(u8* buffer, s8* dest, s32 len)
 {
     u8 c;
     u8* end;

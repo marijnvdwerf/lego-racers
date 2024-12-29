@@ -6,9 +6,9 @@ int D_80085EA8 = 1;
 int D_80085EAC = 0;
 int D_80085EB0[16] = {};
 
-INCLUDE_ASM("nonmatchings/stage2/580", func_800704C0);
+INCLUDE_ASM("nonmatchings/stage2/580", __11RenderClass);
 
-INCLUDE_ASM("nonmatchings/stage2/580", func_80070554);
+INCLUDE_ASM("nonmatchings/stage2/580", _._11RenderClass);
 
 INCLUDE_ASM("nonmatchings/stage2/580", func_800705F0);
 
@@ -32,7 +32,7 @@ INCLUDE_ASM("nonmatchings/stage2/580", func_80071208);
 
 INCLUDE_ASM("nonmatchings/stage2/580", func_80071514);
 
-INCLUDE_ASM("nonmatchings/stage2/580", func_80071660);
+INCLUDE_ASM("nonmatchings/stage2/580", func_80071660__11RenderClassR20ParentSchedulerOwnerR11N64Rendererii);
 
 INCLUDE_ASM("nonmatchings/stage2/580", func_80071820);
 
@@ -74,7 +74,7 @@ INCLUDE_ASM("nonmatchings/stage2/580", func_80072E8C);
 
 INCLUDE_ASM("nonmatchings/stage2/580", func_80072F94);
 
-INCLUDE_ASM("nonmatchings/stage2/580", func_80072FE0);
+INCLUDE_ASM("nonmatchings/stage2/580", func_80072FE0__11RenderClass);
 
 extern "C" {
 void func_80073018(void)
