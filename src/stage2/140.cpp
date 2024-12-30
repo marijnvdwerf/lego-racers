@@ -1,15 +1,77 @@
 #include "common.h"
 #include "scheduler.h"
 
-INCLUDE_ASM("nonmatchings/stage2/140", __26ParentParentSchedulerOwner);
+ParentParentSchedulerOwner::ParentParentSchedulerOwner()
+{
+    this->width = 0;
+    this->height = 0;
+    this->depth = 0;
+    this->flags = 0;
+    this->renderer_ptr = NULL;
+}
 
-INCLUDE_ASM("nonmatchings/stage2/140", _._26ParentParentSchedulerOwner);
+ParentParentSchedulerOwner::~ParentParentSchedulerOwner()
+{
+}
 
-INCLUDE_ASM("nonmatchings/stage2/140", virt4__26ParentParentSchedulerOwneriiii);
+int ParentParentSchedulerOwner::virt4(int a, int b, int c, int d)
+{
+    if (this->flags & 1) {
+        this->virt5();
+    }
 
-INCLUDE_ASM("nonmatchings/stage2/140", virt7__26ParentParentSchedulerOwner);
+    this->flags |= 2;
 
-INCLUDE_ASM("nonmatchings/stage2/140", virt8__26ParentParentSchedulerOwneriiii);
+    int result = ParentParentSchedulerOwner::virt8(a, b, c, d);
+    if (result) {
+        return result;
+    }
+
+    return 0;
+}
+
+void ParentParentSchedulerOwner::virt7()
+{
+    Renderer* renderer = (Renderer*)this->renderer_ptr;
+    this->flags |= 2;
+
+    if (renderer && renderer->flags & 1) {
+        renderer->virt14();
+    }
+}
+
+int ParentParentSchedulerOwner::virt8(int a, int b, int c, int d)
+{
+    if (!a) {
+        a = 320;
+    }
+
+    if (!b) {
+        b = 240;
+    }
+
+    if (!c) {
+        c = 16;
+    }
+
+    this->width = a;
+    this->height = b;
+    this->depth = c;
+    this->flags = d;
+
+    int result = this->virt0();
+    if (result) {
+        return result;
+    }
+
+    Renderer* renderer = (Renderer*)this->renderer_ptr;
+    renderer->virt13(this, width, height, depth);
+
+    this->flags |= 1;
+    this->flags &= ~2;
+
+    return 0;
+}
 
 void ParentParentSchedulerOwner::virt2()
 {
@@ -19,9 +81,21 @@ void ParentParentSchedulerOwner::virt3()
 {
 }
 
-INCLUDE_ASM("nonmatchings/stage2/140", virt6__26ParentParentSchedulerOwner);
+void ParentParentSchedulerOwner::virt6()
+{
+    Renderer* renderer = (Renderer*)this->renderer_ptr;
+    renderer->virt5(0);
+}
 
-INCLUDE_ASM("nonmatchings/stage2/140", virt5__26ParentParentSchedulerOwner);
+void ParentParentSchedulerOwner::virt5()
+{
+    Renderer* renderer = (Renderer*)this->renderer_ptr;
+
+    this->flags &= ~1;
+    if (renderer && renderer->flags & 1) {
+        renderer->virt14();
+    }
+}
 
 INCLUDE_ASM("nonmatchings/stage2/140", func_8004C1B8);
 
@@ -60,5 +134,3 @@ INCLUDE_ASM("nonmatchings/stage2/140", func_8004C284);
 INCLUDE_ASM("nonmatchings/stage2/140", func_8004C290);
 
 INCLUDE_ASM("nonmatchings/stage2/140", func_8004C29C);
-
-INCLUDE_RODATA("nonmatchings/stage2/140", D_8003C7C0);

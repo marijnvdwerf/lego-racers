@@ -2,6 +2,30 @@ extern "C" {
 #include <PR/sched.h>
 }
 
+class Renderer {
+public:
+    u8 unk_0[0x22];
+    u16 flags; // 0x22
+    u8 unk_24[0x8]; // 0x24
+
+public:
+    virtual void virt0();
+    virtual void virt1();
+    virtual void virt2();
+    virtual void virt3();
+    virtual void virt4();
+    virtual void virt5(int);
+    virtual void virt6();
+    virtual void virt7();
+    virtual void virt8();
+    virtual void virt9();
+    virtual void virt10();
+    virtual void virt11();
+    virtual void virt12();
+    virtual void virt13(void*, int, int, int);
+    virtual void virt14();
+};
+
 class ParentParentSchedulerOwner {
 public:
     s32 width; // 0x0
@@ -20,6 +44,26 @@ public:
     virtual void virt6();
     virtual void virt7();
     virtual int virt8(int, int, int, int);
+
+    bool func_8004C1B8();
+    bool func_8004C1C8();
+    bool func_8004C1D8();
+    bool func_8004C1E8();
+    bool func_8004C1F4();
+    bool func_8004C200();
+    bool func_8004C20C();
+    bool func_8004C218();
+    bool func_8004C224();
+    bool func_8004C230();
+    bool func_8004C23C();
+    bool func_8004C248();
+    bool func_8004C254();
+    bool func_8004C260();
+    bool func_8004C26C();
+    bool func_8004C278();
+    bool func_8004C284();
+    bool func_8004C290();
+    bool func_8004C29C();
 };
 
 class Unk18 {
