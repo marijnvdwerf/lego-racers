@@ -10,4 +10,4 @@ INCLUDE_ASM("nonmatchings/main/010", func_800027BC);
 
 INCLUDE_ASM("nonmatchings/main/010", func_80002818);
 
-INCLUDE_ASM("nonmatchings/main/010", func_80002874);
+INCLUDE_ASM("nonmatchings/main/010", __pure_virtual);
