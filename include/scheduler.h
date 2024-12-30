@@ -15,24 +15,39 @@ public:
     virtual ~ParentParentSchedulerOwner();
     virtual void virt2();
     virtual void virt3();
-    virtual void virt4();
+    virtual int virt4(int, int, int, int);
     virtual void virt5();
     virtual void virt6();
     virtual void virt7();
-    virtual void virt8();
+    virtual int virt8(int, int, int, int);
+};
+
+class Unk18 {
+public:
+    u8 unk_0[0x44];
+    Unk18* var_44; // 0x44
+    u8 unk_48[0xE4]; // 0x48
+public:
+    virtual void virt0();
+    virtual void virt1();
+    virtual void virt2();
+    virtual void virt3();
+    virtual void virt4();
+    virtual void virt5();
+    virtual void virt6();
 };
 
 class ParentSchedulerOwner : public ParentParentSchedulerOwner {
 public:
-    int unk_18; // 0x18
+    Unk18* unk_18; // 0x18
     void* renderer2_ptr; // 0x1c
 
 public:
     ParentSchedulerOwner();
-    virtual void virt4();
+    virtual int virt4(int, int, int, int);
     virtual void virt5();
     virtual void virt7();
-    virtual void virt8();
+    virtual int virt8(int, int, int, int);
     virtual int virt9() = 0;
     virtual int virt10();
     virtual int virt11();
@@ -59,7 +74,9 @@ public:
     virtual int virt32();
     void* func_800471C0();
     void func_800471E4();
-    ~ParentSchedulerOwner();
+
+    void func_800470B4(Unk18*);
+    void func_800470C4(Unk18* arg1);
 };
 
 class N64Renderer {
