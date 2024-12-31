@@ -171,7 +171,7 @@ public:
 public:
     ParentRenderer();
     virtual ~ParentRenderer();
-    virtual void virt13(Foo123*, u16, s16, s32);
+    virtual void virt13(Foo123*, u16, u16, u32);
     virtual void virt14();
 };
 
@@ -185,7 +185,7 @@ public:
     virtual void virt1(u32*, u32*, u32);
     virtual void virt5();
     virtual void virt12();
-    virtual void virt13(Foo123*, u16, s16, s32);
+    virtual void virt13(Foo123*, u16, u16, u32);
     virtual void virt14();
     void func_8006B8F0(u32);
 };

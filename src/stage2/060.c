@@ -1,6 +1,5 @@
 #include "common.h"
 
-void crash(const char*, int, int, int);
 s32 __builtin_new(int);
 void func_8007ED94(s32);
 void func_8007EDC8();

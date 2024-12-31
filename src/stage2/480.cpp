@@ -2,9 +2,6 @@
 #include "scheduler.h"
 extern "C" {
 #include <PR/os_vi.h>
-void crash(const char*, int, int, int);
-void heap_push(s32 heap);
-void heap_pop();
 }
 
 s32 D_80085E40 = -1;
@@ -19,11 +16,7 @@ N64Renderer::~N64Renderer()
     virt14();
 }
 
-#if 1
-INCLUDE_ASM("nonmatchings/stage2/480", virt13__11N64RendererP6Foo123Ussl);
-INCLUDE_RODATA("nonmatchings/stage2/480", D_8003ECB0);
-#else
-void N64Renderer::virt13(Foo123* foo, u16 arg2, s16 arg3, s32 arg4)
+void N64Renderer::virt13(Foo123* foo, u16 arg2, u16 arg3, u32 arg4)
 {
     if (this->var_22 & 1) {
         this->virt14();
@@ -37,11 +30,11 @@ void N64Renderer::virt13(Foo123* foo, u16 arg2, s16 arg3, s32 arg4)
     this->var_0 = 0xF800;
     this->var_4 = 0x7C0;
     this->var_8 = 0x3E;
-    this->var_20 = (arg2 * arg4) >> 3;
+    this->var_20 = this->var_26 * arg4 >> 3;
     this->var_C = 1;
     this->var_16 = 0x10;
 
-    u32 size = this->var_20 * arg3;
+    u32 size = this->var_20 * this->var_28;
 
     heap_push(D_80085E40);
     this->var_18 = new u8[size];
@@ -65,7 +58,6 @@ void N64Renderer::virt13(Foo123* foo, u16 arg2, s16 arg3, s32 arg4)
         crash("", 0, 0, 0);
     }
 }
-#endif
 
 void N64Renderer::virt14()
 {

@@ -373,6 +373,8 @@ def get_n64_symbols(region: str) -> List[Symbol]:
     add_symbol(0x8007EBD8, "dealloc__9AllocatorPv")
     add_symbol(0x8007ED30, "__builtin_new")
     add_symbol(0x8007ED70, "__builtin_delete")
+    add_symbol(0x8007ED94, "heap_push")
+    add_symbol(0x8007EDC8, "heap_pop")
     add_symbol(0x8007EDF4, "_GLOBAL_.I.D_80087570")
 
     return symbols

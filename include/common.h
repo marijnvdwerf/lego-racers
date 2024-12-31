@@ -25,6 +25,9 @@ void func_menu_801234FC(void*, int);
 void func_menu_8012341C(void*, int);
 void func_menu_801006D0(void*);
 void func_menu_80100698(void*, int);
+void crash(const char*, int, int, int);
+void heap_push(s32 heap);
+void heap_pop();
 
 extern s32 osTvType;
 #ifdef __cplusplus
