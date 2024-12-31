@@ -21,6 +21,7 @@ N64Renderer::~N64Renderer()
 
 #if 1
 INCLUDE_ASM("nonmatchings/stage2/480", virt13__11N64RendererP6Foo123Ussl);
+INCLUDE_RODATA("nonmatchings/stage2/480", D_8003ECB0);
 #else
 void N64Renderer::virt13(Foo123* foo, u16 arg2, s16 arg3, s32 arg4)
 {
