@@ -350,6 +350,7 @@ def get_n64_symbols(region: str) -> List[Symbol]:
     add_symbol(0x80069314, "_._10Stage2_450")
     add_symbol(0x8006B5E0, "__11N64Renderer")
     add_symbol(0x8006B618, "_._11N64Renderer")
+    add_symbol(0x8006B660, "virt13__11N64RendererP6Foo123Ussl")
     add_symbol(0x800704C0, "__11RenderClass")
     add_symbol(0x80070554, "_._11RenderClass")
     add_symbol(0x80071660, "func_80071660__11RenderClassR20ParentSchedulerOwnerR11N64Rendererii")
