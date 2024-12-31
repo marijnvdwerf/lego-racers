@@ -123,13 +123,71 @@ public:
     void func_800470C4(Unk18* arg1);
 };
 
-class N64Renderer {
+class ParentParentRenderer {
 public:
-    u8 unk_0[0x3C];
+    u32 var_0; // 0x0
+    u32 var_4; // 0x4
+    u32 var_8; // 0x8
+    u32 var_C; // 0xC
+    u32 var_10; // 0x10
+
+    u16 var_14; // 0x14
+    u16 var_16; // 0x14
+    void* var_18; // 0x18
+    u32 var_1C; // 0x1C
+    u16 var_20; // 0x20
+    u16 var_22; // 0x22
+    u8 unk_24[0x2]; // 0x24
+    u16 var_26; // 0x26
+    u16 var_28; // 0x28
+    u8 unk_2A[0x2]; // 0x2A
+
+    virtual ~ParentParentRenderer();
+    virtual void virt1(u32*, u32*, u32);
+    virtual void virt2();
+    virtual void virt3();
+    virtual void virt4();
+    virtual void virt5();
+    virtual void virt6();
+    virtual void virt7();
+    virtual void virt8();
+    virtual void virt9();
+    virtual void virt10();
+    virtual void virt11();
+    virtual void virt12();
+};
+
+class Foo123 {
+public:
+    u8 pad[0xC93C];
+    u32 var_C93C;
+};
+
+class ParentRenderer : public ParentParentRenderer {
+public:
+    Foo123* var_30; // 0x30
+    u8 unk_34[0x4]; // 0x34
+
+public:
+    ParentRenderer();
+    virtual ~ParentRenderer();
+    virtual void virt13(Foo123*, u16, s16, s32);
+    virtual void virt14();
+};
+
+class N64Renderer : public ParentRenderer {
+public:
+    void* var_38;
 
 public:
     N64Renderer();
-    ~N64Renderer();
+    virtual ~N64Renderer();
+    virtual void virt1(u32*, u32*, u32);
+    virtual void virt5();
+    virtual void virt12();
+    virtual void virt13(Foo123*, u16, s16, s32);
+    virtual void virt14();
+    void func_8006B8F0(u32);
 };
 
 class RenderClass {
