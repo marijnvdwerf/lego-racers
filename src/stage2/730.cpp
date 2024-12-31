@@ -29,7 +29,7 @@ void __builtin_delete(void* arg0)
 }
 
 // 8007ED94
-void func_8007ED94(s32 arg0)
+void heap_push(s32 arg0)
 {
     D_800877C0++;
     if (D_800877C0 < 0x10) {
@@ -38,7 +38,7 @@ void func_8007ED94(s32 arg0)
 }
 
 // 8007EDC8
-void func_8007EDC8(void)
+void heap_pop(void)
 {
     D_80087780[D_800877C0] = -1;
     D_800877C0--;
