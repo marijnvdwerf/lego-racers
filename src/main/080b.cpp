@@ -3,8 +3,6 @@
 extern "C" {
 void crash(const char* msg, int a, int b, int c);
 int strncmp(const char* str1, const char* str2, size_t n);
-void func_8007ED94(int);
-void func_8007EDC8();
 }
 
 #define nullptr (0)
@@ -405,9 +403,9 @@ void FolderNode::func_80008F58(Other* other)
 
     // Allocate and read Node2 entries
     if (this->fileCount > 0) {
-        func_8007ED94(D_8002FD64);
+        heap_push(D_8002FD64);
         this->files = new FileNode[this->fileCount];
-        func_8007EDC8();
+        heap_pop();
 
         if (this->files == nullptr) {
             crash("", 0, 0, 0);
@@ -441,9 +439,9 @@ void FolderNode::func_80008F58(Other* other)
 
     // Allocate and initialize child nodes
     if (this->folderCount > 0) {
-        func_8007ED94(D_8002FD64);
+        heap_push(D_8002FD64);
         this->folders = new FolderNode[this->folderCount];
-        func_8007EDC8();
+        heap_pop();
 
         if (this->folders == nullptr) {
             crash("", 0, 0, 0);

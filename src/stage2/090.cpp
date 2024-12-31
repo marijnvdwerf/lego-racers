@@ -27,8 +27,6 @@ public:
 
 extern "C" {
 void crash(const char*, int, int, int);
-void func_8007ED94(s32);
-void func_8007EDC8();
 void func_menu_800EF8A4(Menu320*, s32);
 void func_menu_800EFA4C(Menu320*);
 void func_menu_800F086C(Menu320*);
@@ -37,9 +35,9 @@ extern Menu320* D_8009C060;
 
 void menufunc_80046E20(s32 arg0)
 {
-    func_8007ED94(D_80082824);
+    heap_push(D_80082824);
     D_8009C060 = new Menu320();
-    func_8007EDC8();
+    heap_pop();
     if (!D_8009C060) {
         crash("", 0, 0, 0);
     }
