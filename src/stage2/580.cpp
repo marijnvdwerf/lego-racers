@@ -1,3 +1,6 @@
+
+#define F3DEX_GBI_2
+
 #include "common.h"
 #include "scheduler.h"
 
@@ -18,12 +21,16 @@ extern OSScClient D_800BD750;
 
 extern u32 D_800BD350; // stack head?
 
-extern "C" void func_80076BCC(RenderClass*);
-extern "C" void func_80071878(void*);
-extern "C" void func_8007B6FC(void*, void*, void*);
-extern "C" void func_80073020(void*);
-extern "C" void func_8006E070(void*);
+void func_80076BCC(RenderClass*);
+
 extern "C" void func_800697A8(void*, void*);
+extern "C" int func_8006B410(void*, Gfx**, int); // Probably on Stage2_470
+extern "C" int func_8006B454(void*, int); // Probably on Stage2_470
+extern "C" void func_8006E070(void*);
+extern "C" void func_80071878(void*);
+extern "C" void func_80073020(void*);
+extern "C" void func_8007B6FC(void*, void*, void*);
+extern "C" void func_8007E09C(void);
 
 RenderClass::RenderClass()
 {
@@ -172,7 +179,7 @@ void RenderClass::func_80071660(ParentSchedulerOwner& arg1, N64Renderer& arg2, i
         memset(&D_800BD750, 0, 8);
         osCreateMesgQueue(&D_800BD140, D_800BD160, 0x10);
         osScAddClient(&((Stage2_450*)(this->var_158))->scheduler, &D_800BD750, &D_800BD140);
-        osCreateThread(&D_800BD1A0, 0x3E, &func_80076BCC, this, &D_800BD350, 0x29);
+        osCreateThread(&D_800BD1A0, 0x3E, func_80076BCC, this, &D_800BD350, 0x29);
         osStartThread(&D_800BD1A0);
         D_80085EA4 = 1;
     }
@@ -184,7 +191,17 @@ INCLUDE_ASM("nonmatchings/stage2/580", func_80071878);
 
 INCLUDE_ASM("nonmatchings/stage2/580", func_800718C4);
 
-INCLUDE_ASM("nonmatchings/stage2/580", func_800718F4);
+void RenderClass::func_800718F4( int arg1, void* arg2, int arg3)
+{
+    Gfx* g;
+
+    int res = func_8006B410(&this->var_204[this->var_308], &g, 0xA);
+    if (res) {
+        Gfx* start = g;
+        gSPMatrix(g++, OS_K0_TO_PHYSICAL(arg1), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
+        func_8006B454(&this->var_204[this->var_308], g - start);
+    }
+}
 
 INCLUDE_ASM("nonmatchings/stage2/580", func_80071990);
 
@@ -298,43 +315,127 @@ INCLUDE_ASM("nonmatchings/stage2/580", func_80075340);
 
 INCLUDE_ASM("nonmatchings/stage2/580", func_80075380);
 
-INCLUDE_ASM("nonmatchings/stage2/580", func_800754F4);
+void RenderClass::func_800754F4( int arg1, int arg2, int arg3)
+{
+    Gfx* g;
 
-INCLUDE_ASM("nonmatchings/stage2/580", func_8007558C);
+    int res = func_8006B410(&this->var_204[this->var_308], &g, 0x14);
+    if (res) {
+        Gfx* start = g;
+        this->var_19F8 = 1;
+        this->var_19FC = 0;
+        gSPSetGeometryMode(g++, G_LIGHTING);
+        func_8006B454(&this->var_204[this->var_308], g - start);
+    }
+}
+
+void RenderClass::func_8007558C(int arg1, int arg2, int arg3)
+{
+    Gfx* g;
+
+    int res = func_8006B410(&this->var_204[this->var_308], &g, 0x14);
+    if (res) {
+        Gfx* start = g;
+        this->var_19F8 = 0;
+        this->var_19FC = 0;
+        gSPClearGeometryMode(g++, G_LIGHTING);
+        func_8006B454(&this->var_204[this->var_308], g - start);
+    }
+}
 
 INCLUDE_ASM("nonmatchings/stage2/580", func_8007561C);
 
 INCLUDE_ASM("nonmatchings/stage2/580", func_80075A28);
 
-INCLUDE_ASM("nonmatchings/stage2/580", func_80076BCC);
+void func_80076BCC(RenderClass* arg0)
+{
+    s16* msg;
 
-INCLUDE_ASM("nonmatchings/stage2/580", func_80076C24);
+    while (TRUE) {
+        osRecvMesg(&D_800BD140, (OSMesg*)&msg, OS_MESG_BLOCK);
+        if (*msg != 4) {
+            continue;
+        }
 
-INCLUDE_ASM("nonmatchings/stage2/580", func_80076C2C);
+        D_80085EA8 = 0;
+        func_8007E09C();
+    }
+}
 
-INCLUDE_ASM("nonmatchings/stage2/580", func_80076C34);
+void RenderClass::func_80076C1C(int arg1)
+{
+    this->var_13C = arg1;
+}
 
-INCLUDE_ASM("nonmatchings/stage2/580", func_80076C3C);
+void RenderClass::func_80076C24(int arg1)
+{
+    this->var_140 = arg1;
+}
 
-INCLUDE_ASM("nonmatchings/stage2/580", func_80076C48);
+void RenderClass::func_80076C2C(int arg1)
+{
+    this->var_148 = arg1;
+}
 
-INCLUDE_ASM("nonmatchings/stage2/580", func_80076C54);
+void RenderClass::func_80076C34(int arg1)
+{
+    this->var_144 = arg1;
+}
 
-INCLUDE_ASM("nonmatchings/stage2/580", func_80076C60);
+int RenderClass::func_80076C3C()
+{
+    return this->var_13C;
+}
 
-INCLUDE_ASM("nonmatchings/stage2/580", func_80076C6C);
+int RenderClass::func_80076C48()
+{
+    return this->var_140;
+}
 
-INCLUDE_ASM("nonmatchings/stage2/580", func_80076C74);
+int RenderClass::func_80076C54()
+{
+    return this->var_148;
+}
 
-INCLUDE_ASM("nonmatchings/stage2/580", func_80076C80);
+int RenderClass::func_80076C60()
+{
+    return this->var_144;
+}
 
-INCLUDE_ASM("nonmatchings/stage2/580", func_80076C88);
+void RenderClass::func_80076C6C(int arg1)
+{
+    this->var_130 = arg1;
+}
 
-INCLUDE_ASM("nonmatchings/stage2/580", func_80076C94);
+int RenderClass::func_80076C74()
+{
+    return this->var_130;
+}
 
-INCLUDE_ASM("nonmatchings/stage2/580", func_80076C9C);
+void RenderClass::func_80076C80(int arg1)
+{
+    this->var_14C = arg1;
+}
 
-INCLUDE_ASM("nonmatchings/stage2/580", func_80076CB8);
+int RenderClass::func_80076C88()
+{
+    return this->var_14C;
+}
+
+void RenderClass::func_80076C94(int arg1)
+{
+    this->var_15C8.var_10 = arg1;
+}
+
+Stage2_470* RenderClass::func_80076C9C()
+{
+    return &this->var_204[this->var_308];
+}
+
+int RenderClass::func_80076CB8()
+{
+    return this->var_308;
+}
 
 INCLUDE_ASM("nonmatchings/stage2/580", func_80076CC4);
 

@@ -209,7 +209,8 @@ public:
 
 class Stage2_470 {
 public:
-    char pad[0x18];
+    u32 var_0;
+    char pad_4[0x14];
 
     Stage2_470();
     ~Stage2_470();
@@ -243,7 +244,8 @@ typedef struct UnkStruct_800705FC {
     void* var_0;
     u8 pad_4[8];
     void* var_C;
-    u8 pad_10[0xC];
+    u32 var_10;
+    u8 pad_14[0x8];
 } UnkStruct_800705FC; // 0x1C
 
 class RenderClass : public RenderClassParent {
@@ -312,6 +314,28 @@ public:
 
     int func_80072FE0();
     void func_80071660(ParentSchedulerOwner& arg0, N64Renderer& arg1, int, int);
+
+    void func_800718F4(int ,  void*  , int );
+    void func_800754F4(int , int , int );
+    void func_8007558C(int , int , int );
+    void func_80076C1C(int);
+    void func_80076C24(int);
+    void func_80076C2C(int);
+    void func_80076C34(int);
+    int func_80076C3C();
+    int func_80076C48();
+    int func_80076C54();
+    int func_80076C60();
+    void func_80076C6C(int);
+    int func_80076C74();
+    void func_80076C80(int);
+    int func_80076C88();
+    void func_80076C94(int);
+    Stage2_470* func_80076C9C();
+    int func_80076CB8();
+    void func_80076CC4(int);
+    int func_80076D14();
+    int func_80076D40();
 };
 
 class Stage2_450 : public ParentSchedulerOwner {
