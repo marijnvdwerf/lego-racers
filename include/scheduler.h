@@ -190,14 +190,125 @@ public:
     void func_8006B8F0(u32);
 };
 
-class RenderClass {
+class Stage2_200 {
 public:
-    u32 flags; // 0x0
-    u8 unk_0[0xc64C];
+    char pad[0x20];
 
+    Stage2_200();
+    ~Stage2_200();
+    virtual void virt1();
+};
+
+class Stage2_660 {
 public:
+    char pad[0x34];
+
+    Stage2_660();
+    ~Stage2_660();
+};
+
+class Stage2_470 {
+public:
+    char pad[0x18];
+
+    Stage2_470();
+    ~Stage2_470();
+};
+
+class RenderClassParent {
+public:
+    u32 flags;
+    u8 pad_4[0x4];
+    void* var_8;
+    u8 pad_C[0x120];
+
+    RenderClassParent();
+    virtual void virt1();
+    virtual void virt2();
+    virtual ~RenderClassParent();
+    virtual void* virt4();
+    virtual void virt5();
+    virtual void virt6();
+    virtual void virt7();
+    virtual void virt8(void*);
+    virtual void virt9();
+};
+
+class Anon_Stage2_200 : public Stage2_200 {
+public:
+    virtual void virt1();
+};
+
+typedef struct UnkStruct_800705FC {
+    void* var_0;
+    u8 pad_4[8];
+    void* var_C;
+    u8 pad_10[0xC];
+} UnkStruct_800705FC; // 0x1C
+
+class RenderClass : public RenderClassParent {
+public:
+    u32 var_130;
+    s32 var_134;
+    s32 var_138;
+    u32 var_13C;
+    u32 var_140;
+    u32 var_144;
+    u32 var_148;
+    u32 var_14C;
+    u32 var_150;
+    u32 var_154;
+    void* var_158;
+    u32 var_15C;
+    u8 pad_15C[0x1C];
+    u32 var_17C;
+    OSMesgQueue var_180;
+    u32 var_198;
+    OSMesg var_19C[8];
+    f32 var_1BC[4][4];
+    u32 var_1FC;
+    u8 pad_200[0x4];
+    Stage2_470 var_204[2];
+    u8 pad_234[0xD4];
+    u32 var_308;
+    void* var_30C;
+    Stage2_660 var_310;
+    char pad_344[0x4];
+    u8 var_348[0x30];
+    Anon_Stage2_200 var_378;
+    u8 pad_39C[4612]; // TODO: hex
+    u32 var_15A0;
+    u32 var_15A4;
+    u32 var_15A8;
+    UnkStruct_800705FC var_15AC;
+    UnkStruct_800705FC var_15C8;
+    u8 var_15E4[1024]; // TODO: hex
+    u32 var_19E4;
+    u32 var_19E8;
+    u32 var_19EC;
+    u32 var_19F0;
+    f32 var_19F4;
+    u32 var_19F8;
+    u32 var_19FC;
+    u8 var_1A00[56];
+    u32 var_1A38;
+    u8 pad_1A3C[0x4];
+    u8 var_1A40[0x1C00];
+    u8 pad_3640[0x10];
+    u8 var_3650[0x9000];
+
     RenderClass();
-    ~RenderClass();
+    void reset(); // 800705fc
+    virtual void virt1();
+    virtual void virt2();
+    virtual ~RenderClass();
+    virtual void* virt4();
+    virtual void virt5();
+    virtual void virt6();
+    virtual void virt7();
+    virtual void virt8(void*);
+    virtual void virt9();
+    virtual int virt50(int, void*, int, void*);
 
     int func_80072FE0();
     void func_80071660(ParentSchedulerOwner& arg0, N64Renderer& arg1, int, int);
