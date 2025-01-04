@@ -153,7 +153,7 @@ void RenderClass::func_80071660(ParentSchedulerOwner& arg1, N64Renderer& arg2, i
         this->var_158 = (void*)&arg1;
     }
 
-    this->var_30C = (void*)&arg2;
+    this->var_30C = &arg2;
     this->var_8 = 0;
     this->var_17C = 0;
     this->var_308 = 0;
@@ -191,7 +191,7 @@ INCLUDE_ASM("nonmatchings/stage2/580", func_80071878);
 
 INCLUDE_ASM("nonmatchings/stage2/580", func_800718C4);
 
-void RenderClass::func_800718F4( int arg1, void* arg2, int arg3)
+void RenderClass::func_800718F4(int arg1, void* arg2, int arg3)
 {
     Gfx* g;
 
@@ -315,7 +315,7 @@ INCLUDE_ASM("nonmatchings/stage2/580", func_80075340);
 
 INCLUDE_ASM("nonmatchings/stage2/580", func_80075380);
 
-void RenderClass::func_800754F4( int arg1, int arg2, int arg3)
+void RenderClass::func_800754F4(int arg1, int arg2, int arg3)
 {
     Gfx* g;
 

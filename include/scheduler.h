@@ -123,11 +123,24 @@ public:
     void func_800470C4(Unk18* arg1);
 };
 
+// TODO: needs parent. Vtable at 0x11C
+class Stage2_460 {
+public:
+    u8 var_0[0x10C];
+    u32 var_10C;
+    u32 var_110;
+    u32 var_114;
+    u32 var_118;
+    u32 var_11C;
+
+    virtual void virt0();
+};
+
 class ParentParentRenderer {
 public:
     u32 var_0; // 0x0
     u32 var_4; // 0x4
-    u32 var_8; // 0x8
+    Stage2_460* var_8; // 0x8
     u32 var_C; // 0xC
     u32 var_10; // 0x10
 
@@ -220,7 +233,7 @@ class RenderClassParent {
 public:
     u32 flags;
     u8 pad_4[0x4];
-    void* var_8;
+    Stage2_460* var_8;
     u8 pad_C[0x120];
 
     RenderClassParent();
@@ -273,7 +286,7 @@ public:
     Stage2_470 var_204[2];
     u8 pad_234[0xD4];
     u32 var_308;
-    void* var_30C;
+    N64Renderer* var_30C;
     Stage2_660 var_310;
     char pad_344[0x4];
     u8 var_348[0x30];
@@ -315,9 +328,10 @@ public:
     int func_80072FE0();
     void func_80071660(ParentSchedulerOwner& arg0, N64Renderer& arg1, int, int);
 
-    void func_800718F4(int ,  void*  , int );
-    void func_800754F4(int , int , int );
-    void func_8007558C(int , int , int );
+    void func_800718F4(int, void*, int);
+    void func_800751E0();
+    void func_800754F4(int, int, int);
+    void func_8007558C(int, int, int);
     void func_80076C1C(int);
     void func_80076C24(int);
     void func_80076C2C(int);
