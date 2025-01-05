@@ -185,7 +185,7 @@ void RenderClass::func_80071660(ParentSchedulerOwner& arg1, N64Renderer& arg2, i
     }
 }
 
-INCLUDE_ASM("nonmatchings/stage2/580", func_80071820);
+INCLUDE_ASM("nonmatchings/stage2/580", virt6__11RenderClass);
 
 INCLUDE_ASM("nonmatchings/stage2/580", func_80071878);
 
@@ -445,8 +445,8 @@ INCLUDE_ASM("nonmatchings/stage2/580", func_80076D40);
 
 INCLUDE_ASM("nonmatchings/stage2/580", func_80076D6C);
 
-INCLUDE_RODATA("nonmatchings/stage2/580", D_8003F190);
+INCLUDE_RODATA("nonmatchings/stage2/580", _vt.11RenderClass);
 
-INCLUDE_RODATA("nonmatchings/stage2/580", D_8003F3B8);
+INCLUDE_RODATA("nonmatchings/stage2/580", _vt.15Anon_Stage2_200);
 
 INCLUDE_RODATA("nonmatchings/stage2/580", D_8003F3C8);
