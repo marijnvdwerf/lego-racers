@@ -535,579 +535,266 @@ def get_n64_symbols(region: str) -> List[Symbol]:
     add_symbol(0x800560EC, stage2_220.virt17())
     add_symbol(0x80056138, stage2_220.virt18())
 
-
     stage2_230 = Class("Stage2_230");
     add_symbol(0x80056b50, stage2_230.ctor())
     add_symbol(0x8003d340, stage2_230.vtable())
-# 00000000
-# 00000000
-# 00000000
-# 80057080
-# 00000000
-# 8005749C
-# 00000000
-# 800578A4
-# 00000000
-# 80002874
-# 00000000
-# 80002874
-# 00000000
-# 8005754C
-# 00000000
-# 80056BC4
-# 00000000
-# 80056C20
-# 00000000
-# 80002874
-# 00000000
-# 80056F98
-# 00000000
-# 80057554
-# 00000000
-# 80057560
-# 00000000
-# 800575A8
-# 00000000
-# 800575B4
-# 00000000
-# 80057958
-# 00000000
-# 80057C80
-# 00000000
-# 80057CB0
+    add_symbol(0x80057080, stage2_230.virt0())
+    add_symbol(0x8005749C, stage2_230.virt1())
+    add_symbol(0x800578A4, stage2_230.virt2())
+    add_symbol(0x8005754C, stage2_230.virt5())
+    add_symbol(0x80056BC4, stage2_230.virt6())
+    add_symbol(0x80056C20, stage2_230.virt7())
+    add_symbol(0x80056F98, stage2_230.virt9())
+    add_symbol(0x80057554, stage2_230.virt10())
+    add_symbol(0x80057560, stage2_230.virt11())
+    add_symbol(0x800575A8, stage2_230.virt12())
+    add_symbol(0x800575B4, stage2_230.virt13())
+    add_symbol(0x80057958, stage2_230.virt14())
+    add_symbol(0x80057C80, stage2_230.virt15())
+    add_symbol(0x80057CB0, stage2_230.virt16())
 
     stage2_240 = Class("Stage2_240")
     add_symbol(0x800580e0, stage2_240.ctor())
     add_symbol(0x8003d418, stage2_240.vtable())
-# 00000000
-# 00000000
-# 00000000
-# 80058588
-# 00000000
-# 8005656C
-# 00000000
-# 80056588
-# 00000000
-# 80058684
-# 00000000
-# 80059394
-# 00000000
-# 80058410
-# 00000000
-# 80059560
-# 00000000
-# 8005880C
-# 00000000
-# 80058AB8
-# 00000000
-# 800588C8
-# 00000000
-# 80058934
-# 00000000
-# 8005630C
-# 00000000
-# 80056400
-# 00000000
-# 80056184
-# 00000000
-# 80056248
-# 00000000
-# 80055CA4
-# 00000000
-# 80056918
-# 00000000
-# 800560EC
-# 00000000
-# 80056138
-# 00000000
-# 800585B4
-# 00000000
-# 80058164
-# 00000000
-# 800581F8
-# 00000000
-# 80058540
-# 00000000
-# 80058548
+    add_symbol(0x80058588, stage2_240.virt0())
+    add_symbol(0x8005656C, stage2_240.virt1())
+    add_symbol(0x80056588, stage2_240.virt2())
+    add_symbol(0x80058684, stage2_240.virt3())
+    add_symbol(0x80059394, stage2_240.virt4())
+    add_symbol(0x80058410, stage2_240.virt5())
+    add_symbol(0x80059560, stage2_240.virt6())
+    add_symbol(0x8005880C, stage2_240.virt7())
+    add_symbol(0x80058AB8, stage2_240.virt8())
+    add_symbol(0x800588C8, stage2_240.virt9())
+    add_symbol(0x80058934, stage2_240.virt10())
+    add_symbol(0x8005630C, stage2_240.virt11())
+    add_symbol(0x80056400, stage2_240.virt12())
+    add_symbol(0x80056184, stage2_240.virt13())
+    add_symbol(0x80056248, stage2_240.virt14())
+    add_symbol(0x80055CA4, stage2_240.virt15())
+    add_symbol(0x80056918, stage2_240.virt16())
+    add_symbol(0x800560EC, stage2_240.virt17())
+    add_symbol(0x80056138, stage2_240.virt18())
+    add_symbol(0x800585B4, stage2_240.virt19())
+    add_symbol(0x80058164, stage2_240.virt20())
+    add_symbol(0x800581F8, stage2_240.virt21())
+    add_symbol(0x80058540, stage2_240.virt22())
+    add_symbol(0x80058548, stage2_240.virt23())
 
     stage2_250 = Class("Stage2_250")
     add_symbol(0x80058df0, stage2_250.ctor())
     add_symbol(0x8003d518, stage2_250.vtable())
-# 00000000
-# 00000000
-# 00000000
-# 80058E0C
-# 00000000
-# 80058E5C
-# 00000000
-# 80058EE4
-# 00000000
-# 00000000
+    add_symbol(0x80058E0C, stage2_250.virt0())
+    add_symbol(0x80058E5C, stage2_250.virt1())
+    add_symbol(0x80058EE4, stage2_250.virt2())
 
     stage2_260 = Class("Stage2_260")
     add_symbol(0x80059290, stage2_260.ctor())
     add_symbol(0x8003d550, stage2_260.vtable()) # TODO: weird
-# 00000000
-# 00000000
-# 00000000
-# 800596FC
-# 00000000
-# 80059658
-# 00000000
-# 80059674
-# 00000000
-# 800592C8
-# 00000000
-# 80059394
-# 00000000
-# 8005945C
-# 00000000
-# 80059560
-# 00000000
-# 800597C4
-# 00000000
-# 800598E0
-# 00000000
-# 800598D0
-# 00000000
-# 800598D8
-# 00000000
-# 800597CC
-# 00000000
-# 80059800
-# 00000000
-# 80059834
-# 00000000
-# 80059850
-# 00000000
-# 8005986C
-# 00000000
-# 80059874
-# 00000000
-# 80059898
-# 00000000
-# 800598C8
+    add_symbol(0x800596FC, stage2_260.virt0())
+    add_symbol(0x80059658, stage2_260.virt1())
+    add_symbol(0x80059674, stage2_260.virt2())
+    add_symbol(0x800592C8, stage2_260.virt3())
+    add_symbol(0x80059394, stage2_260.virt4())
+    add_symbol(0x8005945C, stage2_260.virt5())
+    add_symbol(0x80059560, stage2_260.virt6())
+    add_symbol(0x800597C4, stage2_260.virt7())
+    add_symbol(0x800598E0, stage2_260.virt8())
+    add_symbol(0x800598D0, stage2_260.virt9())
+    add_symbol(0x800598D8, stage2_260.virt10())
+    add_symbol(0x800597CC, stage2_260.virt11())
+    add_symbol(0x80059800, stage2_260.virt12())
+    add_symbol(0x80059834, stage2_260.virt13())
+    add_symbol(0x80059850, stage2_260.virt14())
+    add_symbol(0x8005986C, stage2_260.virt15())
+    add_symbol(0x80059874, stage2_260.virt16())
+    add_symbol(0x80059898, stage2_260.virt17())
+    add_symbol(0x800598C8, stage2_260.virt18())
 
     stage2_270 = Class("Stage2_270")
     add_symbol(0x8005b5e0, stage2_270.ctor())
     add_symbol(0x8003d718, stage2_270.vtable())
-# 00000000
-# 00000000
-# 00000000
-# 8005B8FC
-# 00000000
-# 8005B7F0
-# 00000000
-# 8005B680
-# 00000000
-# 8005BD18
-# 00000000
-# 80002874
-# 00000000
-# 80002874
-# 00000000
-# 80002874
-# 00000000
-# 80002874
-# 00000000
-# 80002874
-# 00000000
-# 8005CFD4
-# 00000000
-# 8005CEB4
-# 00000000
-# 8005CED8
-# 00000000
-# 8005CEEC
-# 00000000
-# 8005CF44
-# 00000000
-# 8005CF4C
-# 00000000
-# 8005CF5C
-# 00000000
-# 8005CF64
-# 00000000
-# 8005CF6C
-# 00000000
-# 8005CF80
-# 00000000
-# 8005CF98
-# 00000000
-# 8005CFA0
-# 00000000
-# 8005CFA8
-# 00000000
-# 80002874
-# 00000000
-# 80002874
-# 00000000
-# 8005CF2C
-# 00000000
-# 80002874
-# 00000000
-# 80002874
-# 00000000
-# 80002874
-# 00000000
-# 80002874
-# 00000000
-# 80002874
-# 00000000
-# 80002874
-# 00000000
-# 80002874
-# 00000000
-# 80002874
-# 00000000
-# 80002874
-# 00000000
-# 80002874
-# 00000000
-# 80002874
-# 00000000
-# 8005C96C
-# 00000000
-# 8005C974
-# 00000000
-# 8005C97C
-# 00000000
-# 8005C984
-# 00000000
-# 8005C98C
-# 00000000
-# 8005CBBC
-# 00000000
-# 8005CE20
-# 00000000
-# 80002874
-# 00000000
-# 80002874
-# 00000000
-# 8005CE4C
-# 00000000
-# 8005CE64
-# 00000000
-# 8005CE78
-# 00000000
-# 8005CE9C
-# 00000000
-# 8005CF34
-# 00000000
-# 8005CF3C
-# 00000000
-# 80002874
-# 00000000
-# 80002874
-# 00000000
-# 80002874
-# 00000000
-# 80002874
-# 00000000
-# 80002874
-# 00000000
-# 80002874
-# 00000000
-# 80002874
-# 00000000
-# 8005CF54
-# 00000000
-# 80002874
-# 00000000
-# 8005C964
-# 00000000
-# 80002874
-# 00000000
-# 80002874
-# 00000000
-# 80002874
-# 00000000
-# 80002874
-# 00000000
-# 80002874
-# 00000000
-# 80002874
-# 00000000
-# 8005C95C
+    add_symbol(0x8005B8FC, stage2_270.virt0())
+    add_symbol(0x8005B7F0, stage2_270.virt1())
+    add_symbol(0x8005B680, stage2_270.virt2())
+    add_symbol(0x8005BD18, stage2_270.virt3())
+    add_symbol(0x8005CFD4, stage2_270.virt9())
+    add_symbol(0x8005CEB4, stage2_270.virt10())
+    add_symbol(0x8005CED8, stage2_270.virt11())
+    add_symbol(0x8005CEEC, stage2_270.virt12())
+    add_symbol(0x8005CF44, stage2_270.virt13())
+    add_symbol(0x8005CF4C, stage2_270.virt14())
+    add_symbol(0x8005CF5C, stage2_270.virt15())
+    add_symbol(0x8005CF64, stage2_270.virt16())
+    add_symbol(0x8005CF6C, stage2_270.virt17())
+    add_symbol(0x8005CF80, stage2_270.virt18())
+    add_symbol(0x8005CF98, stage2_270.virt19())
+    add_symbol(0x8005CFA0, stage2_270.virt20())
+    add_symbol(0x8005CFA8, stage2_270.virt21())
+    add_symbol(0x8005CF2C, stage2_270.virt24())
+    add_symbol(0x8005C96C, stage2_270.virt36())
+    add_symbol(0x8005C974, stage2_270.virt37())
+    add_symbol(0x8005C97C, stage2_270.virt38())
+    add_symbol(0x8005C984, stage2_270.virt39())
+    add_symbol(0x8005C98C, stage2_270.virt40())
+    add_symbol(0x8005CBBC, stage2_270.virt41())
+    add_symbol(0x8005CE20, stage2_270.virt42())
+    add_symbol(0x8005CE4C, stage2_270.virt45())
+    add_symbol(0x8005CE64, stage2_270.virt46())
+    add_symbol(0x8005CE78, stage2_270.virt47())
+    add_symbol(0x8005CE9C, stage2_270.virt48())
+    add_symbol(0x8005CF34, stage2_270.virt49())
+    add_symbol(0x8005CF3C, stage2_270.virt50())
+    add_symbol(0x8005CF54, stage2_270.virt58())
+    add_symbol(0x8005C964, stage2_270.virt60())
+    add_symbol(0x8005C95C, stage2_270.virt67())
 
     stage2_280 = Class("Stage2_280")
     add_symbol(0x8005d200, stage2_280.ctor())
     add_symbol(0x8003d948, stage2_280.vtable())
-# 00000000
-# 00000000
-# 00000000
-# 8005D384
-# 00000000
-# 8005D3EC
-# 00000000
-# 8005D458
-# 00000000
-# 8005D4A0
-# 00000000
-# 8005D500
-# 00000000
-# 8005D570
-# 00000000
-# 8005D578
-# 00000000
-# 8005D584
-# 00000000
-# 8005D21C
-# 00000000
-# 00000000
+    add_symbol(0x8005D384, stage2_280.virt0())
+    add_symbol(0x8005D3EC, stage2_280.virt1())
+    add_symbol(0x8005D458, stage2_280.virt2())
+    add_symbol(0x8005D4A0, stage2_280.virt3())
+    add_symbol(0x8005D500, stage2_280.virt4())
+    add_symbol(0x8005D570, stage2_280.virt5())
+    add_symbol(0x8005D578, stage2_280.virt6())
+    add_symbol(0x8005D584, stage2_280.virt7())
+    add_symbol(0x8005D21C, stage2_280.virt8())
 
     stage2_290 = Class("Stage2_290")
     add_symbol(0x8005D5C0, stage2_290.ctor())
     add_symbol(0x8003d9a8, stage2_290.vtable())
-# 00000000
-# 00000000
-# 00000000
-# 8005D5C0
-# 00000000
-# 8004B4EC
-# 00000000
-# 8004B538
-# 00000000
-# 8004B554
-# 00000000
-# 8004B5A0
-# 00000000
-# 8004B5BC
-# 00000000
-# 8004B5C4
-# 00000000
-# 8005D774
-# 00000000
-# 8004B5D4
-# 00000000
-# 8004BB38
-# 00000000
-# 8004B838
-# 00000000
-# 8004BCB4
-# 00000000
-# 8004BCBC
-# 00000000
-# 8005D614
-# 00000000
-# 8005D730
-# 00000000
-# 8005D7A0
+    add_symbol(0x8005D5C0, stage2_290.virt0())
+    add_symbol(0x8004B4EC, stage2_290.virt1())
+    add_symbol(0x8004B538, stage2_290.virt2())
+    add_symbol(0x8004B554, stage2_290.virt3())
+    add_symbol(0x8004B5A0, stage2_290.virt4())
+    add_symbol(0x8004B5BC, stage2_290.virt5())
+    add_symbol(0x8004B5C4, stage2_290.virt6())
+    add_symbol(0x8005D774, stage2_290.virt7())
+    add_symbol(0x8004B5D4, stage2_290.virt8())
+    add_symbol(0x8004BB38, stage2_290.virt9())
+    add_symbol(0x8004B838, stage2_290.virt10())
+    add_symbol(0x8004BCB4, stage2_290.virt11())
+    add_symbol(0x8004BCBC, stage2_290.virt12())
+    add_symbol(0x8005D614, stage2_290.virt13())
+    add_symbol(0x8005D730, stage2_290.virt14())
+    add_symbol(0x8005D7A0, stage2_290.virt15())
 
     stage2_300 = Class("Stage2_300") # TODO
 
     stage2_310 = Class("Stage2_310")
     add_symbol(0x8005F320, stage2_310.ctor())
     add_symbol(0x8003dc58, stage2_310.vtable())
-# 00000000
-# 00000000
-# 00000000
-# 8005F358
-# 00000000
-# 8005F3A0
-# 00000000
-# 8005F598
-# 00000000
-# 8005F4F8
-
+    add_symbol(0x8005F358, stage2_310.virt0())
+    add_symbol(0x8005F3A0, stage2_310.virt1())
+    add_symbol(0x8005F598, stage2_310.virt2())
+    add_symbol(0x8005F4F8, stage2_310.virt3())
 
     stage2_320 = Class("Stage2_320")
     add_symbol(0x80060080, stage2_320.ctor())
     add_symbol(0x8003ddd8, stage2_320.vtable())
-# 00000000
-# 00000000
-# 00000000
-# 800600A4
-# 00000000
-# 800600F4
-# 00000000
-# 80060228
-# 00000000
-# 800602A8
-# 00000000
-# 800603B8
-# 00000000
-# 800602E0
-# 00000000
-# 80060320
-# 00000000
-# 8006032C
-# 00000000
-# 8006033C
-# 00000000
-# 80060350
-# 00000000
-# 80060390
-# 00000000
-# 80060398
-# 00000000
-# 800603A0
-# 00000000
-# 800603A8
-# 00000000
-# 800603B0
-# 00000000
-# 00000000
+    add_symbol(0x800600A4, stage2_320.virt0())
+    add_symbol(0x800600F4, stage2_320.virt1())
+    add_symbol(0x80060228, stage2_320.virt2())
+    add_symbol(0x800602A8, stage2_320.virt3())
+    add_symbol(0x800603B8, stage2_320.virt4())
+    add_symbol(0x800602E0, stage2_320.virt5())
+    add_symbol(0x80060320, stage2_320.virt6())
+    add_symbol(0x8006032C, stage2_320.virt7())
+    add_symbol(0x8006033C, stage2_320.virt8())
+    add_symbol(0x80060350, stage2_320.virt9())
+    add_symbol(0x80060390, stage2_320.virt10())
+    add_symbol(0x80060398, stage2_320.virt11())
+    add_symbol(0x800603A0, stage2_320.virt12())
+    add_symbol(0x800603A8, stage2_320.virt13())
+    add_symbol(0x800603B0, stage2_320.virt14())
 
     stage2_330 = Class("Stage2_330")
     add_symbol(0x80060400, stage2_330.ctor())
     add_symbol(0x8003e228, stage2_330.vtable())
-00000000
-00000000
-00000000
-800600A4
-00000000
-800600F4
-00000000
-80060228
-00000000
-800602A8
-00000000
-800603B8
-00000000
-800602E0
-00000000
-80060320
-00000000
-8006032C
-00000000
-8006033C
-00000000
-80060350
-00000000
-80060390
-00000000
-80060398
-00000000
-800603A0
-00000000
-800603A8
-00000000
-800603B0
-00000000
-00000000
+    add_symbol(0x800600A4, stage2_330.virt0())
+    add_symbol(0x800600F4, stage2_330.virt1())
+    add_symbol(0x80060228, stage2_330.virt2())
+    add_symbol(0x800602A8, stage2_330.virt3())
+    add_symbol(0x800603B8, stage2_330.virt4())
+    add_symbol(0x800602E0, stage2_330.virt5())
+    add_symbol(0x80060320, stage2_330.virt6())
+    add_symbol(0x8006032C, stage2_330.virt7())
+    add_symbol(0x8006033C, stage2_330.virt8())
+    add_symbol(0x80060350, stage2_330.virt9())
+    add_symbol(0x80060390, stage2_330.virt10())
+    add_symbol(0x80060398, stage2_330.virt11())
+    add_symbol(0x800603A0, stage2_330.virt12())
+    add_symbol(0x800603A8, stage2_330.virt13())
+    add_symbol(0x800603B0, stage2_330.virt14())
 
     stage2_340 = Class("Stage2_340")
     add_symbol(0x80064A50, stage2_340.ctor())
     add_symbol(0x8003e2e0, stage2_340.vtable())
-    00000000
-00000000
-00000000
-80064A88
-00000000
-8004B4EC
-00000000
-8004B538
-00000000
-8004B554
-00000000
-8004B5A0
-00000000
-8004B5BC
-00000000
-8004B5C4
-00000000
-8004B5CC
-00000000
-8004B5D4
-00000000
-8004BB38
-00000000
-8004B838
-00000000
-8004BCB4
-00000000
-8004BCBC
+    add_symbol(0x80064A88, stage2_340.virt0())
+    add_symbol(0x8004B4EC, stage2_340.virt1())
+    add_symbol(0x8004B538, stage2_340.virt2())
+    add_symbol(0x8004B554, stage2_340.virt3())
+    add_symbol(0x8004B5A0, stage2_340.virt4())
+    add_symbol(0x8004B5BC, stage2_340.virt5())
+    add_symbol(0x8004B5C4, stage2_340.virt6())
+    add_symbol(0x8004B5CC, stage2_340.virt7())
+    add_symbol(0x8004B5D4, stage2_340.virt8())
+    add_symbol(0x8004BB38, stage2_340.virt9())
+    add_symbol(0x8004B838, stage2_340.virt10())
+    add_symbol(0x8004BCB4, stage2_340.virt11())
+    add_symbol(0x8004BCBC, stage2_340.virt12())
 
     stage2_350 = Class("Stage2_350")
 
     stage2_360 = Class("Stage2_360")
     add_symbol(0x80064cf0, stage2_360.ctor())
     add_symbol(0x8003e440, stage2_360.vtable())
-    00000000
-00000000
-00000000
-80064D3C
-00000000
-80058E5C
-00000000
-80064F68
-00000000
-80064FD0
-00000000
-80065104
-00000000
-80064D90
-00000000
-00000000
+    add_symbol(0x80064D3C, stage2_360.virt0())
+    add_symbol(0x80058E5C, stage2_360.virt1())
+    add_symbol(0x80064F68, stage2_360.virt2())
+    add_symbol(0x80064FD0, stage2_360.virt3())
+    add_symbol(0x80065104, stage2_360.virt4())
+    add_symbol(0x80064D90, stage2_360.virt5())
 
     stage2_370 = Class("Stage2_370")
     add_symbol(0x80065570, stage2_370.ctor())
     add_symbol(0x8003e4a8, stage2_370.vtable())
-    00000000
-00000000
-00000000
-80058588
-00000000
-8005656C
-00000000
-80056588
-00000000
-80065FD4
-00000000
-80059394
-00000000
-800665C0
-00000000
-80059560
-00000000
-8005880C
-00000000
-80058AB8
-00000000
-800588C8
-00000000
-80058934
-00000000
-8005630C
-00000000
-80056400
-00000000
-80056184
-00000000
-80056248
-00000000
-80055CA4
-00000000
-80056918
-00000000
-800560EC
-00000000
-80056138
-00000000
-80066384
-00000000
-80058164
-00000000
-80065630
-00000000
-80066954
-00000000
-800656D8
+    add_symbol(0x80058588, stage2_370.virt0())
+    add_symbol(0x8005656C, stage2_370.virt1())
+    add_symbol(0x80056588, stage2_370.virt2())
+    add_symbol(0x80065FD4, stage2_370.virt3())
+    add_symbol(0x80059394, stage2_370.virt4())
+    add_symbol(0x800665C0, stage2_370.virt5())
+    add_symbol(0x80059560, stage2_370.virt6())
+    add_symbol(0x8005880C, stage2_370.virt7())
+    add_symbol(0x80058AB8, stage2_370.virt8())
+    add_symbol(0x800588C8, stage2_370.virt9())
+    add_symbol(0x80058934, stage2_370.virt10())
+    add_symbol(0x8005630C, stage2_370.virt11())
+    add_symbol(0x80056400, stage2_370.virt12())
+    add_symbol(0x80056184, stage2_370.virt13())
+    add_symbol(0x80056248, stage2_370.virt14())
+    add_symbol(0x80055CA4, stage2_370.virt15())
+    add_symbol(0x80056918, stage2_370.virt16())
+    add_symbol(0x800560EC, stage2_370.virt17())
+    add_symbol(0x80056138, stage2_370.virt18())
+    add_symbol(0x80066384, stage2_370.virt19())
+    add_symbol(0x80058164, stage2_370.virt20())
+    add_symbol(0x80065630, stage2_370.virt21())
+    add_symbol(0x80066954, stage2_370.virt22())
+    add_symbol(0x800656D8, stage2_370.virt23())
 
     stage2_380 = Class("Stage2_380")
 
     stage2_390 = Class("Stage2_390")
     add_symbol(0x80067800, stage2_390.ctor())
     add_symbol(0x8003e700, stage2_390.vtable())
-    00000000
-00000000
-00000000
-80067824
-00000000
-80067874
-00000000
-800679C8
+    add_symbol(0x80067824, stage2_390.virt0())
+    add_symbol(0x80067874, stage2_390.virt1())
+    add_symbol(0x800679C8, stage2_390.virt2())
 
     stage2_400 = Class("Stage2_400")
 
@@ -1115,82 +802,41 @@ def get_n64_symbols(region: str) -> List[Symbol]:
     stage2_420 = Class("Stage2_420")
     add_symbol(0x800683b0, stage2_420.ctor())
     add_symbol(0x8003e820, stage2_420.vtable())
-    00000000
-00000000
-00000000
-800683F0
-00000000
-80068700
-00000000
-8006876C
-00000000
-80002874
-00000000
-80068438
-00000000
-800685B4
-00000000
-80002874
-00000000
-80068C30
-00000000
-80068C38
-00000000
-80068C40
-00000000
-80068C48
-00000000
-80068C50
-00000000
-00000000
+    add_symbol(0x800683F0, stage2_420.virt0())
+    add_symbol(0x80068700, stage2_420.virt1())
+    add_symbol(0x8006876C, stage2_420.virt2())
+    add_symbol(0x80068438, stage2_420.virt4())
+    add_symbol(0x800685B4, stage2_420.virt5())
+    add_symbol(0x80068C30, stage2_420.virt7())
+    add_symbol(0x80068C38, stage2_420.virt8())
+    add_symbol(0x80068C40, stage2_420.virt9())
+    add_symbol(0x80068C48, stage2_420.virt10())
+    add_symbol(0x80068C50, stage2_420.virt11())
 
     stage2_430 = Class("Stage2_430")
     add_symbol(0x80068cf0, stage2_430.ctor())
     add_symbol(0x8003e8a0, stage2_430.vtable())
-    00000000
-00000000
-00000000
-800596FC
-00000000
-80059658
-00000000
-800690D8
-00000000
-800592C8
-00000000
-80059394
-00000000
-80068E5C
-00000000
-80059560
-00000000
-80069028
-00000000
-80069058
-00000000
-800598D0
-00000000
-800598D8
-00000000
-800597CC
-00000000
-80059800
-00000000
-80059834
-00000000
-80059850
-00000000
-8005986C
-00000000
-80059874
-00000000
-80059898
-00000000
-800598C8
-00000000
-80068D5C
-00000000
-80068E48
+    add_symbol(0x800596FC, stage2_430.virt0())
+    add_symbol(0x80059658, stage2_430.virt1())
+    add_symbol(0x800690D8, stage2_430.virt2())
+    add_symbol(0x800592C8, stage2_430.virt3())
+    add_symbol(0x80059394, stage2_430.virt4())
+    add_symbol(0x80068E5C, stage2_430.virt5())
+    add_symbol(0x80059560, stage2_430.virt6())
+    add_symbol(0x80069028, stage2_430.virt7())
+    add_symbol(0x80069058, stage2_430.virt8())
+    add_symbol(0x800598D0, stage2_430.virt9())
+    add_symbol(0x800598D8, stage2_430.virt10())
+    add_symbol(0x800597CC, stage2_430.virt11())
+    add_symbol(0x80059800, stage2_430.virt12())
+    add_symbol(0x80059834, stage2_430.virt13())
+    add_symbol(0x80059850, stage2_430.virt14())
+    add_symbol(0x8005986C, stage2_430.virt15())
+    add_symbol(0x80059874, stage2_430.virt16())
+    add_symbol(0x80059898, stage2_430.virt17())
+    add_symbol(0x800598C8, stage2_430.virt18())
+    add_symbol(0x80068D5C, stage2_430.virt19())
+    add_symbol(0x80068E48, stage2_430.virt20())
 
     stage2_440 = Class("Stage2_440")
     add_symbol(0x80069170, stage2_440.ctor())
@@ -1203,74 +849,40 @@ def get_n64_symbols(region: str) -> List[Symbol]:
     stage2_460 = Class("Stage2_460")
     add_symbol(0x800696c0, stage2_460.ctor())
     add_symbol(0x8003eb80, stage2_460.vtable())
-    00000000
-00000000
-00000000
-80069A00
-00000000
-80069B98
-00000000
-80069748
-00000000
-800698B0
-00000000
-80069FE0
-00000000
-80069D90
-00000000
-80069E14
-00000000
-80069E98
-00000000
-8006A138
-00000000
-8004A424
-00000000
-80069968
+    add_symbol(0x80069A00, stage2_460.virt0())
+    add_symbol(0x80069B98, stage2_460.virt1())
+    add_symbol(0x80069748, stage2_460.virt2())
+    add_symbol(0x800698B0, stage2_460.virt3())
+    add_symbol(0x80069FE0, stage2_460.virt4())
+    add_symbol(0x80069D90, stage2_460.virt5())
+    add_symbol(0x80069E14, stage2_460.virt6())
+    add_symbol(0x80069E98, stage2_460.virt7())
+    add_symbol(0x8006A138, stage2_460.virt8())
+    add_symbol(0x8004A424, stage2_460.virt9())
+    add_symbol(0x80069968, stage2_460.virt10())
 
     stage2_470 = Class("Stage2_470")
     add_symbol(0x8006a660, stage2_470.ctor())
     add_symbol(0x8003ec00, stage2_470.vtable())
-    00000000
-00000000
-00000000
-8006AE88
-00000000
-8006AA48
-00000000
-8006AC00
-00000000
-8006AB3C
-00000000
-8006AD6C
-00000000
-8006B1EC
-00000000
-8006A71C
-00000000
-8006A768
-00000000
-8006A79C
-00000000
-8006A7D0
-00000000
-8006A904
-00000000
-8006B010
-00000000
-8006B124
-00000000
-8006B140
-00000000
-8006B15C
-00000000
-8006B178
-00000000
-8006B1B4
-00000000
-8006B1D0
-00000000
-8006B250
+    add_symbol(0x8006AE88, stage2_470.virt0())
+    add_symbol(0x8006AA48, stage2_470.virt1())
+    add_symbol(0x8006AC00, stage2_470.virt2())
+    add_symbol(0x8006AB3C, stage2_470.virt3())
+    add_symbol(0x8006AD6C, stage2_470.virt4())
+    add_symbol(0x8006B1EC, stage2_470.virt5())
+    add_symbol(0x8006A71C, stage2_470.virt6())
+    add_symbol(0x8006A768, stage2_470.virt7())
+    add_symbol(0x8006A79C, stage2_470.virt8())
+    add_symbol(0x8006A7D0, stage2_470.virt9())
+    add_symbol(0x8006A904, stage2_470.virt10())
+    add_symbol(0x8006B010, stage2_470.virt11())
+    add_symbol(0x8006B124, stage2_470.virt12())
+    add_symbol(0x8006B140, stage2_470.virt13())
+    add_symbol(0x8006B15C, stage2_470.virt14())
+    add_symbol(0x8006B178, stage2_470.virt15())
+    add_symbol(0x8006B1B4, stage2_470.virt16())
+    add_symbol(0x8006B1D0, stage2_470.virt17())
+    add_symbol(0x8006B250, stage2_470.virt18())
 
     stage2_480 = Class("N64Renderer")
     add_symbol(0x8006b5e0, stage2_480.ctor())
@@ -1279,235 +891,123 @@ def get_n64_symbols(region: str) -> List[Symbol]:
     stage2_490 = Class("Stage2_490")
     add_symbol(0x8006b990, stage2_490.ctor())
     add_symbol(0x8003ed48, stage2_490.vtable())
-    00000000
-00000000
-00000000
-8006B9D4
-00000000
-80058E5C
-00000000
-8006BC28
-00000000
-8006BA1C
-00000000
-8006BB98
-00000000
-8006BCC8
-00000000
-8004CB9C
-00000000
-8004CBA4
-00000000
-8004C494
-00000000
-8006BDD4
+    add_symbol(0x8006B9D4, stage2_490.virt0())
+    add_symbol(0x80058E5C, stage2_490.virt1())
+    add_symbol(0x8006BC28, stage2_490.virt2())
+    add_symbol(0x8006BA1C, stage2_490.virt3())
+    add_symbol(0x8006BB98, stage2_490.virt4())
+    add_symbol(0x8006BCC8, stage2_490.virt5())
+    add_symbol(0x8004CB9C, stage2_490.virt6())
+    add_symbol(0x8004CBA4, stage2_490.virt7())
+    add_symbol(0x8004C494, stage2_490.virt8())
+    add_symbol(0x8006BDD4, stage2_490.virt9())
     
     stage2_500 = Class("Stage2_500")
     add_symbol(0x8006be00, stage2_500.ctor())
     add_symbol(0x8003eda8, stage2_500.vtable())
-    00000000
-00000000
-00000000
-8004D0D4
-00000000
-8006BF2C
-00000000
-8006C0E4
-00000000
-8006C104
-00000000
-8006C448
-00000000
-8006C664
-00000000
-8006C7AC
-00000000
-8006BE44
-00000000
-8006BE8C
-00000000
-00000000
+    add_symbol(0x8004D0D4, stage2_500.virt0())
+    add_symbol(0x8006BF2C, stage2_500.virt1())
+    add_symbol(0x8006C0E4, stage2_500.virt2())
+    add_symbol(0x8006C104, stage2_500.virt3())
+    add_symbol(0x8006C448, stage2_500.virt4())
+    add_symbol(0x8006C664, stage2_500.virt5())
+    add_symbol(0x8006C7AC, stage2_500.virt6())
+    add_symbol(0x8006BE44, stage2_500.virt7())
+    add_symbol(0x8006BE8C, stage2_500.virt8())
 
     stage2_510 = Class("Stage2_510")
     add_symbol(0x8006c850, stage2_510.ctor())
     add_symbol(0x8003ee18, stage2_510.vtable())
-    00000000
-00000000
-00000000
-8006C9A0
-00000000
-8006CA04
-00000000
-8006CA68
-00000000
-8006CB68
-00000000
-8004F360
-00000000
-8006C890
-00000000
-8006C8D8
-00000000
-8006D7EC
+    add_symbol(0x8006C9A0, stage2_510.virt0())
+    add_symbol(0x8006CA04, stage2_510.virt1())
+    add_symbol(0x8006CA68, stage2_510.virt2())
+    add_symbol(0x8006CB68, stage2_510.virt3())
+    add_symbol(0x8004F360, stage2_510.virt4())
+    add_symbol(0x8006C890, stage2_510.virt5())
+    add_symbol(0x8006C8D8, stage2_510.virt6())
+    add_symbol(0x8006D7EC, stage2_510.virt7())
 
     stage2_520 = Class("Stage2_520")
     add_symbol(0x8006d830, stage2_520.ctor())
     add_symbol(0x8003ee68, stage2_520.vtable())
-    00000000
-00000000
-00000000
-8006D868
-00000000
-80058E5C
-00000000
-8006D974
-00000000
-8006D8B0
-00000000
-8006DA28
-00000000
-8006DAB0
-00000000
-800544F4
-00000000
-80054068
-00000000
-8006DA08
-00000000
-00000000
+    add_symbol(0x8006D868, stage2_520.virt0())
+    add_symbol(0x80058E5C, stage2_520.virt1())
+    add_symbol(0x8006D974, stage2_520.virt2())
+    add_symbol(0x8006D8B0, stage2_520.virt3())
+    add_symbol(0x8006DA28, stage2_520.virt4())
+    add_symbol(0x8006DAB0, stage2_520.virt5())
+    add_symbol(0x800544F4, stage2_520.virt6())
+    add_symbol(0x80054068, stage2_520.virt7())
+    add_symbol(0x8006DA08, stage2_520.virt8())
 
     stage2_530 = Class("Stage2_530")
     add_symbol(0x8006dae0, stage2_530.ctor())
     add_symbol(0x8003eee0, stage2_530.vtable())
-    00000000
-00000000
-00000000
-8006E048
-00000000
-8006DB20
-00000000
-8006DD74
-00000000
-8006DE14
-00000000
-800603B8
-00000000
-8006DE4C
-00000000
-8006DE9C
-00000000
-8006DEF4
-00000000
-8006DF04
-00000000
-8006DF4C
-00000000
-8006DF9C
-00000000
-8006DFF8
-00000000
-8006E000
-00000000
-8007A140
-00000000
-8007A2E4
+    add_symbol(0x8006E048, stage2_530.virt0())
+    add_symbol(0x8006DB20, stage2_530.virt1())
+    add_symbol(0x8006DD74, stage2_530.virt2())
+    add_symbol(0x8006DE14, stage2_530.virt3())
+    add_symbol(0x800603B8, stage2_530.virt4())
+    add_symbol(0x8006DE4C, stage2_530.virt5())
+    add_symbol(0x8006DE9C, stage2_530.virt6())
+    add_symbol(0x8006DEF4, stage2_530.virt7())
+    add_symbol(0x8006DF04, stage2_530.virt8())
+    add_symbol(0x8006DF4C, stage2_530.virt9())
+    add_symbol(0x8006DF9C, stage2_530.virt10())
+    add_symbol(0x8006DFF8, stage2_530.virt11())
+    add_symbol(0x8006E000, stage2_530.virt12())
+    add_symbol(0x8007A140, stage2_530.virt13())
+    add_symbol(0x8007A2E4, stage2_530.virt14())
 
     stage2_540 = Class("Stage2_540")
     stage2_550 = Class("Stage2_550")
     add_symbol(0x8006e0c0, stage2_550.ctor())
     add_symbol(0x8003ef68, stage2_550.vtable())
-    00000000
-00000000
-00000000
-8006E0F8
-00000000
-80058E5C
-00000000
-8006E28C
-00000000
-8006E210
-00000000
-8006E270
-00000000
-8006E140
-00000000
-8006E33C
-00000000
-800551BC
-00000000
-80055A24
-00000000
-80055B20
-00000000
-8006E324
+    add_symbol(0x8006E0F8, stage2_550.virt0())
+    add_symbol(0x80058E5C, stage2_550.virt1())
+    add_symbol(0x8006E28C, stage2_550.virt2())
+    add_symbol(0x8006E210, stage2_550.virt3())
+    add_symbol(0x8006E270, stage2_550.virt4())
+    add_symbol(0x8006E140, stage2_550.virt5())
+    add_symbol(0x8006E33C, stage2_550.virt6())
+    add_symbol(0x800551BC, stage2_550.virt7())
+    add_symbol(0x80055A24, stage2_550.virt8())
+    add_symbol(0x80055B20, stage2_550.virt9())
+    add_symbol(0x8006E324, stage2_550.virt10())
 
     stage2_560 = Class("Stage2_560")
     add_symbol(0x8006e390, stage2_560.ctor())
     add_symbol(0x8003eff8, stage2_560.vtable())
-    00000000
-00000000
-00000000
-80057080
-00000000
-8005749C
-00000000
-800578A4
-00000000
-8006E6BC
-00000000
-8006E770
-00000000
-8006E824
-00000000
-8006E3D0
-00000000
-8006E418
-00000000
-8006E4C8
-00000000
-8006E648
-00000000
-80057554
-00000000
-80057560
-00000000
-800575A8
-00000000
-800575B4
-00000000
-80057958
-00000000
-80057C80
-00000000
-80057CB0
-00000000
-00000000
+    add_symbol(0x80057080, stage2_560.virt0())
+    add_symbol(0x8005749C, stage2_560.virt1())
+    add_symbol(0x800578A4, stage2_560.virt2())
+    add_symbol(0x8006E6BC, stage2_560.virt3())
+    add_symbol(0x8006E770, stage2_560.virt4())
+    add_symbol(0x8006E824, stage2_560.virt5())
+    add_symbol(0x8006E3D0, stage2_560.virt6())
+    add_symbol(0x8006E418, stage2_560.virt7())
+    add_symbol(0x8006E4C8, stage2_560.virt8())
+    add_symbol(0x8006E648, stage2_560.virt9())
+    add_symbol(0x80057554, stage2_560.virt10())
+    add_symbol(0x80057560, stage2_560.virt11())
+    add_symbol(0x800575A8, stage2_560.virt12())
+    add_symbol(0x800575B4, stage2_560.virt13())
+    add_symbol(0x80057958, stage2_560.virt14())
+    add_symbol(0x80057C80, stage2_560.virt15())
+    add_symbol(0x80057CB0, stage2_560.virt16())
 
     stage2_570 = Class("Stage2_570")
     add_symbol(0x8006FFD0, stage2_570.ctor())
     add_symbol(0x8003f098, stage2_570.vtable())
-    00000000
-00000000
-00000000
-80070130
-00000000
-800701F8
-00000000
-80070274
-00000000
-8007031C
-00000000
-800703E8
-00000000
-80070470
-00000000
-80070478
-00000000
-80070484
-00000000
-8006FFEC
-00000000
-00000000
+    add_symbol(0x80070130, stage2_570.virt0())
+    add_symbol(0x800701F8, stage2_570.virt1())
+    add_symbol(0x80070274, stage2_570.virt2())
+    add_symbol(0x8007031C, stage2_570.virt3())
+    add_symbol(0x800703E8, stage2_570.virt4())
+    add_symbol(0x80070470, stage2_570.virt5())
+    add_symbol(0x80070478, stage2_570.virt6())
+    add_symbol(0x80070484, stage2_570.virt7())
+    add_symbol(0x8006FFEC, stage2_570.virt8())
 
     stage2_580 = Class("RenderClass")
     add_symbol(0x800704c0, stage2_580.ctor())
@@ -1518,38 +1018,21 @@ def get_n64_symbols(region: str) -> List[Symbol]:
     stage2_610 = Class("Stage2_610")
     add_symbol(0x80078a00, stage2_610.ctor())
     add_symbol(0x8003f810, stage2_610.vtable())
-     00000000
- 00000000
- 00000000
- 80078F54
- 00000000
- 80078A40
- 00000000
- 80078CB8
- 00000000
- 80078C80
- 00000000
- 800603B8
- 00000000
- 80078D58
- 00000000
- 80078DA8
- 00000000
- 80078E00
- 00000000
- 80078E10
- 00000000
- 80078E58
- 00000000
- 80078EA8
- 00000000
- 80078F04
- 00000000
- 80078F0C
- 00000000
- 8007A140
- 00000000
- 8007A2E4
+    add_symbol(0x80078F54, stage2_610.virt0())
+    add_symbol(0x80078A40, stage2_610.virt1())
+    add_symbol(0x80078CB8, stage2_610.virt2())
+    add_symbol(0x80078C80, stage2_610.virt3())
+    add_symbol(0x800603B8, stage2_610.virt4())
+    add_symbol(0x80078D58, stage2_610.virt5())
+    add_symbol(0x80078DA8, stage2_610.virt6())
+    add_symbol(0x80078E00, stage2_610.virt7())
+    add_symbol(0x80078E10, stage2_610.virt8())
+    add_symbol(0x80078E58, stage2_610.virt9())
+    add_symbol(0x80078EA8, stage2_610.virt10())
+    add_symbol(0x80078F04, stage2_610.virt11())
+    add_symbol(0x80078F0C, stage2_610.virt12())
+    add_symbol(0x8007A140, stage2_610.virt13())
+    add_symbol(0x8007A2E4, stage2_610.virt14())
 
     stage2_620 = Class("Stage2_620")
     add_symbol(0x800792a0, stage2_620.ctor())
@@ -1558,362 +1041,193 @@ def get_n64_symbols(region: str) -> List[Symbol]:
     stage2_630 = Class("Stage2_630")
     add_symbol(0x80079a80, stage2_630.ctor())
     add_symbol(0x8003fbf8, stage2_630.vtable())
-    00000000
-00000000
-00000000
-8007A048
-00000000
-80079AC0
-00000000
-80079D34
-00000000
-80079DD4
-00000000
-800603B8
-00000000
-80079E0C
-00000000
-80079E5C
-00000000
-80079EB4
-00000000
-80079F18
-00000000
-80079F20
-00000000
-80079F70
-00000000
-80079FCC
-00000000
-8007A040
-00000000
-8007A140
-00000000
-8007A2E4
-00000000
-00000000
+    add_symbol(0x8007A048, stage2_630.virt0())
+    add_symbol(0x80079AC0, stage2_630.virt1())
+    add_symbol(0x80079D34, stage2_630.virt2())
+    add_symbol(0x80079DD4, stage2_630.virt3())
+    add_symbol(0x800603B8, stage2_630.virt4())
+    add_symbol(0x80079E0C, stage2_630.virt5())
+    add_symbol(0x80079E5C, stage2_630.virt6())
+    add_symbol(0x80079EB4, stage2_630.virt7())
+    add_symbol(0x80079F18, stage2_630.virt8())
+    add_symbol(0x80079F20, stage2_630.virt9())
+    add_symbol(0x80079F70, stage2_630.virt10())
+    add_symbol(0x80079FCC, stage2_630.virt11())
+    add_symbol(0x8007A040, stage2_630.virt12())
+    add_symbol(0x8007A140, stage2_630.virt13())
+    add_symbol(0x8007A2E4, stage2_630.virt14())
 
     stage2_640 = Class("Stage2_640")
     add_symbol(0x8007a070, stage2_640.ctor())
     add_symbol(0x8003fc88, stage2_640.vtable())
-    00000000
-00000000
-00000000
-8007A0B0
-00000000
-800600F4
-00000000
-80060228
-00000000
-8007A0F8
-00000000
-800603B8
-00000000
-800602E0
-00000000
-80060320
-00000000
-8006032C
-00000000
-8006033C
-00000000
-80060350
-00000000
-80060390
-00000000
-80060398
-00000000
-800603A0
-00000000
-8007A140
-00000000
-8007A2E4
-00000000
-00000000
+    add_symbol(0x8007A0B0, stage2_640.virt0())
+    add_symbol(0x800600F4, stage2_640.virt1())
+    add_symbol(0x80060228, stage2_640.virt2())
+    add_symbol(0x8007A0F8, stage2_640.virt3())
+    add_symbol(0x800603B8, stage2_640.virt4())
+    add_symbol(0x800602E0, stage2_640.virt5())
+    add_symbol(0x80060320, stage2_640.virt6())
+    add_symbol(0x8006032C, stage2_640.virt7())
+    add_symbol(0x8006033C, stage2_640.virt8())
+    add_symbol(0x80060350, stage2_640.virt9())
+    add_symbol(0x80060390, stage2_640.virt10())
+    add_symbol(0x80060398, stage2_640.virt11())
+    add_symbol(0x800603A0, stage2_640.virt12())
+    add_symbol(0x8007A140, stage2_640.virt13())
+    add_symbol(0x8007A2E4, stage2_640.virt14())
 
     stage2_650 = Class("Stage2_650")
     add_symbol(0x8007a380, stage2_650.ctor())
     add_symbol(0x8003fd68, stage2_650.vtable())
-
     stage2_660 = Class("Stage2_660")
     add_symbol(0x8007b670, stage2_660.ctor())
     add_symbol(0x8003fe28, stage2_660.vtable())
-    00000000
-00000000
-00000000
-8007B6A8
-00000000
-8004B4EC
-00000000
-8004B538
-00000000
-8004B554
-00000000
-8004B5A0
-00000000
-8004B5BC
-00000000
-8004B5C4
-00000000
-8004B5CC
-00000000
-8004B5D4
-00000000
-8004BB38
-00000000
-8004B838
-00000000
-8004BCB4
-00000000
-8004BCBC
+    add_symbol(0x8007B6A8, stage2_660.virt0())
+    add_symbol(0x8004B4EC, stage2_660.virt1())
+    add_symbol(0x8004B538, stage2_660.virt2())
+    add_symbol(0x8004B554, stage2_660.virt3())
+    add_symbol(0x8004B5A0, stage2_660.virt4())
+    add_symbol(0x8004B5BC, stage2_660.virt5())
+    add_symbol(0x8004B5C4, stage2_660.virt6())
+    add_symbol(0x8004B5CC, stage2_660.virt7())
+    add_symbol(0x8004B5D4, stage2_660.virt8())
+    add_symbol(0x8004BB38, stage2_660.virt9())
+    add_symbol(0x8004B838, stage2_660.virt10())
+    add_symbol(0x8004BCB4, stage2_660.virt11())
+    add_symbol(0x8004BCBC, stage2_660.virt12())
 
     stage2_670 = Class("Stage2_670") # TODO: complicated
     stage2_680 = Class("Stage2_680")
     stage2_690 = Class("Stage2_690")
     add_symbol(0x8007d430, stage2_690.ctor())
     add_symbol(0x80040250, stage2_690.vtable())
-    00000000
-00000000
-00000000
-8007D4B4
-00000000
-8007D8DC
-00000000
-8007DA0C
-00000000
-8007D46C
-00000000
-8007D5CC
-00000000
-8007D7A8
-00000000
-8000BBBC
-00000000
-8007DC70
-00000000
-8007DC68
-00000000
-8000B4E0
-00000000
-8007DC60
-00000000
-8007DC4C
-00000000
-8007D8A4
-00000000
-8007D850
-00000000
-8007DC40
-00000000
-8007DC34
-00000000
-8007DC28
-00000000
-8007DC1C
-00000000
-8007DC10
-00000000
-8007DC04
-00000000
-8000BBC8
-00000000
-8000BBD4
-00000000
-8007DA44
-00000000
-8007DA88
-00000000
-8007DAD8
-00000000
-8007DB80
-00000000
-00000000
+    add_symbol(0x8007D4B4, stage2_690.virt0())
+    add_symbol(0x8007D8DC, stage2_690.virt1())
+    add_symbol(0x8007DA0C, stage2_690.virt2())
+    add_symbol(0x8007D46C, stage2_690.virt3())
+    add_symbol(0x8007D5CC, stage2_690.virt4())
+    add_symbol(0x8007D7A8, stage2_690.virt5())
+    add_symbol(0x8000BBBC, stage2_690.virt6())
+    add_symbol(0x8007DC70, stage2_690.virt7())
+    add_symbol(0x8007DC68, stage2_690.virt8())
+    add_symbol(0x8000B4E0, stage2_690.virt9())
+    add_symbol(0x8007DC60, stage2_690.virt10())
+    add_symbol(0x8007DC4C, stage2_690.virt11())
+    add_symbol(0x8007D8A4, stage2_690.virt12())
+    add_symbol(0x8007D850, stage2_690.virt13())
+    add_symbol(0x8007DC40, stage2_690.virt14())
+    add_symbol(0x8007DC34, stage2_690.virt15())
+    add_symbol(0x8007DC28, stage2_690.virt16())
+    add_symbol(0x8007DC1C, stage2_690.virt17())
+    add_symbol(0x8007DC10, stage2_690.virt18())
+    add_symbol(0x8007DC04, stage2_690.virt19())
+    add_symbol(0x8000BBC8, stage2_690.virt20())
+    add_symbol(0x8000BBD4, stage2_690.virt21())
+    add_symbol(0x8007DA44, stage2_690.virt22())
+    add_symbol(0x8007DA88, stage2_690.virt23())
+    add_symbol(0x8007DAD8, stage2_690.virt24())
+    add_symbol(0x8007DB80, stage2_690.virt25())
 
     stage2_700 = Class("Stage2_700")
     add_symbol(0x8007dc80, stage2_700.ctor())
     add_symbol(0x80040330, stage2_700.vtable())
-    00000000
-00000000
-00000000
-8007DD84
-00000000
-8007DD8C
-00000000
-8007DD94
-00000000
-8007DDB4
-00000000
-80007834
-00000000
-8000783C
-00000000
-8007DCB8
-00000000
-80006624
-00000000
-80006858
-00000000
-80006928
-00000000
-80006CBC
-00000000
-800073F4
-00000000
-800075B0
-00000000
-8000771C
-00000000
-8007DEA0
-00000000
-8007DF68
-00000000
-00000000
+    add_symbol(0x8007DD84, stage2_700.virt0())
+    add_symbol(0x8007DD8C, stage2_700.virt1())
+    add_symbol(0x8007DD94, stage2_700.virt2())
+    add_symbol(0x8007DDB4, stage2_700.virt3())
+    add_symbol(0x80007834, stage2_700.virt4())
+    add_symbol(0x8000783C, stage2_700.virt5())
+    add_symbol(0x8007DCB8, stage2_700.virt6())
+    add_symbol(0x80006624, stage2_700.virt7())
+    add_symbol(0x80006858, stage2_700.virt8())
+    add_symbol(0x80006928, stage2_700.virt9())
+    add_symbol(0x80006CBC, stage2_700.virt10())
+    add_symbol(0x800073F4, stage2_700.virt11())
+    add_symbol(0x800075B0, stage2_700.virt12())
+    add_symbol(0x8000771C, stage2_700.virt13())
+    add_symbol(0x8007DEA0, stage2_700.virt14())
+    add_symbol(0x8007DF68, stage2_700.virt15())
 
-    stage2_710 = Class("Stage2_710");
-    stage2_720 = Class("Stage2_720");
-    stage2_730 = Class("Stage2_730");
-    stage2_740 = Class("Stage2_740");
-    stage2_750 = Class("Stage2_750");
+    stage2_710 = Class("Stage2_710")
+    stage2_720 = Class("Stage2_720")
+    stage2_730 = Class("Stage2_730")
+    stage2_740 = Class("Stage2_740")
+    stage2_750 = Class("Stage2_750")
 
-    stage2_760a = Class("Stage2_760")
-    add_symbol(0x8007f160, stage2_760a.ctor())
-    add_symbol(0x80040528, stage2_760a.vtable())
-    00000000
-00000000
-00000000
-8007F1C0
-00000000
-8007F770
-00000000
-8007F778
-00000000
-8007F780
-00000000
-8007F788
-00000000
-8007F844
-00000000
-8007F644
-00000000
-00000000
+    stage2_760 = Class("Stage2_760")
+    add_symbol(0x8007f160, stage2_760.ctor())
+    add_symbol(0x80040528, stage2_760.vtable())
+    add_symbol(0x8007F1C0, stage2_760.virt0())
+    add_symbol(0x8007F770, stage2_760.virt1())
+    add_symbol(0x8007F778, stage2_760.virt2())
+    add_symbol(0x8007F780, stage2_760.virt3())
+    add_symbol(0x8007F788, stage2_760.virt4())
+    add_symbol(0x8007F844, stage2_760.virt5())
+    add_symbol(0x8007F644, stage2_760.virt6())
 
     stage2_770 = Class("Stage2_770")
     add_symbol(0x800803e0, stage2_770.ctor())
     add_symbol(0x800406f0, stage2_770.vtable())
-    00000000
-00000000
-00000000
-80080424
-00000000
-8008046C
-00000000
-800806B0
-00000000
-80080850
-00000000
-80080724
-00000000
-800807C4
-00000000
-800808F8
+    add_symbol(0x80080424, stage2_770.virt0())
+    add_symbol(0x8008046C, stage2_770.virt1())
+    add_symbol(0x800806B0, stage2_770.virt2())
+    add_symbol(0x80080850, stage2_770.virt3())
+    add_symbol(0x80080724, stage2_770.virt4())
+    add_symbol(0x800807C4, stage2_770.virt5())
+    add_symbol(0x800808F8, stage2_770.virt6())
 
     stage2_780 = Class("Stage2_780")
     add_symbol(0x80080950, stage2_780.ctor())
     add_symbol(0x80040860, stage2_780.vtable())
-    00000000
-00000000
-00000000
-80080988
-00000000
-80080C00
-00000000
-80080CA8
-00000000
-80080CF4
-00000000
-80080DE4
-00000000
-80080EAC
-00000000
-80080EB8
-00000000
-80080F68
-00000000
-80080FF0
+    add_symbol(0x80080988, stage2_780.virt0())
+    add_symbol(0x80080C00, stage2_780.virt1())
+    add_symbol(0x80080CA8, stage2_780.virt2())
+    add_symbol(0x80080CF4, stage2_780.virt3())
+    add_symbol(0x80080DE4, stage2_780.virt4())
+    add_symbol(0x80080EAC, stage2_780.virt5())
+    add_symbol(0x80080EB8, stage2_780.virt6())
+    add_symbol(0x80080F68, stage2_780.virt7())
+    add_symbol(0x80080FF0, stage2_780.virt8())
 
     stage2_790 = Class("Stage2_790") # TODO: multiple vtables
     add_symbol(0x80081060, stage2_790.ctor())
     add_symbol(0x800408d0, stage2_790.vtable())
-    00000000
-00000000
-00000000
-800811EC
-00000000
-800814F4
-00000000
-80081650
-00000000
-8008165C
-00000000
-80081674
-00000000
-80081718
-00000000
-800817DC
-00000000
-80081864
-00000000
-800819BC
-00000000
-80081A78
-00000000
-80081F50
-00000000
-800810F8
+    add_symbol(0x800811EC, stage2_790.virt0())
+    add_symbol(0x800814F4, stage2_790.virt1())
+    add_symbol(0x80081650, stage2_790.virt2())
+    add_symbol(0x8008165C, stage2_790.virt3())
+    add_symbol(0x80081674, stage2_790.virt4())
+    add_symbol(0x80081718, stage2_790.virt5())
+    add_symbol(0x800817DC, stage2_790.virt6())
+    add_symbol(0x80081864, stage2_790.virt7())
+    add_symbol(0x800819BC, stage2_790.virt8())
+    add_symbol(0x80081A78, stage2_790.virt9())
+    add_symbol(0x80081F50, stage2_790.virt10())
+    add_symbol(0x800810F8, stage2_790.virt11())
 
     stage2_800 = Class("Stage2_800")
     add_symbol(0x80081fc0, stage2_800.ctor())
     add_symbol(0x800409d0, stage2_800.vtable())
-    00000000
-00000000
-00000000
-800820C0
-00000000
-800821B4
-00000000
-80082200
-00000000
-8008220C
-00000000
-800822B0
-00000000
-80082330
-00000000
-8008239C
-00000000
-800824A4
-00000000
-80082000
+    add_symbol(0x800820C0, stage2_800.virt0())
+    add_symbol(0x800821B4, stage2_800.virt1())
+    add_symbol(0x80082200, stage2_800.virt2())
+    add_symbol(0x8008220C, stage2_800.virt3())
+    add_symbol(0x800822B0, stage2_800.virt4())
+    add_symbol(0x80082330, stage2_800.virt5())
+    add_symbol(0x8008239C, stage2_800.virt6())
+    add_symbol(0x800824A4, stage2_800.virt7())
+    add_symbol(0x80082000, stage2_800.virt8())
 
     stage2_810 = Class("Stage2_810")
     add_symbol(0x800824f0, stage2_810.ctor())
     add_symbol(0x80040a30, stage2_810.vtable())
-00000000
-00000000
-00000000
-80082534
-00000000
-8008260C
-00000000
-80082650
-00000000
-8008266C
-00000000
-800826DC
-00000000
-8008273C
-00000000
-80082688
+    add_symbol(0x80082534, stage2_810.virt0())
+    add_symbol(0x8008260C, stage2_810.virt1())
+    add_symbol(0x80082650, stage2_810.virt2())
+    add_symbol(0x8008266C, stage2_810.virt3())
+    add_symbol(0x800826DC, stage2_810.virt4())
+    add_symbol(0x8008273C, stage2_810.virt5())
+    add_symbol(0x80082688, stage2_810.virt6())
 
     # TODO vtable at 8003DC88
     return symbols
