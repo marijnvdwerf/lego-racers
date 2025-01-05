@@ -1,16 +1,16 @@
 #include "common.h"
 
-INCLUDE_ASM("nonmatchings/main/110", func_8000B0F0);
+INCLUDE_ASM("nonmatchings/main/110", __8Main_110);
 
-INCLUDE_ASM("nonmatchings/main/110", func_8000B158);
+INCLUDE_ASM("nonmatchings/main/110", virt3__8Main_110);
 
-INCLUDE_ASM("nonmatchings/main/110", func_8000B1A8);
+INCLUDE_ASM("nonmatchings/main/110", virt0__8Main_110);
 
-INCLUDE_ASM("nonmatchings/main/110", func_8000B234);
+INCLUDE_ASM("nonmatchings/main/110", virt4__8Main_110);
 
 INCLUDE_ASM("nonmatchings/main/110", func_8000B27C);
 
-INCLUDE_ASM("nonmatchings/main/110", func_8000B368);
+INCLUDE_ASM("nonmatchings/main/110", virt5__8Main_110);
 
 INCLUDE_ASM("nonmatchings/main/110", func_8000B3F8);
 
@@ -24,7 +24,7 @@ INCLUDE_ASM("nonmatchings/main/110", func_8000B4A0);
 
 INCLUDE_ASM("nonmatchings/main/110", func_8000B4C0);
 
-INCLUDE_ASM("nonmatchings/main/110", func_8000B4E0);
+INCLUDE_ASM("nonmatchings/main/110", virt9__8Main_110);
 
 INCLUDE_ASM("nonmatchings/main/110", func_8000B584);
 
@@ -32,7 +32,7 @@ INCLUDE_ASM("nonmatchings/main/110", func_8000B718);
 
 INCLUDE_ASM("nonmatchings/main/110", func_8000B920);
 
-INCLUDE_ASM("nonmatchings/main/110", func_8000B998);
+INCLUDE_ASM("nonmatchings/main/110", virt1__8Main_110);
 
 INCLUDE_ASM("nonmatchings/main/110", func_8000B9B4);
 
@@ -40,17 +40,17 @@ INCLUDE_ASM("nonmatchings/main/110", func_8000BB10);
 
 INCLUDE_ASM("nonmatchings/main/110", func_8000BB2C);
 
-INCLUDE_ASM("nonmatchings/main/110", func_8000BBAC);
+INCLUDE_ASM("nonmatchings/main/110", virt7__8Main_110);
 
-INCLUDE_ASM("nonmatchings/main/110", func_8000BBB4);
+INCLUDE_ASM("nonmatchings/main/110", virt8__8Main_110);
 
-INCLUDE_ASM("nonmatchings/main/110", func_8000BBBC);
+INCLUDE_ASM("nonmatchings/main/110", virt6__8Main_110);
 
-INCLUDE_ASM("nonmatchings/main/110", func_8000BBC8);
+INCLUDE_ASM("nonmatchings/main/110", virt20__8Main_110);
 
-INCLUDE_ASM("nonmatchings/main/110", func_8000BBD4);
+INCLUDE_ASM("nonmatchings/main/110", virt21__8Main_110);
 
-INCLUDE_ASM("nonmatchings/main/110", func_8000BBE0);
+INCLUDE_ASM("nonmatchings/main/110", virt25__8Main_110);
 
 INCLUDE_ASM("nonmatchings/main/110", func_8000BC08);
 

@@ -1,16 +1,16 @@
 #include "common.h"
 
-INCLUDE_ASM("nonmatchings/main/120", func_8000BD40);
+INCLUDE_ASM("nonmatchings/main/120", __8Main_120);
 
-INCLUDE_ASM("nonmatchings/main/120", func_8000BD64);
+INCLUDE_ASM("nonmatchings/main/120", virt0__8Main_120);
 
 INCLUDE_ASM("nonmatchings/main/120", func_8000BDC0);
 
-INCLUDE_ASM("nonmatchings/main/120", func_8000BE24);
+INCLUDE_ASM("nonmatchings/main/120", virt1__8Main_120);
 
-INCLUDE_ASM("nonmatchings/main/120", func_8000BE84);
+INCLUDE_ASM("nonmatchings/main/120", virt2__8Main_120);
 
-INCLUDE_ASM("nonmatchings/main/120", func_8000C0FC);
+INCLUDE_ASM("nonmatchings/main/120", virt3__8Main_120);
 
 INCLUDE_ASM("nonmatchings/main/120", func_8000C14C);
 
