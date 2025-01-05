@@ -1,2 +1,5 @@
 ---
 BasedOnStyle: WebKit
+WhitespaceSensitiveMacros:
+  - INCLUDE_ASM
+  - INCLUDE_RODATA
