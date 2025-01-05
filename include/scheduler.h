@@ -203,12 +203,12 @@ public:
     void func_8006B8F0(u32);
 };
 
-class Stage2_200 {
+class Stage2_200b {
 public:
     char pad[0x20];
 
-    Stage2_200();
-    ~Stage2_200();
+    Stage2_200b();
+    ~Stage2_200b();
     virtual void virt1();
 };
 
@@ -220,13 +220,13 @@ public:
     ~Stage2_660();
 };
 
-class Stage2_470 {
+class Stage2_470b {
 public:
     u32 var_0;
     char pad_4[0x14];
 
-    Stage2_470();
-    ~Stage2_470();
+    Stage2_470b();
+    ~Stage2_470b();
 };
 
 class RenderClassParent {
@@ -248,7 +248,7 @@ public:
     virtual void virt9();
 };
 
-class Anon_Stage2_200 : public Stage2_200 {
+class Anon_Stage2_200 : public Stage2_200b {
 public:
     virtual void virt1();
 };
@@ -283,7 +283,7 @@ public:
     f32 var_1BC[4][4];
     u32 var_1FC;
     u8 pad_200[0x4];
-    Stage2_470 var_204[2];
+    Stage2_470b var_204[2];
     u8 pad_234[0xD4];
     u32 var_308;
     N64Renderer* var_30C;
@@ -345,7 +345,7 @@ public:
     void func_80076C80(int);
     int func_80076C88();
     void func_80076C94(int);
-    Stage2_470* func_80076C9C();
+    Stage2_470b* func_80076C9C();
     int func_80076CB8();
     void func_80076CC4(int);
     int func_80076D14();
