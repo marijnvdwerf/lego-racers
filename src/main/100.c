@@ -2,7 +2,7 @@
 
 INCLUDE_ASM("nonmatchings/main/100", __8Main_100);
 
-INCLUDE_ASM("nonmatchings/main/100", virt1__8Main_100);
+INCLUDE_ASM("nonmatchings/main/100", _._8Main_100);
 
 INCLUDE_ASM("nonmatchings/main/100", virt0__8Main_100);
 

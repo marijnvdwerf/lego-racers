@@ -1,5 +1,11 @@
 #include "common.h"
 
+// TODO: use a shared header for this
+class Stage2_680 {
+public:
+    u32 func_8007C844(int);
+};
+
 Menu660::Menu660()
 {
     init();
@@ -27,7 +33,7 @@ Menu660::~Menu660()
 int Menu660::virt35(UnkStruct* unk, int foo)
 {
     int bvar;
-    Bar* bar = unk->var_262C;
+    Stage2_680* bar = unk->var_262C;
 
     if (this->var_4) {
         this->virt29();
@@ -43,7 +49,7 @@ int Menu660::virt35(UnkStruct* unk, int foo)
     } else {
         bvar = 0;
 
-        if (unk->var_10->var_34 == 0 || bar->FUN_8007c844(0) == 0) {
+        if (unk->var_10->var_34 == 0 || bar->func_8007C844(0) == 0) {
             bvar = 1;
         }
 

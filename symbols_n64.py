@@ -203,8 +203,6 @@ def get_n64_symbols(region: str) -> List[Symbol]:
     add_symbol(0x80030C80, "alGlobals")
     add_symbol(0x80030C84, "n_syn")
 
-    add_symbol(0x8007C844, "FUN_8007c844__3Bari")
-
     add_symbol(0x80000300, "osTvType")
 
     add_symbol(0x80013200, "n_alEnvmixerPull")
@@ -551,12 +549,12 @@ def get_n64_symbols(region: str) -> List[Symbol]:
     add_symbol(0x8000A7A4, main_090.virt18())
     add_symbol(0x8000A864, main_090.virt6())
     add_symbol(0x8000ACA0, main_100.ctor())
-    add_symbol(0x8000ACD4, main_100.virt1())
+    add_symbol(0x8000ACD4, main_100.dtor())
     add_symbol(0x8000AD04, main_100.virt0())
     add_symbol(0x8000AFD4, main_100.virt2())
     add_symbol(0x8000B010, main_100.virt3())
     add_symbol(0x8000B0F0, main_110.ctor())
-    add_symbol(0x8000B158, main_110.virt3())
+    add_symbol(0x8000B158, main_110.dtor())
     add_symbol(0x8000B1A8, main_110.virt0())
     add_symbol(0x8000B234, main_110.virt4())
     add_symbol(0x8000B368, main_110.virt5())
@@ -1110,13 +1108,14 @@ def get_n64_symbols(region: str) -> List[Symbol]:
     add_symbol(0x8007B6A8, stage2_660.dtor())
     add_symbol(0x8007C25C, stage2_670b_filereader.virt6())
     add_symbol(0x8007D430, stage2_690.ctor())
-    add_symbol(0x8007D46C, stage2_690.virt3())
+    add_symbol(0x8007D46C, stage2_690.dtor())
     add_symbol(0x8007D4B4, stage2_690.virt0())
     add_symbol(0x8007D5CC, stage2_690.virt4())
     add_symbol(0x8007D7A8, stage2_690.virt5())
     add_symbol(0x8007D850, stage2_690.virt13())
     add_symbol(0x8007D8A4, stage2_690.virt12())
-    add_symbol(0x8007D8DC, stage2_690.virt1())
+    add_symbol(0x8007D5F4, "func_8007D5F4__10Stage2_690Sc")
+    add_symbol(0x8007D8DC, "virt1__10Stage2_690iSci")
     add_symbol(0x8007DA0C, stage2_690.virt2())
     add_symbol(0x8007DA44, stage2_690.virt22())
     add_symbol(0x8007DA88, stage2_690.virt23())
@@ -1217,5 +1216,57 @@ def get_n64_symbols(region: str) -> List[Symbol]:
     add_symbol(0x800826DC, stage2_810.virt4())
     add_symbol(0x8008273C, stage2_810.virt5())
 
-    # TODO vtable at 8003DC88
+
+
+    add_symbol(0x800401F0, stage2_680.vtable())
+    add_symbol(0x8007C280, stage2_680.virt0())
+    add_symbol(0x8007c2dc, stage2_680.ctor())
+    add_symbol(0x8007C350, stage2_680.dtor())
+    add_symbol(0x8007C4EC, "func_8007C4EC__10Stage2_680")
+    add_symbol(0x8007C5A8, stage2_680.virt5())
+    add_symbol(0x8007C694, stage2_680.virt4())
+    add_symbol(0x8007C728, "virt6__10Stage2_680i")
+    add_symbol(0x8007C838, stage2_680.virt7())
+    add_symbol(0x8007C844, "func_8007C844__10Stage2_680i")
+    add_symbol(0x8007C86C, "func_8007C86C__10Stage2_680PUc")
+    add_symbol(0x8007C8CC, "func_8007C8CC__10Stage2_680P5OSPfsi")
+    add_symbol(0x8007C9A4, "func_8007C9A4__10Stage2_680P5OSPfsiiPUcT4iPl")
+    add_symbol(0x8007CA2C, "func_8007CA2C__10Stage2_680P5OSPfsiiPUcT4Pl")
+    add_symbol(0x8007CAAC, "func_8007CAAC__10Stage2_680P5OSPfsiiPUcT4")
+    add_symbol(0x8007CB24, "func_8007CB24__10Stage2_680P5OSPfslUciiPUc")
+    add_symbol(0x8007CBA4, "func_8007CBA4__10Stage2_680P5OSPfs")
+    add_symbol(0x8007CC04, "func_8007CC04__10Stage2_680P5OSPfsi")
+    add_symbol(0x8007CC68, "func_8007CC68__10Stage2_680P5OSPfs")
+    add_symbol(0x8007CCC8, "func_8007CCC8__10Stage2_680P5OSPfs")
+    add_symbol(0x8007CD28, "func_8007CD28__10Stage2_680P5OSPfs")
+    add_symbol(0x8007CD88, "func_8007CD88__10Stage2_680P5OSPfsPlT2")
+    add_symbol(0x8007CDF0, "func_8007CDF0__10Stage2_680P5OSPfslP10OSPfsState")
+    add_symbol(0x8007CE58, "func_8007CE58__10Stage2_680P5OSPfsPl")
+    add_symbol(0x8007D3DC, stage2_680.virt2())
+    add_symbol(0x8007D3FC, stage2_680.virt3())
+    add_symbol(0x8007D56C, "func_8007D56C__10Stage2_690P10Stage2_680i")
+    # D_80000C08
+    # D_80000DB0
+    # D_8003C630
+    # D_8003C810
+    # D_8003CAC0
+    # D_8003D0F0
+    # D_8003D608
+    # D_8003DAB8
+    # D_8003DC88
+    # D_8003DD20
+    # D_8003EFC8
+    # D_8003F560
+    # D_8003F618
+    # D_8003F700
+    # D_8003FB48
+    # D_8003FEA8
+    # D_8003FF28
+    # D_80040080
+    # D_800401F0
+    # D_800403D8
+    # D_80040428
+    # D_800404A0
+    # D_80040570 
+
     return symbols

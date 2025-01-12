@@ -42,17 +42,14 @@ public:
     u32 var_34;
 };
 
-class Bar {
-public:
-    int FUN_8007c844(int);
-};
+class Stage2_680;
 
 class UnkStruct {
 public:
     u8 pad_0[0x10];
     Foo* var_10;
     u8 pad_14[0x262C - 0x14];
-    Bar* var_262C;
+    Stage2_680* var_262C;
 };
 
 class MenuDunno {
