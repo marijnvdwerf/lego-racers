@@ -146,44 +146,44 @@ void Menu660::virt19()
     u32 var_s0;
 
     switch (this->var_1e1c) {
-    case 1:
-        break;
-    case 2:
-        func_menu_80119D6C(this, &this->var_368, 0x52, 0x52);
-        func_menu_80119D6C(this, &this->var_3C4, 0x5B, 0x5B);
-        func_menu_80119D6C(this, &this->var_420, 0x5C, 0x5C);
-        func_menu_80119E78(this, &this->var_47C, 0x132, 0x40, 0x7D);
-        break;
-    case 3:
-        func_menu_80119D6C(this, &this->var_368, 0x52, 0x52);
-        func_menu_80119D6C(this, &this->var_3C4, 0x5B, 0x5B);
-        func_menu_80119D6C(this, &this->var_420, 0x5C, 0x5C);
-        func_menu_8011A1C0(this, &this->var_da0, 0x133, 0x135);
-        func_menu_8011A1C0(this, &this->var_b84, 0x134, 0x136);
+        case 1:
+            break;
+        case 2:
+            func_menu_80119D6C(this, &this->var_368, 0x52, 0x52);
+            func_menu_80119D6C(this, &this->var_3C4, 0x5B, 0x5B);
+            func_menu_80119D6C(this, &this->var_420, 0x5C, 0x5C);
+            func_menu_80119E78(this, &this->var_47C, 0x132, 0x40, 0x7D);
+            break;
+        case 3:
+            func_menu_80119D6C(this, &this->var_368, 0x52, 0x52);
+            func_menu_80119D6C(this, &this->var_3C4, 0x5B, 0x5B);
+            func_menu_80119D6C(this, &this->var_420, 0x5C, 0x5C);
+            func_menu_8011A1C0(this, &this->var_da0, 0x133, 0x135);
+            func_menu_8011A1C0(this, &this->var_b84, 0x134, 0x136);
 
-        for (var_s0 = 0; var_s0 < 5; var_s0++) {
-            func_menu_80119E78(this, &this->var_4F4[var_s0], (var_s0 + 0x138), 0x40, 0x7E);
-            func_menu_80119E78(this, &this->var_74C[var_s0], (var_s0 + 0x13D), 0x40, 0x7F);
-        }
-        func_menu_80119E78(this, &this->var_0x9a4, 0x142, 0x40, 0x82);
-        func_menu_80119E78(this, &this->var_0xa1c, 0x143, 0x40, 0x83);
-        func_menu_80119E78(this, &this->var_0xa94, 0x144, 0x40, 0x7F);
-        func_menu_80119E78(this, &this->field_0xb0c, 0x150, 0x40, 0x91);
-        func_menu_80100A5C(this, &this->var_fbc, 0x137, 0x4B, 0x80);
-        func_menu_80100A5C(this, &this->var_12ac, 0x49, 0x4F, 0x72);
-        if (!this->var_1e28) {
-            func_menu_8012341C(&this->var_fbc, 5);
-            func_menu_801234FC(&this->var_12ac, 0);
-        } else {
-            func_menu_801234FC(&this->var_b84, 0);
-        }
-        break;
-    case 4:
-        func_menu_80119D6C(this, &this->var_368, 0x52, 0x52);
-        func_menu_80119D6C(this, &this->var_3C4, 0x5B, 0x5B);
-        func_menu_80119D6C(this, &this->var_420, 0x5C, 0x5C);
-        func_menu_80119E78(this, &this->var_47C, 0x132, 0x40, 0xC0);
-        break;
+            for (var_s0 = 0; var_s0 < 5; var_s0++) {
+                func_menu_80119E78(this, &this->var_4F4[var_s0], (var_s0 + 0x138), 0x40, 0x7E);
+                func_menu_80119E78(this, &this->var_74C[var_s0], (var_s0 + 0x13D), 0x40, 0x7F);
+            }
+            func_menu_80119E78(this, &this->var_0x9a4, 0x142, 0x40, 0x82);
+            func_menu_80119E78(this, &this->var_0xa1c, 0x143, 0x40, 0x83);
+            func_menu_80119E78(this, &this->var_0xa94, 0x144, 0x40, 0x7F);
+            func_menu_80119E78(this, &this->field_0xb0c, 0x150, 0x40, 0x91);
+            func_menu_80100A5C(this, &this->var_fbc, 0x137, 0x4B, 0x80);
+            func_menu_80100A5C(this, &this->var_12ac, 0x49, 0x4F, 0x72);
+            if (!this->var_1e28) {
+                func_menu_8012341C(&this->var_fbc, 5);
+                func_menu_801234FC(&this->var_12ac, 0);
+            } else {
+                func_menu_801234FC(&this->var_b84, 0);
+            }
+            break;
+        case 4:
+            func_menu_80119D6C(this, &this->var_368, 0x52, 0x52);
+            func_menu_80119D6C(this, &this->var_3C4, 0x5B, 0x5B);
+            func_menu_80119D6C(this, &this->var_420, 0x5C, 0x5C);
+            func_menu_80119E78(this, &this->var_47C, 0x132, 0x40, 0xC0);
+            break;
     }
 }
 
@@ -193,12 +193,12 @@ void Menu660::virt33()
 
     if (this->var_1e1c != 2) {
         switch (this->var_1e1c) {
-        case 1:
-        case 3:
-            func_menu_80100698((u32*)(((u32)this->var_354) + 4), 0x2B);
-            break;
-        case 2:
-            break;
+            case 1:
+            case 3:
+                func_menu_80100698((u32*)(((u32)this->var_354) + 4), 0x2B);
+                break;
+            case 2:
+                break;
         }
     }
 }

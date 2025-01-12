@@ -1,5 +1,6 @@
 ---
 BasedOnStyle: WebKit
+IndentCaseLabels: true
 WhitespaceSensitiveMacros:
   - INCLUDE_ASM
   - INCLUDE_RODATA
