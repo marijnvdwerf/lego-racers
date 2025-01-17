@@ -299,10 +299,15 @@ def main() -> None:
         n.rule(
             "objcopy",
             command="$OBJCOPY -O binary --pad-to=$ROM_SIZE --gap-fill=0x00 $in $out.raw && "
-            "python -m ips_util apply $IPS_PATCH $out.raw -o $out && "
-            f"echo 'Verifying ROM SHA1...' && "
-            f"echo '{original_sha1}  $out' | sha1sum -c",
+            "python -m ips_util apply $IPS_PATCH $out.raw -o $out",
             description="OBJCOPY $in",
+        )
+
+        n.rule(
+            "verify",
+            command=f"echo 'Verifying ROM SHA1...' && "
+            f"echo '{original_sha1}  $in' | sha1sum -c",
+            description="VERIFY $in",
         )
 
         linker_entries = split.linker_writer.entries
@@ -344,7 +349,9 @@ def main() -> None:
                 "mapfile": str("rom.map"),
             },
         )
+
         n.build("rom.z64", "objcopy", "rom.elf")
+        n.build("check", "verify", "rom.z64")
 
         # Default target
         n.default("rom.z64")
