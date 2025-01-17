@@ -1142,8 +1142,8 @@ def get_n64_symbols(region: str) -> List[Symbol]:
     add_symbol(0x8007EF8C, stage2_760c.virt11())
     add_symbol(0x8007EFC0, stage2_760c.virt12())
     add_symbol(0x8007F160, stage2_760.ctor())
-    add_symbol(0x8007F1C0, stage2_760.virt0())
-    add_symbol(0x8007F644, stage2_760.virt6())
+    add_symbol(0x8007F1C0, stage2_760.dtor())
+    add_symbol(0x8007F644, "virt6__10Stage2_760Pv")
     add_symbol(0x8007F770, stage2_760.virt1())
     add_symbol(0x8007F778, stage2_760.virt2())
     add_symbol(0x8007F780, stage2_760.virt3())
@@ -1198,17 +1198,24 @@ def get_n64_symbols(region: str) -> List[Symbol]:
     add_symbol(0x80081F50, stage2_790.virt10())
     add_symbol(0x80081F9C, stage2_790_filereader.virt6())
     add_symbol(0x80081FC0, stage2_800.ctor())
-    add_symbol(0x80082000, stage2_800.virt8())
-    add_symbol(0x800820C0, stage2_800.virt0())
+    add_symbol(0x80082000, stage2_800.dtor())
+    add_symbol(0x80082050, stage2_800.func_80082050())
+    add_symbol(0x80082078, stage2_800.func_80082078())
+    add_symbol(0x800820C0, "virt0__10Stage2_800i")
     add_symbol(0x800821B4, stage2_800.virt1())
     add_symbol(0x80082200, stage2_800.virt2())
-    add_symbol(0x8008220C, stage2_800.virt3())
-    add_symbol(0x800822B0, stage2_800.virt4())
-    add_symbol(0x80082330, stage2_800.virt5())
+    add_symbol(0x8008220C, "virt3__10Stage2_800f")
+    add_symbol(0x800822B0, "virt4__10Stage2_800f")
+    add_symbol(0x80082330, "virt5__10Stage2_800f")
     add_symbol(0x8008239C, stage2_800.virt6())
+    add_symbol(0x800823A4, stage2_800.func_800823A4())
+    add_symbol(0x80082404, stage2_800.func_80082404())
+    add_symbol(0x80082468, stage2_800.func_80082468())
     add_symbol(0x800824A4, stage2_800.virt7())
     add_symbol(0x800824F0, stage2_810.ctor())
     add_symbol(0x80082534, stage2_810.virt0())
+    add_symbol(0x80082588, stage2_810.func_80082588())
+    add_symbol(0x800825F0, stage2_810.func_800825F0())
     add_symbol(0x8008260C, stage2_810.virt1())
     add_symbol(0x80082650, stage2_810.virt2())
     add_symbol(0x8008266C, stage2_810.virt3())
@@ -1216,11 +1223,9 @@ def get_n64_symbols(region: str) -> List[Symbol]:
     add_symbol(0x800826DC, stage2_810.virt4())
     add_symbol(0x8008273C, stage2_810.virt5())
 
-
-
     add_symbol(0x800401F0, stage2_680.vtable())
     add_symbol(0x8007C280, stage2_680.virt0())
-    add_symbol(0x8007c2dc, stage2_680.ctor())
+    add_symbol(0x8007C2DC, stage2_680.ctor())
     add_symbol(0x8007C350, stage2_680.dtor())
     add_symbol(0x8007C4EC, "func_8007C4EC__10Stage2_680")
     add_symbol(0x8007C5A8, stage2_680.virt5())
@@ -1267,6 +1272,6 @@ def get_n64_symbols(region: str) -> List[Symbol]:
     # D_800403D8
     # D_80040428
     # D_800404A0
-    # D_80040570 
+    # D_80040570
 
     return symbols
