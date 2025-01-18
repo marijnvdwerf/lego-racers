@@ -10,7 +10,7 @@ INCLUDE_ASM("nonmatchings/main/110", virt4__8Main_110);
 
 INCLUDE_ASM("nonmatchings/main/110", func_8000B27C);
 
-INCLUDE_ASM("nonmatchings/main/110", virt5__8Main_110);
+INCLUDE_ASM("nonmatchings/main/110", virt5__8Main_110i);
 
 INCLUDE_ASM("nonmatchings/main/110", func_8000B3F8);
 
