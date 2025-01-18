@@ -443,7 +443,7 @@ def get_n64_config(region: str) -> SplatConfig:
     segment.add_segment(0x37AE8, "garbage")
     segment.add_segment(0x37AF0, "rdata", "stage2/780")
     segment.add_segment(0x37BE0, "rdata", "stage2/790")
-    segment.add_segment(0x37CF0, "rdata", "stage2/800")
+    segment.add_segment(0x37CF0, ".rdata", "stage2/800")
     segment.add_segment(0x37D50, ".rdata", "stage2/810")
 
     # Ctors
@@ -626,7 +626,7 @@ def get_n64_config(region: str) -> SplatConfig:
     segment.add_segment(0x78384, "garbage")
     segment.add_segment(0x78390, "asm", "stage2/790")
     segment.add_segment(0x792E8, "garbage")
-    segment.add_segment(0x792F0, "asm", "stage2/800")
+    segment.add_segment(0x792F0, "cpp", "stage2/800")
     segment.add_segment(0x79814, "garbage")
     segment.add_segment(0x79820, "cpp", "stage2/810")
     segment.add_segment(0x79AB4, "garbage")

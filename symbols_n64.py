@@ -172,7 +172,7 @@ def get_n64_symbols(region: str) -> List[Symbol]:
     add_symbol(0x8000F698, "MusAsk")
     add_symbol(0x8000F5D4, "MusStop")
     add_symbol(0x8000F1B0, "MusStartSong")
-    add_symbol(0x8000F7BC, "MusHandleAs")
+    add_symbol(0x8000F7BC, "MusHandleAsk")
     add_symbol(0x8000FA2C, "MusPtrBankInitialize")
     add_symbol(0x8000FA60, "MusPtrBankSetSingle")
     add_symbol(0x8000FB0C, "MusHandlePause")
