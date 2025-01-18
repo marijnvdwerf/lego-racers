@@ -442,7 +442,7 @@ def get_n64_config(region: str) -> SplatConfig:
     segment.add_segment(0x37A10, "rdata", "stage2/770")
     segment.add_segment(0x37AE8, "garbage")
     segment.add_segment(0x37AF0, "rdata", "stage2/780")
-    segment.add_segment(0x37BE0, "rdata", "stage2/790")
+    segment.add_segment(0x37BE0, ".rdata", "stage2/790")
     segment.add_segment(0x37CF0, ".rdata", "stage2/800")
     segment.add_segment(0x37D50, ".rdata", "stage2/810")
 
@@ -624,7 +624,7 @@ def get_n64_config(region: str) -> SplatConfig:
     segment.add_segment(0x77C78, "garbage")
     segment.add_segment(0x77C80, "asm", "stage2/780")
     segment.add_segment(0x78384, "garbage")
-    segment.add_segment(0x78390, "asm", "stage2/790")
+    segment.add_segment(0x78390, "cpp", "stage2/790")
     segment.add_segment(0x792E8, "garbage")
     segment.add_segment(0x792F0, "cpp", "stage2/800")
     segment.add_segment(0x79814, "garbage")
@@ -725,7 +725,7 @@ def get_n64_config(region: str) -> SplatConfig:
     segment.add_segment(0x7EB54, "garbage")
     segment.add_segment(0x7EB60, "data", "stage2/780")
     segment.add_segment(0x7EB64, "garbage")
-    segment.add_segment(0x7EB70, "data", "stage2/790")
+    segment.add_segment(0x7EB70, ".data", "stage2/790")
     segment.add_segment(0x7EB74, "garbage")
     segment.add_segment(0x7EB80, "data", "stage2/800")
 
