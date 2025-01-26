@@ -87,7 +87,7 @@ void Stage2_800::virt3(f32 arg1)
     }
 
     if (this->var_C & 2) {
-        MusHandleSetVolume(this->var_24, (int)(this->var_10 * this->var_4->virt9()->var_C));
+        MusHandleSetVolume(this->var_24, (int)(this->var_10 * this->var_4->virt10()->var_C));
     }
 }
 
@@ -153,12 +153,12 @@ void Stage2_800::func_80082468()
     }
 }
 
-int Stage2_800::virt7()
+void* Stage2_800::virt7()
 {
     return this->var_4;
 }
 
-int Stage2_800::func_800824B0()
+void* Stage2_800::func_800824B0()
 {
     return this->var_4;
 }
@@ -168,17 +168,17 @@ int Stage2_800::func_800824C8()
     return this->var_C & 1;
 }
 
-void Stage2_800::func_800824C8(int arg1)
+void Stage2_800::func_800824C8(Stage2_790* arg1)
 {
     this->var_4 = arg1;
 }
 
-void Stage2_800::func_800824D0(int arg1)
+void Stage2_800::func_800824D0(Stage2_800* arg1)
 {
     this->var_8 = arg1;
 }
 
-int Stage2_800::func_800824D8()
+Stage2_800* Stage2_800::func_800824D8()
 {
     return this->var_8;
 }

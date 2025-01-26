@@ -19,9 +19,9 @@ void Stage2_810::func_80082588(int arg1)
     this->var_8 = 1.0f;
     this->var_C = 0;
     this->var_10 = 1.0f;
-    this->var_14 = 0;
-    this->var_18 = 0;
-    this->var_1C = 0;
+    this->var_14.var_0 = 0;
+    this->var_14.var_4 = 0;
+    this->var_14.var_8 = 0;
     this->var_20 = 0;
     this->var_24 = 0;
     this->var_28 = 0;
@@ -46,9 +46,9 @@ void Stage2_810::virt2()
     this->var_40.virt1();
 }
 
-void Stage2_810::virt3()
+int Stage2_810::virt3()
 {
-    this->var_40.virt2();
+    return this->var_40.virt2();
 }
 
 void Stage2_810::virt6(void* arg1)
@@ -60,7 +60,7 @@ void Stage2_810::virt6(void* arg1)
     this->var_40.virt5(this->var_10);
 }
 
-u32 Stage2_810::virt4()
+void* Stage2_810::virt4()
 {
     return this->var_38;
 }
@@ -90,17 +90,17 @@ int Stage2_810::func_80082758()
     return this->var_40.var_C & 1;
 }
 
-void Stage2_810::func_80082764(u32 arg0)
+void Stage2_810::func_80082764(Stage2_790* arg0)
 {
     this->var_38 = arg0;
     this->var_40.var_4 = arg0;
 }
-void Stage2_810::func_80082770(u32 arg0)
+void Stage2_810::func_80082770(Stage2_810* arg0)
 {
     this->var_3C = arg0;
 }
 
-u32 Stage2_810::func_80082778()
+void* Stage2_810::func_80082778()
 {
     return this->var_3C;
 }
