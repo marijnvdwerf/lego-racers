@@ -192,7 +192,7 @@ int Stage2_680::virt5()
             this->var_40[idx++] = &this->var_4268[i];
         }
     }
- 
+
     return 1;
 }
 
