@@ -1,0 +1,40 @@
+---
+description: Decompilation process
+globs: 
+---
+# N64 Decompilation Process
+
+## Initial Setup
+
+### Clean and Build
+<pre>
+./configure --clean legoracers.e.z64
+ninja check
+</pre>
+
+### Configure Splat
+When setting up a new file for decompilation:
+
+1. Locate the file segments in splat configuration
+2. Convert segment types:
+   - Change "asm" segments to "cpp" 
+   - Change "rdata" segments to ".rdata"
+   - Leave "data" segments unchanged
+
+Example:
+<pre>
+# Before:
+segment.add_segment(0x33170, "rdata", "stage2/040")
+segment.add_segment(0x39CC0, "asm", "stage2/040")
+segment.add_segment(0x79AF0, "data", "stage2/040")
+
+# After:
+segment.add_segment(0x33170, ".rdata", "stage2/040")
+segment.add_segment(0x39CC0, "cpp", "stage2/040")
+segment.add_segment(0x79AF0, "data", "stage2/040")
+</pre>
+
+After making these changes:
+1. Run `./configure --clean legoracers.e.z64` again
+2. Verify new C file was created (e.g. src/stage2/040.cpp)
+3. Run `ninja check` to verify build still matches

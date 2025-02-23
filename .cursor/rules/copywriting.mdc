@@ -1,0 +1,5 @@
+---
+description: Copywriting
+globs: 
+---
+When outputting Markdown, use <pre> tags instead of code fences, as code fences break the Composer UI.
