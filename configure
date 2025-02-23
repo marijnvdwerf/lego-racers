@@ -2,6 +2,8 @@
 
 import hashlib
 import sys
+import shutil
+import argparse
 from pathlib import Path
 
 import splat
@@ -131,7 +133,35 @@ def check_compiler_binaries():
         sys.exit(1)
 
 
+def clean_workspace():
+    """Clean up the workspace by removing generated files and directories"""
+    paths_to_remove = [
+        "ver",
+        "nonmatchings",
+        "build",
+        "undefined_funcs_auto.txt",
+        "undefined_syms_auto.txt",
+        "build.ninja",
+        "legoracers.ld",
+        ".ninja_log",
+        "rom.elf.map"
+    ]
+    
+    for path in paths_to_remove:
+        path = Path(path)
+        if path.is_dir():
+            shutil.rmtree(path, ignore_errors=True)
+        elif path.exists():
+            path.unlink()
+
+
 def main() -> None:
+    # Parse command line arguments
+    parser = argparse.ArgumentParser(description="Configure the ROM build system")
+    parser.add_argument("rom_path", help="Path to the input ROM file (*.z64)")
+    parser.add_argument("--clean", action="store_true", help="Clean the workspace before configuring")
+    args = parser.parse_args()
+
     # Add this near the start of main(), before any ROM processing
     check_compiler_binaries()
 
@@ -145,19 +175,16 @@ def main() -> None:
         print("Error: Please run configure from the root of the repo.")
         sys.exit(1)
 
-    # Check if a ROM file was provided
-    if len(sys.argv) != 2:
-        print("Usage: ./configure rom.z64")
-        sys.exit(1)
-
-    rom_path = sys.argv[1]
+    # Clean workspace if requested
+    if args.clean:
+        clean_workspace()
 
     # Get configs
     config_e = get_n64_config("e")
     config_u = get_n64_config("u")
 
     # Generate shasum of input ROM
-    rom_shasum = generate_shasum(rom_path)
+    rom_shasum = generate_shasum(args.rom_path)
 
     # Check if shasum matches any config
     if rom_shasum == config_e.sha1:
@@ -178,7 +205,7 @@ def main() -> None:
     build_dir.mkdir(parents=True, exist_ok=True)
 
     # Clean ROM and generate patches
-    clean_data, soil_script, ips_patch = clean_rom_and_generate_patches(config, rom_path)
+    clean_data, soil_script, ips_patch = clean_rom_and_generate_patches(config, args.rom_path)
 
     # Write clean ROM
     baserom_path = project_dir / "baserom.z64"
