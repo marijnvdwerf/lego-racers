@@ -1227,6 +1227,7 @@ def get_n64_symbols(region: str) -> List[Symbol]:
     add_symbol(0x80082688, stage2_810.virt6())
     add_symbol(0x800826DC, stage2_810.virt4())
     add_symbol(0x8008273C, stage2_810.virt5())
+    add_symbol(0x80087370, "D_80087370")
 
     add_symbol(0x800401F0, stage2_680.vtable())
     add_symbol(0x8007C280, stage2_680.virt0())
