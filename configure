@@ -2,6 +2,8 @@
 
 import hashlib
 import sys
+import shutil
+import argparse
 from pathlib import Path
 
 import splat
@@ -131,7 +133,35 @@ def check_compiler_binaries():
         sys.exit(1)
 
 
+def clean_workspace():
+    """Clean up the workspace by removing generated files and directories"""
+    paths_to_remove = [
+        "ver",
+        "nonmatchings",
+        "build",
+        "undefined_funcs_auto.txt",
+        "undefined_syms_auto.txt",
+        "build.ninja",
+        "legoracers.ld",
+        ".ninja_log",
+        "rom.elf.map"
+    ]
+    
+    for path in paths_to_remove:
+        path = Path(path)
+        if path.is_dir():
+            shutil.rmtree(path, ignore_errors=True)
+        elif path.exists():
+            path.unlink()
+
+
 def main() -> None:
+    # Parse command line arguments
+    parser = argparse.ArgumentParser(description="Configure the ROM build system")
+    parser.add_argument("rom_path", help="Path to the input ROM file (*.z64)")
+    parser.add_argument("--clean", action="store_true", help="Clean the workspace before configuring")
+    args = parser.parse_args()
+
     # Add this near the start of main(), before any ROM processing
     check_compiler_binaries()
 
@@ -145,19 +175,16 @@ def main() -> None:
         print("Error: Please run configure from the root of the repo.")
         sys.exit(1)
 
-    # Check if a ROM file was provided
-    if len(sys.argv) != 2:
-        print("Usage: ./configure rom.z64")
-        sys.exit(1)
-
-    rom_path = sys.argv[1]
+    # Clean workspace if requested
+    if args.clean:
+        clean_workspace()
 
     # Get configs
     config_e = get_n64_config("e")
     config_u = get_n64_config("u")
 
     # Generate shasum of input ROM
-    rom_shasum = generate_shasum(rom_path)
+    rom_shasum = generate_shasum(args.rom_path)
 
     # Check if shasum matches any config
     if rom_shasum == config_e.sha1:
@@ -178,7 +205,7 @@ def main() -> None:
     build_dir.mkdir(parents=True, exist_ok=True)
 
     # Clean ROM and generate patches
-    clean_data, soil_script, ips_patch = clean_rom_and_generate_patches(config, rom_path)
+    clean_data, soil_script, ips_patch = clean_rom_and_generate_patches(config, args.rom_path)
 
     # Write clean ROM
     baserom_path = project_dir / "baserom.z64"
@@ -281,7 +308,7 @@ def main() -> None:
         n.rule("bin_to_o", command="$OBJCOPY $BINOFLAGS $in $out", description="OBJCOPY $in")
         n.rule(
             "c_compile",
-            command="cpp -nostdinc -undef -D__GNUC__=2 -D__OPTIMIZE__ -lang-c -Dmips -D__mips__ -D__mips -Dn64 -D__n64__ -D__n64 -D_PSYQ -D__EXTENSIONS__ -D_MIPSEB -D__CHAR_UNSIGNED__ -D_LANGUAGE_C -Iexternal/libultra/include -Iinclude -MD -MT $out $in $out.i && "
+            command="cpp -nostdinc -undef -D__GNUC__=2 -D__OPTIMIZE__ -lang-c -Dmips -D__mips__ -D__mips -Dn64 -D__n64__ -D__n64 -D_PSYQ -D__EXTENSIONS__ -D_MIPSEB -D__CHAR_UNSIGNED__ -D_LANGUAGE_C -Iexternal/libultra/include -Iexternal/libmus/include -Iinclude -MD -MT $out $in $out.i && "
             "wibo $CC1N64 -quiet -g -G0 -O2 $out.i -o $out.s && "
             "$MODERN_ASN64 $AS $out.s $ASFLAGS -o $out",
             description="CC $in",
@@ -289,7 +316,7 @@ def main() -> None:
         )
         n.rule(
             "cpp_compile",
-            command="cpp -nostdinc -undef -D__GNUC__=2 -D__OPTIMIZE__ -lang-c++ -Dmips -D__mips__ -D__mips -Dn64 -D__n64__ -D__n64 -D_PSYQ -D__EXTENSIONS__ -D_MIPSEB -D__CHAR_UNSIGNED__ -D_LANGUAGE_C_PLUS_PLUS -Iexternal/libultra/include -Iinclude -MD -MT $out  $in $out.i  && "
+            command="cpp -nostdinc -undef -D__GNUC__=2 -D__OPTIMIZE__ -lang-c++ -Dmips -D__mips__ -D__mips -Dn64 -D__n64__ -D__n64 -D_PSYQ -D__EXTENSIONS__ -D_MIPSEB -D__CHAR_UNSIGNED__ -D_LANGUAGE_C_PLUS_PLUS -Iexternal/libultra/include -Iexternal/libmus/include -Iinclude -MD -MT $out  $in $out.i  && "
             "wibo $CC1PLN64 -quiet -g -G0 -O2 -g $out.i -o $out.s && "
             "$MODERN_ASN64 $AS $out.s $ASFLAGS -o $out",
             description="CXX $in",
@@ -299,10 +326,15 @@ def main() -> None:
         n.rule(
             "objcopy",
             command="$OBJCOPY -O binary --pad-to=$ROM_SIZE --gap-fill=0x00 $in $out.raw && "
-            "python -m ips_util apply $IPS_PATCH $out.raw -o $out && "
-            f"echo 'Verifying ROM SHA1...' && "
-            f"echo '{original_sha1}  $out' | sha1sum -c",
+            "python -m ips_util apply $IPS_PATCH $out.raw -o $out",
             description="OBJCOPY $in",
+        )
+
+        n.rule(
+            "verify",
+            command=f"echo 'Verifying ROM SHA1...' && "
+            f"echo '{original_sha1}  $in' | sha1sum -c",
+            description="VERIFY $in",
         )
 
         linker_entries = split.linker_writer.entries
@@ -344,7 +376,9 @@ def main() -> None:
                 "mapfile": str("rom.map"),
             },
         )
+
         n.build("rom.z64", "objcopy", "rom.elf")
+        n.build("check", "verify", "rom.z64")
 
         # Default target
         n.default("rom.z64")

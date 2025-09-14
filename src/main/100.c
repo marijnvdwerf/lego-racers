@@ -1,10 +1,10 @@
 #include "common.h"
 
-INCLUDE_ASM("nonmatchings/main/100", func_8000ACA0);
+INCLUDE_ASM("nonmatchings/main/100", __8Main_100);
 
-INCLUDE_ASM("nonmatchings/main/100", func_8000ACD4);
+INCLUDE_ASM("nonmatchings/main/100", _._8Main_100);
 
-INCLUDE_ASM("nonmatchings/main/100", func_8000AD04);
+INCLUDE_ASM("nonmatchings/main/100", virt0__8Main_100);
 
 INCLUDE_ASM("nonmatchings/main/100", func_8000AD74);
 
@@ -14,9 +14,9 @@ INCLUDE_ASM("nonmatchings/main/100", func_8000AF70);
 
 INCLUDE_ASM("nonmatchings/main/100", func_8000AFA4);
 
-INCLUDE_ASM("nonmatchings/main/100", func_8000AFD4);
+INCLUDE_ASM("nonmatchings/main/100", virt2__8Main_100);
 
-INCLUDE_ASM("nonmatchings/main/100", func_8000B010);
+INCLUDE_ASM("nonmatchings/main/100", virt3__8Main_100);
 
 INCLUDE_ASM("nonmatchings/main/100", func_8000B06C);
 

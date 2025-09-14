@@ -1,13 +1,17 @@
 #include "common.h"
 
-void func_8000C2E0(void) { }
+void virt16__8Main_130(void)
+{
+}
 
-INCLUDE_ASM("nonmatchings/main/130", func_8000C2E8);
+INCLUDE_ASM("nonmatchings/main/130", virt17__8Main_130);
 
-INCLUDE_ASM("nonmatchings/main/130", func_8000C2F4);
+INCLUDE_ASM("nonmatchings/main/130", virt19__8Main_130);
 
-INCLUDE_ASM("nonmatchings/main/130", func_8000C2FC);
+INCLUDE_ASM("nonmatchings/main/130", virt20__8Main_130);
 
-void func_8000C304(void) { }
+void virt18__8Main_130(void)
+{
+}
 
 INCLUDE_ASM("nonmatchings/main/130", func_8000C30C);

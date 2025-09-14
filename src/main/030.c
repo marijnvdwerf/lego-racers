@@ -371,30 +371,30 @@ void calculateQuaternionFromMatrix(f32 matrix[][3], f32* quaternion)
     }
 
     switch (biggestIndex) {
-    case 0:
-        root = sqrtf(matrix0 - (matrix4 + matrix8) + 1.0f);
-        quaternion[0] = (root * 0.5f);
-        root = 0.5f / root;
-        quaternion[3] = ((matrix[2][1] - matrix[1][2]) * root);
-        quaternion[1] = ((matrix[1][0] + matrix[0][1]) * root);
-        quaternion[2] = ((matrix[2][0] + matrix[0][2]) * root);
-        break;
-    case 1:
-        root = sqrtf(matrix4 - (matrix8 + matrix0) + 1.0f);
-        quaternion[1] = (root * 0.5f);
-        root = 0.5f / root;
-        quaternion[3] = ((matrix[0][2] - matrix[2][0]) * root);
-        quaternion[2] = ((matrix[2][1] + matrix[1][2]) * root);
-        quaternion[0] = ((matrix[0][1] + matrix[1][0]) * root);
-        break;
-    case 2:
-        root = sqrtf(matrix8 - (matrix0 + matrix4) + 1.0f);
-        quaternion[2] = (root * 0.5f);
-        root = 0.5f / root;
-        quaternion[3] = ((matrix[1][0] - matrix[0][1]) * root);
-        quaternion[0] = ((matrix[0][2] + matrix[2][0]) * root);
-        quaternion[1] = ((matrix[1][2] + matrix[2][1]) * root);
-        break;
+        case 0:
+            root = sqrtf(matrix0 - (matrix4 + matrix8) + 1.0f);
+            quaternion[0] = (root * 0.5f);
+            root = 0.5f / root;
+            quaternion[3] = ((matrix[2][1] - matrix[1][2]) * root);
+            quaternion[1] = ((matrix[1][0] + matrix[0][1]) * root);
+            quaternion[2] = ((matrix[2][0] + matrix[0][2]) * root);
+            break;
+        case 1:
+            root = sqrtf(matrix4 - (matrix8 + matrix0) + 1.0f);
+            quaternion[1] = (root * 0.5f);
+            root = 0.5f / root;
+            quaternion[3] = ((matrix[0][2] - matrix[2][0]) * root);
+            quaternion[2] = ((matrix[2][1] + matrix[1][2]) * root);
+            quaternion[0] = ((matrix[0][1] + matrix[1][0]) * root);
+            break;
+        case 2:
+            root = sqrtf(matrix8 - (matrix0 + matrix4) + 1.0f);
+            quaternion[2] = (root * 0.5f);
+            root = 0.5f / root;
+            quaternion[3] = ((matrix[1][0] - matrix[0][1]) * root);
+            quaternion[0] = ((matrix[0][2] + matrix[2][0]) * root);
+            quaternion[1] = ((matrix[1][2] + matrix[2][1]) * root);
+            break;
     }
 }
 
@@ -476,30 +476,30 @@ void func_80004640(f32 matrix[][4], float* arg1)
     }
 
     switch (biggestIndex) {
-    case 0:
-        root = sqrtf((m00 - (m11 + m22)) + 1.0f);
-        arg1[0] = root * 0.5f;
-        root = 0.5f / root;
-        arg1[3] = (matrix[2][1] - matrix[1][2]) * root;
-        arg1[1] = (matrix[1][0] + matrix[0][1]) * root;
-        arg1[2] = (matrix[2][0] + matrix[0][2]) * root;
-        return;
-    case 1:
-        root = sqrtf((m11 - (m22 + m00)) + 1.0f);
-        arg1[1] = root * 0.5f;
-        root = 0.5f / root;
-        arg1[3] = (matrix[0][2] - matrix[2][0]) * root;
-        arg1[2] = (matrix[2][1] + matrix[1][2]) * root;
-        arg1[0] = (matrix[0][1] + matrix[1][0]) * root;
-        return;
-    case 2:
-        root = sqrtf((m22 - (m00 + m11)) + 1.0f);
-        arg1[2] = root * 0.5f;
-        root = 0.5f / root;
-        arg1[3] = (matrix[1][0] - matrix[0][1]) * root;
-        arg1[0] = (matrix[0][2] + matrix[2][0]) * root;
-        arg1[1] = (matrix[1][2] + matrix[2][1]) * root;
-        return;
+        case 0:
+            root = sqrtf((m00 - (m11 + m22)) + 1.0f);
+            arg1[0] = root * 0.5f;
+            root = 0.5f / root;
+            arg1[3] = (matrix[2][1] - matrix[1][2]) * root;
+            arg1[1] = (matrix[1][0] + matrix[0][1]) * root;
+            arg1[2] = (matrix[2][0] + matrix[0][2]) * root;
+            return;
+        case 1:
+            root = sqrtf((m11 - (m22 + m00)) + 1.0f);
+            arg1[1] = root * 0.5f;
+            root = 0.5f / root;
+            arg1[3] = (matrix[0][2] - matrix[2][0]) * root;
+            arg1[2] = (matrix[2][1] + matrix[1][2]) * root;
+            arg1[0] = (matrix[0][1] + matrix[1][0]) * root;
+            return;
+        case 2:
+            root = sqrtf((m22 - (m00 + m11)) + 1.0f);
+            arg1[2] = root * 0.5f;
+            root = 0.5f / root;
+            arg1[3] = (matrix[1][0] - matrix[0][1]) * root;
+            arg1[0] = (matrix[0][2] + matrix[2][0]) * root;
+            arg1[1] = (matrix[1][2] + matrix[2][1]) * root;
+            return;
     }
 }
 

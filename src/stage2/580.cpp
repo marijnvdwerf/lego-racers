@@ -427,7 +427,7 @@ void RenderClass::func_80076C94(int arg1)
     this->var_15C8.var_10 = arg1;
 }
 
-Stage2_470* RenderClass::func_80076C9C()
+Stage2_470b* RenderClass::func_80076C9C()
 {
     return &this->var_204[this->var_308];
 }
